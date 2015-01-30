@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RMLoginViewController">
+            <connections>
+                <outlet property="QQLoginBtn" destination="YoJ-lu-lir" id="aJP-R0-lvk"/>
+                <outlet property="sinaLoginBtn" destination="OTg-PD-0Ko" id="aiK-Iw-jYH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTg-PD-0Ko">
+                    <rect key="frame" x="48" y="177" width="225" height="55"/>
+                    <state key="normal" image="weibo_login">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="sinaLoginBtnClick:" destination="-1" eventType="touchUpInside" id="wxD-2V-mY9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoJ-lu-lir">
+                    <rect key="frame" x="48" y="252" width="225" height="55"/>
+                    <state key="normal" image="QQ_Login">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="QQLoginBtnClick:" destination="-1" eventType="touchUpInside" id="5hY-ZD-HRD"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号登陆小花视频" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-oK-lCd">
+                    <rect key="frame" x="0.0" y="124" width="320" height="18"/>
+                    <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="18"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="OTg-PD-0Ko" firstAttribute="top" secondItem="8Fg-oK-lCd" secondAttribute="bottom" constant="35" id="L47-aG-skm"/>
+                <constraint firstAttribute="centerX" secondItem="8Fg-oK-lCd" secondAttribute="centerX" id="OWR-RA-5RE"/>
+                <constraint firstItem="YoJ-lu-lir" firstAttribute="top" secondItem="OTg-PD-0Ko" secondAttribute="bottom" constant="20" id="Xdz-fV-YYf"/>
+                <constraint firstAttribute="centerX" secondItem="OTg-PD-0Ko" secondAttribute="centerX" id="acc-gH-ZTS"/>
+                <constraint firstAttribute="trailing" secondItem="8Fg-oK-lCd" secondAttribute="trailing" id="dFu-cG-prz"/>
+                <constraint firstItem="8Fg-oK-lCd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="124" id="lVY-1V-bRa"/>
+                <constraint firstAttribute="centerX" secondItem="YoJ-lu-lir" secondAttribute="centerX" id="uBc-3E-OgB"/>
+                <constraint firstItem="8Fg-oK-lCd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ury-at-9Ju"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="-171" y="137"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="QQ_Login" width="225" height="55"/>
+        <image name="weibo_login" width="225" height="55"/>
+    </resources>
+</document>

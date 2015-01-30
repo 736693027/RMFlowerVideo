@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RMFinishDownLoadDetailViewController">
+            <connections>
+                <outlet property="mainTableView" destination="tb9-4D-YPl" id="7rz-tN-iLA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPk-8Y-uQj">
+                    <rect key="frame" x="0.0" y="64" width="320" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwH-i7-8gA">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="titleEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="183" minY="0.0" maxX="8" maxY="0.0"/>
+                            <state key="normal" title="添加更多缓存" image="setup_downLoad_add">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="addMoreTvEpisode:" destination="-1" eventType="touchUpInside" id="zAk-2S-TjL"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="EwH-i7-8gA" secondAttribute="trailing" id="0Mg-yV-Pwo"/>
+                        <constraint firstAttribute="bottom" secondItem="EwH-i7-8gA" secondAttribute="bottom" id="CQs-iS-wMx"/>
+                        <constraint firstAttribute="height" constant="45" id="cpt-pT-ciR"/>
+                        <constraint firstItem="EwH-i7-8gA" firstAttribute="top" secondItem="hPk-8Y-uQj" secondAttribute="top" id="pUT-UY-Lk8"/>
+                        <constraint firstItem="EwH-i7-8gA" firstAttribute="leading" secondItem="hPk-8Y-uQj" secondAttribute="leading" id="pnl-Ia-wem"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tb9-4D-YPl">
+                    <rect key="frame" x="0.0" y="109" width="320" height="434"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="dMG-Zf-UMV"/>
+                        <outlet property="delegate" destination="-1" id="in5-DF-sjN"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="tb9-4D-YPl" secondAttribute="bottom" constant="25" id="0IU-6w-dYq"/>
+                <constraint firstItem="tb9-4D-YPl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2mv-zn-K4o"/>
+                <constraint firstAttribute="trailing" secondItem="hPk-8Y-uQj" secondAttribute="trailing" id="46M-kX-Ius"/>
+                <constraint firstItem="hPk-8Y-uQj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8VZ-Ac-yfT"/>
+                <constraint firstItem="hPk-8Y-uQj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="pIf-vo-ncm"/>
+                <constraint firstAttribute="trailing" secondItem="tb9-4D-YPl" secondAttribute="trailing" id="s6m-yq-94R"/>
+                <constraint firstItem="tb9-4D-YPl" firstAttribute="top" secondItem="hPk-8Y-uQj" secondAttribute="bottom" id="vR7-43-RhN"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="1043" y="367"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="setup_downLoad_add" width="7" height="7"/>
+    </resources>
+</document>
