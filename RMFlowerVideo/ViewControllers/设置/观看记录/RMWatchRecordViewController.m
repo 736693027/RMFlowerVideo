@@ -87,20 +87,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *identifier = @"cellIIdentifier";
+    static NSString *identifier = @"cellIIdentifier11";
     RMWatchRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row];
     if(cell==nil){
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"RMWatchRecordTableViewCell" owner:self options:nil] lastObject];
+        if([model.name rangeOfString:@"综艺"].location == NSNotFound){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMWatchRecordTableViewCell" owner:self options:nil] lastObject];
+        }else{
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMWatchRecordTableViewVarietyCell" owner:self options:nil] lastObject];
+        }
         if(isEditing){
             [cell setCellViewFrame];
         }
     }
-    RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row];
     [cell.editingImage setImage:[UIImage imageNamed:[cellEditingImageArray objectAtIndex:indexPath.row]]];
     cell.delegate = self;
     cell.playBtn.tag = indexPath.row;
     [cell.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
-    if([model.name rangeOfString:@"电视剧"].location == NSNotFound){
+    if([model.name rangeOfString:@"电视剧"].location == NSNotFound && [model.name rangeOfString:@"综艺"].location == NSNotFound){
         cell.titleLable.text = model.name;
     }
     else{
@@ -148,7 +152,7 @@
         RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row];
         RMVideoPlaybackDetailsViewController * videoPlaybackDetailsCtl = [[RMVideoPlaybackDetailsViewController alloc] init];
         videoPlaybackDetailsCtl.video_id = model.video_id;
-        if([model.name rangeOfString:@"电视剧"].location == NSNotFound)
+        if([model.name rangeOfString:@"电视剧"].location == NSNotFound&&[model.name rangeOfString:@"综艺"].location)
             videoPlaybackDetailsCtl.segVideoType = @"电影";
         else
             videoPlaybackDetailsCtl.segVideoType = @"电视剧";
@@ -232,7 +236,7 @@
 
 - (void)palyMovieWithIndex:(NSInteger)index{
     RMPublicModel *model = [self.dataArray objectAtIndex:index];
-    if ([model.name rangeOfString:@"电视剧"].location == NSNotFound){
+    if ([model.name rangeOfString:@"电视剧"].location == NSNotFound&&[model.name rangeOfString:@"综艺"].location){
         NSString* pathExtention = [model.m_down_url pathExtension];
         if([pathExtention isEqualToString:@"mp4"]) {
             RMModel *_model = [[RMModel alloc] init];
@@ -255,7 +259,8 @@
             [RMPlayer presentVideoPlayerWithPlayModel:_model withUIViewController:self withVideoType:1 withIsLocationVideo:NO];
         }else{
             RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
-            loadingWebCtl.name = model.name;
+             NSString *title = [model.name substringFromIndex:[model.name rangeOfString:@"_"].location+1];
+            loadingWebCtl.name = title;
             loadingWebCtl.loadingUrl = model.jumpurl;
             [self presentViewController:loadingWebCtl animated:YES completion:^{
             }];

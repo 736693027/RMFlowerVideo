@@ -173,6 +173,8 @@
 		1DB35EAE1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAC1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib */; };
 		1DB35EAF1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */; };
 		1DE1C2981A53D7720096A89F /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1C2971A53D7720096A89F /* Animations.m */; };
+		910250251A7CD01C00805223 /* RMRankVarietyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910250241A7CD01C00805223 /* RMRankVarietyCell.xib */; };
+		910250271A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910250261A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib */; };
 		910B88381A693F5300C13CC7 /* UtilityFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 910B88371A693F5300C13CC7 /* UtilityFunc.m */; };
 		912C0C151A7C863700B85FC1 /* RMSpecialEditionCell_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912C0C131A7C863700B85FC1 /* RMSpecialEditionCell_6.xib */; };
 		912C0C161A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912C0C141A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib */; };
@@ -610,6 +612,8 @@
 		1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMVideoOrStarCell_6p.xib; sourceTree = "<group>"; };
 		1DE1C2961A53D7720096A89F /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animations.h; sourceTree = "<group>"; };
 		1DE1C2971A53D7720096A89F /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
+		910250241A7CD01C00805223 /* RMRankVarietyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankVarietyCell.xib; sourceTree = "<group>"; };
+		910250261A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMWatchRecordTableViewVarietyCell.xib; sourceTree = "<group>"; };
 		910B88361A693F5300C13CC7 /* UtilityFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityFunc.h; sourceTree = "<group>"; };
 		910B88371A693F5300C13CC7 /* UtilityFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityFunc.m; sourceTree = "<group>"; };
 		912C0C131A7C863700B85FC1 /* RMSpecialEditionCell_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMSpecialEditionCell_6.xib; sourceTree = "<group>"; };
@@ -2252,6 +2256,7 @@
 				919F68F21A5A6919003E6C08 /* RMWatchRecordTableViewCell.h */,
 				919F68F31A5A6919003E6C08 /* RMWatchRecordTableViewCell.m */,
 				919F68F41A5A6919003E6C08 /* RMWatchRecordTableViewCell.xib */,
+				910250261A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2341,6 +2346,7 @@
 				91F399881A5937EE002142CD /* RMRankMovieCell.h */,
 				91F399891A5937EE002142CD /* RMRankMovieCell.m */,
 				91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */,
+				910250241A7CD01C00805223 /* RMRankVarietyCell.xib */,
 				91556FDB1A78E7AA006C90A9 /* RMRankMovieCell_promote.xib */,
 				91F3998D1A59404C002142CD /* RMRankTableViewHeadView.h */,
 				91F3998E1A59404C002142CD /* RMRankTableViewHeadView.m */,
@@ -2482,6 +2488,7 @@
 				9134560A1A5BD22A005CAFB1 /* RMSearchViewController.xib in Resources */,
 				1DA31D1E1A708C600034A307 /* rm_play_btn@3x.png in Resources */,
 				9157DEE81A58D42500692114 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				910250251A7CD01C00805223 /* RMRankVarietyCell.xib in Resources */,
 				1DA31D021A708C600034A307 /* narrow@2x.png in Resources */,
 				913455E91A5BB757005CAFB1 /* RMFinishDownLoadTableViewCell.xib in Resources */,
 				1DA31D111A708C600034A307 /* rm_choose_btn@2x.png in Resources */,
@@ -2519,6 +2526,7 @@
 				1DA31D131A708C600034A307 /* rm_gray@2x.png in Resources */,
 				91C9204E1A7601B10065E197 /* RMLoadingWebViewController.xib in Resources */,
 				1DAB4FAB1A72231A00F9310A /* source_leshi_big@3x.png in Resources */,
+				910250271A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib in Resources */,
 				91366D861A526D5B001FD769 /* loading.wav in Resources */,
 				1D632E631A591EDC002674DF /* RMMoreAppViewController.xib in Resources */,
 				1DA31D031A708C600034A307 /* narrow@3x.png in Resources */,

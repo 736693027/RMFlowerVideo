@@ -458,6 +458,7 @@
             model.video_type = [[responseObject objectForKey:@"data"] objectForKey:@"video_type"];
             model.actor = [[responseObject objectForKey:@"data"] objectForKey:@"actor"];
             model.director = [[responseObject objectForKey:@"data"] objectForKey:@"director"];
+            model.presenters = [[responseObject objectForKey:@"data"] objectForKey:@"presenters"];
             model.hits = [[responseObject objectForKey:@"data"] objectForKey:@"hits"];
             if ([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithModel:)]) {
                 [self.delegate requestFinishiDownLoadWithModel:model];

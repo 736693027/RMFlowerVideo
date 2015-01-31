@@ -39,7 +39,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier = @"RankTableViewCell";
+    static NSString *identifier = @"RankTableViewCell111";
     RMRankMovieCell *cell = [self.mainTableView dequeueReusableCellWithIdentifier:identifier];
     RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row+1];
     if(cell == nil){

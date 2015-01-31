@@ -39,14 +39,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier = @"RankTableViewCell";
+    static NSString *identifier = @"RankTableViewCell111";
     RMRankMovieCell *cell = [self.mainTableView dequeueReusableCellWithIdentifier:identifier];
     RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row+1];
     if(cell == nil){
         if([model.video_id isEqualToString:@"0"]){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"RMRankMovieCell_promote" owner:self options:nil] lastObject];
         }else{
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMRankMovieCell" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMRankVarietyCell" owner:self options:nil] lastObject];
             cell.delegate = self;
         }
     }
@@ -69,8 +69,7 @@
         }
         cell.topNumberLable.text = model.order;
         cell.playBnt.tag = model.video_id.integerValue;
-        cell.starringLable.text = model.actors;
-        cell.directorLable.text = model.directors;
+        cell.starringLable.text = model.presenters;
         cell.playCount.text = model.hits;
     }
     [cell.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];

@@ -658,7 +658,7 @@ typedef enum{
 - (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
     self.dataModel = model;
     NSString *jumpString = @"",*m_down_url = @"",*videoName = @"";
-    
+    RMPublicModel *historyModel = [[RMPublicModel alloc] init];
     if (model.video_type.integerValue == 1){    //电影
         [segmentedCtl setSelectedIndex:2];
         [self switchSelectedMethodWithValue:2 withTitle:nil];
@@ -667,10 +667,11 @@ typedef enum{
             if([[dict objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
                 jumpString = [dict objectForKey:@"jumpurl"];
                 m_down_url = [dict objectForKey:@"m_down_url"];
-                videoName = [dict objectForKey:@"name"];
+                videoName = self.dataModel.name;
                 break;
             }
         }
+        historyModel.actors = self.dataModel.actor;
     }else{  //电视剧   综艺
         [segmentedCtl setSelectedIndex:0];
         [self switchSelectedMethodWithValue:0 withTitle:nil];
@@ -679,14 +680,18 @@ typedef enum{
             NSDictionary *dict = [self.dataModel.playurls objectAtIndex:0];
             jumpString = [dict objectForKey:@"jumpurl"];
             m_down_url = [dict objectForKey:@"m_down_url"];
-            videoName = [NSString stringWithFormat:@"电视剧_%@",[dict objectForKey:@"name"]];
+            if([self.dataModel.video_type isEqualToString:@"2"]){
+                videoName = [NSString stringWithFormat:@"电视剧_%@",self.dataModel.name];
+                historyModel.actors = self.dataModel.actor;
+            }
+            else{
+                videoName = [NSString stringWithFormat:@"综艺_%@",self.dataModel.name];
+                historyModel.actors = self.dataModel.presenters;
+            }
         }
     }
-    
-    RMPublicModel *historyModel = [[RMPublicModel alloc] init];
     historyModel.pic = self.dataModel.pic;
-    historyModel.name = self.dataModel.name;
-    historyModel.actors = self.dataModel.actor;
+    historyModel.name = videoName;
     historyModel.directors = self.dataModel.director;
     historyModel.hits = self.dataModel.hits;
     historyModel.m_down_url = m_down_url;

@@ -67,19 +67,22 @@
 #pragma mark tableView dataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *identifier = @"cellIIdentifier";
+    static NSString *identifier = @"cellIIdentifier11";
     RMWatchRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row];
     if(cell==nil){
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"RMWatchRecordTableViewCell" owner:self options:nil] lastObject];
+        if([model.video_type isEqualToString:@"3"]){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMWatchRecordTableViewVarietyCell" owner:self options:nil] lastObject];
+        }else{
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMWatchRecordTableViewCell" owner:self options:nil] lastObject];
+        }
         if(isEditing)
             [cell setCellViewFrame];
     }
-    RMPublicModel *model = [self.dataArray objectAtIndex:indexPath.row];
     [cell.editingImage setImage:[UIImage imageNamed:[cellEditingImageArray objectAtIndex:indexPath.row]]];
     [cell.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
     cell.titleLable.text = model.name;
     cell.starringLable.text = model.actors;
-    cell.directorLable.text = model.directors;
     cell.playCount.text = model.hits;
     cell.delegate = self;
     cell.playBtn.tag = indexPath.row;
