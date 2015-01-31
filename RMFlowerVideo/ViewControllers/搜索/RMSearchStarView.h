@@ -12,7 +12,8 @@
 @interface RMSearchStarView : UIView
 
 @property (nonatomic, strong) RMPublicModel * dataModel;
+@property (nonatomic, assign) id jumpDelegate;
 
-- (void)initSearchStarView:(id)searchDelegate;
+- (void)initSearchStarView;
 
 @end

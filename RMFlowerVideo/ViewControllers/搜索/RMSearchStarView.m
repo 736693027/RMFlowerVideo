@@ -23,19 +23,19 @@
     RMChannelTeleplayViewController * channelTeleplayCtl;   //电视剧
     RMChannelVarietyViewController * channelVarietyCtl;     //综艺
     RMSegmentedMultiSelectController * segmentedCtl;
-    UIButton * jumpIntrodueBtn;
+    UIImageView * jumpIntrodueImg;
+    UIButton * jumpBtn;
 }
-@property (nonatomic, assign) id searchDelegate;
+//@property (nonatomic, assign) id searchDelegate;
 @end
 
 @implementation RMSearchStarView
 
-- (void)initSearchStarView:(id)searchDelegate {
+- (void)initSearchStarView {
     self.backgroundColor = [UIColor clearColor];
     self.userInteractionEnabled = YES;
     self.multipleTouchEnabled = YES;
     [self loadStarView];
-    self.searchDelegate = searchDelegate;
 }
 
 - (void)loadStarView {
@@ -70,17 +70,20 @@
     starIntrodue.attributedText = [[NSAttributedString alloc] initWithString:starDetail attributes:ats];
     
     if (starDetail.length != 0){
-        if (!jumpIntrodueBtn){
-            jumpIntrodueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        if (!jumpIntrodueImg){
+            jumpIntrodueImg = [[UIImageView alloc] init];
+            jumpIntrodueImg.frame = CGRectMake(ScreenWidth-50, 131, 36, 13);
+            jumpIntrodueImg.image = LOADIMAGE(@"starDetails_show");
+            [self addSubview:jumpIntrodueImg];
         }
-        jumpIntrodueBtn.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
-        jumpIntrodueBtn.frame = CGRectMake(ScreenWidth-130, 131, 120, 20);
-        [jumpIntrodueBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 3, 80)];
-        [jumpIntrodueBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 50, 0, -10)];
-        [jumpIntrodueBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [jumpIntrodueBtn setImage:LOADIMAGE(@"starDetails_show") forState:UIControlStateNormal];
-        [jumpIntrodueBtn addTarget:self action:@selector(jumpIntrodueMethod) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:jumpIntrodueBtn];
+        
+        if (!jumpBtn){
+            jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            jumpBtn.frame = CGRectMake(110, 5, ScreenWidth - 120, 140);
+            jumpBtn.backgroundColor = [UIColor clearColor];
+            [jumpBtn addTarget:self action:@selector(jumpIntrodueMethod) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:jumpBtn];
+        }
     }else{
         starIntrodue.text = @"暂无介绍";
     }
@@ -128,7 +131,7 @@
                     channelMoviesCtl = [[RMChannelMoviesViewController alloc] init];
                 }
                 channelMoviesCtl.view.frame = CGRectMake(0, 210, ScreenWidth, ScreenHeight - 210);
-                channelMoviesCtl.MyChannelDetailsDelegate = self.searchDelegate;
+                channelMoviesCtl.MyChannelDetailsDelegate = self.jumpDelegate;
                 channelMoviesCtl.ctlType = @"搜索";
                 channelMoviesCtl.tag_id = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"tag_id"];
                 [self addSubview:channelMoviesCtl.view];
@@ -137,7 +140,7 @@
                     channelTeleplayCtl = [[RMChannelTeleplayViewController alloc] init];
                 }
                 channelTeleplayCtl.view.frame = CGRectMake(0, 210, ScreenWidth, ScreenHeight - 210);
-                channelTeleplayCtl.MyChannelDetailsDelegate = self.searchDelegate;
+                channelTeleplayCtl.MyChannelDetailsDelegate = self.jumpDelegate;
                 channelTeleplayCtl.ctlType = @"搜索";
                 channelTeleplayCtl.tag_id = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"tag_id"];
                 [self addSubview:channelTeleplayCtl.view];
@@ -146,7 +149,7 @@
                     channelVarietyCtl = [[RMChannelVarietyViewController alloc] init];
                 }
                 channelVarietyCtl.view.frame = CGRectMake(0, 210, ScreenWidth, ScreenHeight - 210);
-                channelVarietyCtl.MyChannelDetailsDelegate = self.searchDelegate;
+                channelVarietyCtl.MyChannelDetailsDelegate = self.jumpDelegate;
                 channelVarietyCtl.ctlType = @"搜索";
                 channelVarietyCtl.tag_id = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"tag_id"];
                 [self addSubview:channelVarietyCtl.view];
@@ -159,7 +162,7 @@
                     channelTeleplayCtl = [[RMChannelTeleplayViewController alloc] init];
                 }
                 channelTeleplayCtl.view.frame = CGRectMake(0, 210, ScreenWidth, ScreenHeight - 210);
-                channelTeleplayCtl.MyChannelDetailsDelegate = self.searchDelegate;
+                channelTeleplayCtl.MyChannelDetailsDelegate = self.jumpDelegate;
                 channelTeleplayCtl.ctlType = @"搜索";
                 channelTeleplayCtl.tag_id = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"tag_id"];
                 [self addSubview:channelTeleplayCtl.view];
@@ -168,7 +171,7 @@
                     channelVarietyCtl = [[RMChannelVarietyViewController alloc] init];
                 }
                 channelVarietyCtl.view.frame = CGRectMake(0, 210, ScreenWidth, ScreenHeight - 210);
-                channelVarietyCtl.MyChannelDetailsDelegate = self.searchDelegate;
+                channelVarietyCtl.MyChannelDetailsDelegate = self.jumpDelegate;
                 channelVarietyCtl.ctlType = @"搜索";
                 channelVarietyCtl.tag_id = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"tag_id"];
                 [self addSubview:channelVarietyCtl.view];
@@ -180,7 +183,7 @@
                 channelVarietyCtl = [[RMChannelVarietyViewController alloc] init];
             }
             channelVarietyCtl.view.frame = CGRectMake(0, 210, ScreenWidth, ScreenHeight - 210);
-            channelVarietyCtl.MyChannelDetailsDelegate = self.searchDelegate;
+            channelVarietyCtl.MyChannelDetailsDelegate = self.jumpDelegate;
             channelVarietyCtl.ctlType = @"搜索";
             channelVarietyCtl.tag_id = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"tag_id"];
             [self addSubview:channelVarietyCtl.view];

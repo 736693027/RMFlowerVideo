@@ -231,7 +231,6 @@
 }
 
 - (void)palyMovieWithIndex:(NSInteger)index{
-    NSLog(@"index:%ld",(long)index);
     RMPublicModel *model = [self.dataArray objectAtIndex:index];
     if ([model.name rangeOfString:@"电视剧"].location == NSNotFound){
         NSString* pathExtention = [model.m_down_url pathExtension];

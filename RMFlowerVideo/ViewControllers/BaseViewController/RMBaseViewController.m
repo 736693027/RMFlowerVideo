@@ -234,5 +234,41 @@
     HUD = nil;
 }
 
+- (void)showHUDWithImage:(NSString *)imageName imageFrame:(CGRect)frame duration:(NSTimeInterval)interval userInteractionEnabled:(BOOL)enabled {
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = enabled;
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+
+    if (!HUDImageView){
+        HUDImageView = [[UIImageView alloc] init];
+        HUDImageView.frame = frame;
+        HUDImageView.center = CGPointMake(width/2, height/2);
+        HUDImageView.backgroundColor = [UIColor clearColor];
+        HUDImageView.image = [UIImage imageNamed:imageName];
+        HUDImageView.alpha = 0.f;
+        [[UIApplication sharedApplication].keyWindow addSubview:HUDImageView];
+    }
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:0 animations:^{
+        HUDImageView.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+
+    }];
+    
+    [self hideHUDImageWithAnimation:YES afterDelay:interval];
+}
+
+- (void)hideHUDImageWithAnimation:(BOOL)animation afterDelay:(NSTimeInterval)interval {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView animateWithDuration:0.3 delay:0.0 options:0 animations:^{
+            HUDImageView.alpha = 0.f;
+        } completion:^(BOOL finished) {
+            [HUDImageView removeFromSuperview];
+            HUDImageView = nil;
+        }];
+    });
+}
 
 @end

@@ -21,4 +21,6 @@
 
 - (void)switchCollectionState:(BOOL)isCollection;
 
+- (void)switchDownLoadState:(BOOL)isdownload;
+
 @end

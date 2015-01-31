@@ -10,11 +10,11 @@
 #import "UMSocial.h"
 #import "CONST.h"
 #import "RMVideoPlaybackDetailsViewController.h"
+#import "UIButton+EnlargeEdge.h"
 
-@interface DOPScrollableActionSheet ()<UMSocialUIDelegate>
+@interface DOPScrollableActionSheet ()<UMSocialUIDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) CGRect         screenRect;
-@property (nonatomic, strong) UIWindow       *window;
 @property (nonatomic, strong) UIView         *dimBackground;
 
 @end
@@ -31,6 +31,14 @@
         }
         _dimBackground = [[UIView alloc] initWithFrame:_screenRect];
         _dimBackground.backgroundColor = [UIColor clearColor];
+        
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+        
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+        panRecognizer.maximumNumberOfTouches = 1;
+        panRecognizer.delegate = self;
+        [_dimBackground addGestureRecognizer:panRecognizer];
+        
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
         [_dimBackground addGestureRecognizer:gr];
         self.backgroundColor = [UIColor colorWithRed:0.14 green:0.14 blue:0.14 alpha:1];
@@ -59,6 +67,7 @@
         [cancle setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         cancle.frame = CGRectMake(_screenRect.size.width-50-15, cancleBtnOriginY, 50, 14);
         [cancle setBackgroundColor:[UIColor clearColor]];
+        [cancle setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
         [cancle addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cancle];
         
@@ -80,10 +89,13 @@
             float w = shareBtnWidth+spacing;
             lable.frame = CGRectMake(x, spacing+lineOriginY+shareBtnWidth, w, shareBtnWidth);
             [self addSubview:lable];
+            
+            [[UIApplication sharedApplication].keyWindow addSubview:self];
         }
     }
     return self;
 }
+
 - (void)beginShareContent:(UIButton *)btn{
     /*
      NSArray *shareArray = [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray;
@@ -132,16 +144,6 @@
 }
 
 - (void)show {
-    self.window = [[UIWindow alloc] initWithFrame:self.screenRect];
-    self.window.windowLevel = UIWindowLevelAlert;
-    self.window.backgroundColor = [UIColor clearColor];
-    self.window.rootViewController = [UIViewController new];
-    self.window.rootViewController.view.backgroundColor = [UIColor clearColor];
-    
-    [self.window.rootViewController.view addSubview:self.dimBackground];
-    [self.window.rootViewController.view addSubview:self];
-    
-    self.window.hidden = NO;
     [UIView animateWithDuration:0.2 animations:^{
         self.dimBackground.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
         self.frame = CGRectMake(0, self.screenRect.size.height-self.frame.size.height, self.frame.size.width, self.frame.size.height);
@@ -155,7 +157,7 @@
         self.dimBackground.backgroundColor = [UIColor clearColor];
         self.frame = CGRectMake(0, self.screenRect.size.height, self.frame.size.width, self.frame.size.height);
     } completion:^(BOOL finished) {
-        self.window = nil;
+
     }];
 }
 

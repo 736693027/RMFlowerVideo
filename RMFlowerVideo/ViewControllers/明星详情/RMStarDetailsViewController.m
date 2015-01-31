@@ -144,13 +144,6 @@ typedef enum{
     [self.view addSubview:starIntrodue];
 }
 
-- (void)jumpIntrodueMethod {
-    RMStarIntroViewController * starIntroCtl = [[RMStarIntroViewController alloc] init];
-    starIntroCtl.starName = self.publicModel.name;
-    starIntroCtl.starIntrodue = self.publicModel.detail;
-    [self.navigationController pushViewController:starIntroCtl animated:YES];
-}
-
 - (void)navgationBarButtonClick:(UIBarButtonItem *)sender {
     switch (sender.tag) {
         case 1:{
@@ -198,6 +191,16 @@ typedef enum{
     [manager getVideoNumWithTag_id:self.tag_id];
 }
 
+/**
+ *  跳明星介绍
+ */
+- (void)jumpIntrodueMethod {
+    RMStarIntroViewController * starIntroCtl = [[RMStarIntroViewController alloc] init];
+    starIntroCtl.starName = self.publicModel.name;
+    starIntroCtl.starIntrodue = self.publicModel.detail;
+    [self.navigationController pushViewController:starIntroCtl animated:YES];
+}
+
 - (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
     switch (loadType) {
         case requestStarType:{
@@ -220,15 +223,16 @@ typedef enum{
             starIntrodue.attributedText = [[NSAttributedString alloc] initWithString:model.detail attributes:ats];
             
             if (model.detail.length != 0){
-                UIButton * jumpIntrodueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                jumpIntrodueBtn.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
-                jumpIntrodueBtn.frame = CGRectMake(ScreenWidth-130, 195, 120, 20);
-                [jumpIntrodueBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 3, 80)];
-                [jumpIntrodueBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 50, 0, -10)];
-                [jumpIntrodueBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [jumpIntrodueBtn setImage:LOADIMAGE(@"starDetails_show") forState:UIControlStateNormal];
-                [jumpIntrodueBtn addTarget:self action:@selector(jumpIntrodueMethod) forControlEvents:UIControlEventTouchUpInside];
-                [self.view addSubview:jumpIntrodueBtn];
+                UIImageView * jumpIntrodueImg = [[UIImageView alloc] init];
+                jumpIntrodueImg.frame = CGRectMake(ScreenWidth-50, 200, 36, 13);
+                jumpIntrodueImg.image = LOADIMAGE(@"starDetails_show");
+                [self.view addSubview:jumpIntrodueImg];
+                
+                UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                jumpBtn.frame = CGRectMake(110, 75, ScreenWidth - 120, 140);
+                jumpBtn.backgroundColor = [UIColor clearColor];
+                [jumpBtn addTarget:self action:@selector(jumpIntrodueMethod) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:jumpBtn];
             }else{
                 starIntrodue.text = @"暂无介绍";
             }

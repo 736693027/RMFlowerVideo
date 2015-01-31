@@ -175,6 +175,7 @@ typedef enum{
         self.searchStarView = [[RMSearchStarView alloc] init];
         [self.view addSubview:self.searchStarView];
     }
+    self.searchStarView.jumpDelegate = self;;
     self.searchStarView.hidden = YES;
 }
 
@@ -658,7 +659,7 @@ typedef enum{
         self.searchStarView.hidden = NO;
         self.searchStarView.frame = CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64);
         self.searchStarView.dataModel = self.dataModel;
-        [self.searchStarView initSearchStarView:self];
+        [self.searchStarView initSearchStarView];
     }
     [self hideLoading];
 }

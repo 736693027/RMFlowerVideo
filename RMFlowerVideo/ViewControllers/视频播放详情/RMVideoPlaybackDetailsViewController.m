@@ -416,21 +416,26 @@ typedef enum{
             break;
         }
         case 2:{//下载
+            if ([self.dataModel.is_download isEqualToString:@"0"]){
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频暂时不能下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                return;
+            }
             RMDownLoadingViewController *rmDownLoading = [RMDownLoadingViewController shared];
             if (self.dataModel.video_type.integerValue == 1){   //电影]
                 for(NSDictionary *dict in self.dataModel.playurl){
                     if([[dict objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
                         if([dict objectForKey:@"m_down_url"]==nil||![[[dict objectForKey:@"m_down_url"] pathExtension] isEqualToString:@"mp4"]){
-                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该影片暂时不能下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                            [alertView show];
+                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频暂时不能下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            [alert show];
                         }
                         else if([[Database sharedDatabase] isDownLoadMovieWith:self.dataModel]){
-                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该影片已下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                            [alertView show];
+                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频已下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            [alert show];
                         }
                         else if( [self isContainsModel:rmDownLoading.dataArray modelName:self.dataModel.name]){
-                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该影片已在下载队列中" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                            [alertView show];
+                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频已在下载队列" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            [alert show];
                         }
                         else{
                             RMPublicModel *model = [[RMPublicModel alloc] init];
@@ -629,21 +634,21 @@ typedef enum{
 - (void)requestFinishiDownLoadWithResults:(NSString *)results {
     if (requestType == requestAddFavoriteType){ //添加收藏
         if ([results isEqualToString:@"success"]){
-            [self showMessage:@"添加收藏成功" duration:1 position:1 withUserInteractionEnabled:YES];
+            [self showHUDWithImage:@"addColSucess" imageFrame:CGRectMake(0, 0, 130, 40) duration:2 userInteractionEnabled:YES];
             self.isCollection = YES;
             [self.detailsBottomView switchCollectionState:self.isCollection];
         }else{
-            [self showMessage:@"添加收藏失败" duration:1 position:1 withUserInteractionEnabled:YES];
+            [self showHUDWithImage:@"addColFailed" imageFrame:CGRectMake(0, 0, 130, 40) duration:2 userInteractionEnabled:YES];
             self.isCollection = NO;
             [self.detailsBottomView switchCollectionState:self.isCollection];
         }
     }else{  //删除收藏
         if ([results isEqualToString:@"success"]){
-            [self showMessage:@"删除收藏成功" duration:1 position:1 withUserInteractionEnabled:YES];
+            [self showHUDWithImage:@"deleteColSucess" imageFrame:CGRectMake(0, 0, 130, 40) duration:2 userInteractionEnabled:YES];
             self.isCollection = NO;
             [self.detailsBottomView switchCollectionState:self.isCollection];
         }else{
-            [self showMessage:@"删除收藏失败" duration:1 position:1 withUserInteractionEnabled:YES];
+            [self showHUDWithImage:@"deleteColFailed" imageFrame:CGRectMake(0, 0, 130, 40) duration:2 userInteractionEnabled:YES];
             self.isCollection = NO;
             [self.detailsBottomView switchCollectionState:self.isCollection];
         }
@@ -696,7 +701,13 @@ typedef enum{
         self.isCollection = NO;
     }
     [self.detailsBottomView switchCollectionState:self.isCollection];
-
+    
+    if ([self.dataModel.is_download isEqualToString:@"1"]){
+        [self.detailsBottomView switchDownLoadState:YES];
+    }else{
+        [self.detailsBottomView switchDownLoadState:NO];
+    }
+    
     if (self.dataModel.video_type.integerValue == 1){
         self.nextBtn.enabled = NO;
     }else{
@@ -751,9 +762,9 @@ typedef enum{
 
 - (void)requestError:(NSError *)error {
     if (requestType == requestAddFavoriteType){ //添加收藏
-        [self showMessage:@"添加收藏失败" duration:1 position:1 withUserInteractionEnabled:YES];
+        [self showHUDWithImage:@"addColFailed" imageFrame:CGRectMake(0, 0, 130, 40) duration:2 userInteractionEnabled:YES];
     }else if (requestType == requestDeleteFavoriteType){  //删除收藏
-        [self showMessage:@"删除收藏失败" duration:1 position:1 withUserInteractionEnabled:YES];
+        [self showHUDWithImage:@"deleteColFailed" imageFrame:CGRectMake(0, 0, 130, 40) duration:2 userInteractionEnabled:YES];
     }else{
         
     }

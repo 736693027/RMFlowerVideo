@@ -121,6 +121,7 @@
 }
 
 - (void)loadingViewJumpVideoDetailWithID:(NSString *)video_ID{
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     RMVideoPlaybackDetailsViewController * videoPlaybackDetailsCtl = [[RMVideoPlaybackDetailsViewController alloc] init];
     videoPlaybackDetailsCtl.video_id = video_ID;
     [self presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{

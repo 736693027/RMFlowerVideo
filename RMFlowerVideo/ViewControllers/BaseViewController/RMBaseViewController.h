@@ -28,6 +28,7 @@
     UIButton *leftBarButton;
     UIButton *rightBarButton;
     MBProgressHUD *HUD;
+    UIImageView * HUDImageView;
 }
 
 /**
@@ -55,5 +56,7 @@
 - (void)showMessage:(NSString *)message duration:(NSTimeInterval)interval position:(NSInteger)position withUserInteractionEnabled:(BOOL)enabled;//提示文字，显示时间，位置
 
 -(void)hideLoading;
+
+- (void)showHUDWithImage:(NSString *)imageName imageFrame:(CGRect)frame duration:(NSTimeInterval)interval userInteractionEnabled:(BOOL)enabled;
 
 @end

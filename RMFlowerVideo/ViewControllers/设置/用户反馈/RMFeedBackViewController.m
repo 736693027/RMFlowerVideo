@@ -71,8 +71,9 @@
 - (void)requestFinishiDownLoadWithResults:(NSString *)results{
     [self hideLoading];
     if([results isEqualToString:@"success"]){
+        [self.textView resignFirstResponder];
         [self showMessage:@"发送成功" duration:1 withUserInteractionEnabled:YES];
-        [self performSelector:@selector(popViewController) withObject:nil afterDelay:1.5];
+        [self performSelector:@selector(popViewController) withObject:nil afterDelay:2.0];
     }
 }
 - (void)requestError:(NSError *)error{

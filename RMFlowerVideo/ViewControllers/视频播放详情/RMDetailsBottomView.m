@@ -51,7 +51,7 @@
         imageNamed = @"details_collectioned_6";
     }else if (IS_IPHONE_6p_SCREEN){
         imageName = @"details_collection_6p";
-        imageNamed = @"details_collectioned_6p";
+        imageNamed = @"details_collectioned_6";
     }else{
         imageName = @"details_collection";
         imageNamed = @"details_collectioned";
@@ -63,6 +63,28 @@
     }
 }
 
+- (void)switchDownLoadState:(BOOL)isdownload {
+    UIButton * button = (UIButton *)[self viewWithTag:2];
+    NSString * imageName;
+    NSString * imageNamed;
+    
+    if (IS_IPHONE_6_SCREEN){
+        imageName = @"details_download_6";
+        imageNamed = @"details_downloaded_6";
+    }else if (IS_IPHONE_6p_SCREEN){
+        imageName = @"details_download_6p";
+        imageNamed = @"details_downloaded_6p";
+    }else{
+        imageName = @"details_download";
+        imageNamed = @"details_downloaded";
+    }
+    
+    if (isdownload){
+        [button setBackgroundImage:LOADIMAGE(imageName) forState:UIControlStateNormal];
+    }else{
+        [button setBackgroundImage:LOADIMAGE(imageNamed) forState:UIControlStateNormal];
+    }
+}
 
 @end
                             
