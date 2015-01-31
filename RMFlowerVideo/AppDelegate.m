@@ -185,7 +185,7 @@
 - (void)loadSocial {
     [UMSocialData setAppKey:UMengAppKey];
     [UMSocialData openLog:NO];
-    [UMSocialWechatHandler setWXAppId:@"wxeb2fbbe81019f3b7" appSecret:@"3025a81418b686d9e38acafec6d21fc5" url:ITUNES_APP];
+    [UMSocialWechatHandler setWXAppId:@"wx4ec79b76fc3d8f4e" appSecret:@"7ea6a6911a6e1b6982e41b06c15073f8" url:ITUNES_APP];
     [UMSocialQQHandler setQQWithAppId:@"1103514725" appKey:@"DPr140rgS4i2L53j" url:ITUNES_APP];
     [UMSocialQQHandler setSupportWebView:YES];
 }

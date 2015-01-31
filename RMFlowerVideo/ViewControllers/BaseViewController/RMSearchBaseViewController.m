@@ -64,7 +64,7 @@
     [searchBtn addTarget:self action:@selector(beginSearch) forControlEvents:UIControlEventTouchUpInside];
     [tableHeadView addSubview:searchBtn];
     
-    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(originY, searchViewHeight, ScreenWidth-originY*2, mainScorllViewHeight) animationDuration:2];
+    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(originY, searchViewHeight, ScreenWidth-originY*2, mainScorllViewHeight) animationDuration:4];
     self.mainScorllView.backgroundColor = [UIColor clearColor];
     [tableHeadView addSubview:self.mainScorllView];
 

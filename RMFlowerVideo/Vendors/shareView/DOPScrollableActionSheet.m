@@ -106,57 +106,29 @@
     
     [self dismiss];
     NSString *shareString = [NSString stringWithFormat:@"我正在看《%@》,精彩内容,精准推荐,尽在小花视频 %@",self.videoName,kAppAddress];
-    
-    [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:[self getSocialSnsPlatformNameWithType:btn.tag]];
-    snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
-    
-    
-//    switch (btn.tag) {
-//            
-//        case 0:
-//        {
-//            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
-//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
-//            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
+//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:btn.tag]] content:shareString image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] location:nil urlResource:nil presentedController:videoPlaybackDetails completion:^(UMSocialResponseEntity *response){
+//        if (response.responseCode == UMSResponseCodeSuccess) {
+//            NSLog(@"分享成功！");
 //        }
-//            break;
-//        case 1:
-//        {
-//            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
-//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
-//            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
-//
-//        }
-//            break;
-//        case 2:
-//        {
-//            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
-//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
-//            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
-//        }
-//            break;
-//        case 3:
-//        {
-//            UIImage *shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]];
-//            
-//            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:shareImage socialUIDelegate:self];
-//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQzone];
-//            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
-//
-//        }
-//            break;
-//        case 4:
-//        {
-//            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
-//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatTimeline];
-//            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
-//
-//        }
-//            break;
-//        default:
-//            break;
-//    }
+//    }];
+    switch (btn.tag) {
+        case 0:
+        {
+            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
+            
+        }
+            break;
+        default:{
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:btn.tag]] content:shareString image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] location:nil urlResource:nil presentedController:videoPlaybackDetails completion:^(UMSocialResponseEntity *response){
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    NSLog(@"分享成功！");
+                }
+            }];
+        }
+            break;
+    }
 }
 
 - (void)show {
