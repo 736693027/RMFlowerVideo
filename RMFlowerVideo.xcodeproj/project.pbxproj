@@ -174,6 +174,8 @@
 		1DB35EAF1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */; };
 		1DE1C2981A53D7720096A89F /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1C2971A53D7720096A89F /* Animations.m */; };
 		910B88381A693F5300C13CC7 /* UtilityFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 910B88371A693F5300C13CC7 /* UtilityFunc.m */; };
+		912C0C151A7C863700B85FC1 /* RMSpecialEditionCell_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912C0C131A7C863700B85FC1 /* RMSpecialEditionCell_6.xib */; };
+		912C0C161A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 912C0C141A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib */; };
 		913455CD1A5B9E51005CAFB1 /* RMDownLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913455CB1A5B9E51005CAFB1 /* RMDownLoadingViewController.m */; };
 		913455CE1A5B9E51005CAFB1 /* RMDownLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913455CC1A5B9E51005CAFB1 /* RMDownLoadingViewController.xib */; };
 		913455D21A5B9E69005CAFB1 /* RMFinishDownLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913455D01A5B9E69005CAFB1 /* RMFinishDownLoadViewController.m */; };
@@ -610,6 +612,8 @@
 		1DE1C2971A53D7720096A89F /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
 		910B88361A693F5300C13CC7 /* UtilityFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityFunc.h; sourceTree = "<group>"; };
 		910B88371A693F5300C13CC7 /* UtilityFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityFunc.m; sourceTree = "<group>"; };
+		912C0C131A7C863700B85FC1 /* RMSpecialEditionCell_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMSpecialEditionCell_6.xib; sourceTree = "<group>"; };
+		912C0C141A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMSpecialEditionCell_6p.xib; sourceTree = "<group>"; };
 		913455CA1A5B9E51005CAFB1 /* RMDownLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDownLoadingViewController.h; sourceTree = "<group>"; };
 		913455CB1A5B9E51005CAFB1 /* RMDownLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDownLoadingViewController.m; sourceTree = "<group>"; };
 		913455CC1A5B9E51005CAFB1 /* RMDownLoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMDownLoadingViewController.xib; sourceTree = "<group>"; };
@@ -1118,6 +1122,8 @@
 				1D3CF4EB1A63BAE7006EA5E6 /* RMSpecialEditionCell.h */,
 				1D3CF4EC1A63BAE7006EA5E6 /* RMSpecialEditionCell.m */,
 				1D3CF4ED1A63BAE7006EA5E6 /* RMSpecialEditionCell.xib */,
+				912C0C131A7C863700B85FC1 /* RMSpecialEditionCell_6.xib */,
+				912C0C141A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib */,
 				1D3CF4F11A63BAE7006EA5E6 /* RMVideoOrStarCell.h */,
 				1D3CF4F21A63BAE7006EA5E6 /* RMVideoOrStarCell.m */,
 				1D3CF4F31A63BAE7006EA5E6 /* RMVideoOrStarCell.xib */,
@@ -2539,6 +2545,7 @@
 				916DE9B51A6DEFAB00988DA5 /* select_cellImage.png in Resources */,
 				1D632E921A5A399F002674DF /* RMVideoPlaybackDetailsViewController.xib in Resources */,
 				1DA31D051A708C600034A307 /* rm_pausezoom_btn@3x.png in Resources */,
+				912C0C151A7C863700B85FC1 /* RMSpecialEditionCell_6.xib in Resources */,
 				1D260DE71A5E5ABC00D6D565 /* InfoPlist.strings in Resources */,
 				1DAB4FD61A72232B00F9310A /* source_tengxun_small@3x.png in Resources */,
 				916DE9AB1A6DEF5000988DA5 /* title_bg@3x.png in Resources */,
@@ -2570,6 +2577,7 @@
 				916DE9A41A6DEF5000988DA5 /* red_@2x.png in Resources */,
 				919CC4391A67B4DE003CB686 /* RMPlayTVEpisodeViewController.xib in Resources */,
 				1DAB4FED1A72233400F9310A /* source_youku_small@2x.png in Resources */,
+				912C0C161A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib in Resources */,
 				1D632E3F1A591DA5002674DF /* RMMyCollectionViewController.xib in Resources */,
 				91E457671A58E18100934D01 /* RMHomeTableViewCell.xib in Resources */,
 				91F399911A594066002142CD /* RMRankTableViewHeadView.xib in Resources */,

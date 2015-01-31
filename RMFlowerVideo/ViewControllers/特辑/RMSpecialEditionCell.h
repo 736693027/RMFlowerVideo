@@ -9,18 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "RMImageView.h"
 
-@protocol SpecialEditionCellDelegate <NSObject>
+@protocol RMSpecialEditionCellDelegate <NSObject>
 
 @required
 - (void)specialEditionCellMethodWithImage:(RMImageView *)image;
 @end
 
 @interface RMSpecialEditionCell : UITableViewCell
-@property (nonatomic, assign) id<SpecialEditionCellDelegate>delegate;
+@property (nonatomic, assign) id<RMSpecialEditionCellDelegate>delegate;
 
 @property (weak, nonatomic) IBOutlet RMImageView *firstImage;
 @property (weak, nonatomic) IBOutlet RMImageView *secondImage;
 @property (weak, nonatomic) IBOutlet RMImageView *thirdImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *fristBackImage;
+@property (weak, nonatomic) IBOutlet UIImageView *secondBackImage;
+@property (weak, nonatomic) IBOutlet UIImageView *thridBackImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *secondName;

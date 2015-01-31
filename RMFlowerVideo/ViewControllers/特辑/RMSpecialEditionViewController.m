@@ -8,11 +8,11 @@
 
 #import "RMSpecialEditionViewController.h"
 #import "RMSpecialEditionDetailViewController.h"
-#import "RMHomeStartCell.h"
+#import "RMSpecialEditionCell.h"
 #import "RefreshControl.h"
 #import "CustomRefreshView.h"
 
-@interface RMSpecialEditionViewController ()<UITableViewDataSource,UITableViewDelegate,RMHomeStartCellDelegate,RMAFNRequestManagerDelegate,RefreshControlDelegate>{
+@interface RMSpecialEditionViewController ()<UITableViewDataSource,UITableViewDelegate,RMSpecialEditionCellDelegate,RMAFNRequestManagerDelegate,RefreshControlDelegate>{
     UITableView * mTableView;
     NSInteger pageCount;
     BOOL isRefresh;
@@ -78,15 +78,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellName = @"homeTableViewCellIdentifier";
-    RMHomeStartCell *cell = [mTableView dequeueReusableCellWithIdentifier:cellName];
+    static NSString *cellName = @"RMSpecialEditionCellIdentifier";
+    RMSpecialEditionCell *cell = [mTableView dequeueReusableCellWithIdentifier:cellName];
+    NSString *imageString = @"SpecialEditionCell_BG_Image";
     if(cell==nil){
         if(IS_IPHONE_6_SCREEN){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMHomeStartCell_6" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMSpecialEditionCell_6" owner:self options:nil] lastObject];
+            imageString = @"SpecialEditionCell_BG_Image_6";
         }else if (IS_IPHONE_6p_SCREEN){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMHomeStartCell_6p" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMSpecialEditionCell_6p" owner:self options:nil] lastObject];
+            imageString = @"SpecialEditionCell_BG_Image_6p";
         }else{
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMHomeStartCell" owner:self options:nil] lastObject];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"RMSpecialEditionCell" owner:self options:nil] lastObject];
         }
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.backgroundColor = [UIColor clearColor];
@@ -94,21 +97,24 @@
     }
     if(indexPath.row*3<dataArr.count){
         RMPublicModel *model = [dataArr objectAtIndex:indexPath.row*3];
-        [cell.fristHeadImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
-        cell.fristHeadImage.identifierString = model.tag_id;
-        cell.fristTitle.text = model.name;
+        [cell.firstImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
+        cell.firstImage.identifierString = model.tag_id;
+        cell.firstName.text = model.name;
+        [cell.fristBackImage setImage:[UIImage imageNamed:imageString]];
     }
     if(indexPath.row*3+1<dataArr.count){
         RMPublicModel *model = [dataArr objectAtIndex:indexPath.row*3+1];
-        [cell.secondHeadImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
-        cell.secondHeadImage.identifierString = model.tag_id;
-        cell.secondTitle.text = model.name;
+        [cell.secondImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
+        cell.secondImage.identifierString = model.tag_id;
+        cell.secondName.text = model.name;
+        [cell.fristBackImage setImage:[UIImage imageNamed:imageString]];
     }
     if(indexPath.row*3+2<dataArr.count){
         RMPublicModel *model = [dataArr objectAtIndex:indexPath.row*3+2];
-        [cell.thirdHeadImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
-        cell.thirdHeadImage.identifierString = model.tag_id;
-        cell.thirdTitle.text = model.name;
+        [cell.thirdImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
+        cell.thirdImage.identifierString = model.tag_id;
+        cell.thirdName.text = model.name;
+        [cell.fristBackImage setImage:[UIImage imageNamed:imageString]];
     }
     return cell;
 }
@@ -120,10 +126,10 @@
     else if (IS_IPHONE_6p_SCREEN){
         return 224;
     }
-    return 184;
+    return 185;
 }
 
-- (void)homeTableViewCellDidSelectWithImage:(RMImageView *)imageView {
+- (void)specialEditionCellMethodWithImage:(RMImageView *)imageView {
     for (NSInteger i=0; i<dataArr.count; i++) {
         RMPublicModel * model = [dataArr objectAtIndex:i];
         if ([imageView.identifierString isEqualToString:model.tag_id]){

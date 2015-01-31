@@ -32,7 +32,7 @@
     isPullToRefresh = YES;
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];
     
-    searchViewHeight = 43,rollBtnHeight = 31,originY = 11,margin = 10;
+    searchViewHeight = 43,rollBtnHeight = 31,originY = 11,margin = 6;
     if(IS_IPHONE_6_SCREEN){
         searchViewHeight = 47,rollBtnHeight = 35,originY = 14,margin = 12;
     }else if(IS_IPHONE_6p_SCREEN){
