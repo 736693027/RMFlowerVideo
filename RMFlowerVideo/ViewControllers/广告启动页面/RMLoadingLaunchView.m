@@ -27,7 +27,9 @@
     }
     
     [headImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:LOADIMAGE(placehouderImg) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
+        if (error != nil){
+            return ;
+        }
         UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         jumpBtn.frame = CGRectMake(ScreenWidth - 90, 30, 70, 27);
         [jumpBtn setBackgroundImage:LOADIMAGE(@"jump") forState:UIControlStateNormal];
