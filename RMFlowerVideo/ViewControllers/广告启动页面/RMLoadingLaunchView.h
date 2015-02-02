@@ -27,8 +27,9 @@
 
 /**
  *  加载loadingView图片
- *  @param  image               loadingView图片
+ *  @param  url                 loadingView图片资源
+ *  @param  video   `           是否是视频
  */
-- (void)initLoadingViewWithImage:(UIImage *)image isVideo:(BOOL)video;
+- (void)initLoadingViewWithImageUrl:(NSString *)url isVideo:(BOOL)video;
 
 @end

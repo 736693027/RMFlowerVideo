@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@property (assign, nonatomic) UIBackgroundTaskIdentifier backgroundUpdateTask;
 @property (strong, nonatomic) UIWindow *window;
 @property (copy) void (^backgroundSessionCompletionHandler)();
 

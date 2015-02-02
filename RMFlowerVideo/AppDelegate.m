@@ -21,6 +21,9 @@
 #import "RMSetViewController.h"
 #import "CONST.h"
 #import "RMDownLoadingViewController.h"
+#import "Flurry.h"
+#import "Harpy.h"
+#import "APService.h"
 
 #define ITUNES_APP @"https://itunes.apple.com/cn/app/r-evolve/id944155902?mt=8" //itunes
 
@@ -46,6 +49,7 @@
     [self laodDefaultBackgroundView];
 
     [self loadSocial];
+    [self loadFlurry];
     [self loadFileStorage];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -60,6 +64,20 @@
         [manager getLoadingWithDevice:[NSString stringWithFormat:@"%ld",(long)device]];
     });
     
+    //检查App更新(UpData)
+    if ([UtilityFunc isConnectionAvailable] != 0) {
+        [Harpy checkVersion];
+    }
+    
+    if (launchOptions) {
+        NSDictionary * pushDict = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (pushDict) {
+            [application setApplicationIconBadgeNumber:0];
+        }
+    }
+    //JPush
+    [self loadJPushWithOptions:launchOptions];
+
     return YES;
 }
 
@@ -120,12 +138,10 @@
     loadingView = [[RMLoadingLaunchView alloc] init];
     loadingView.loadingDelegate = self;
     loadingView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
-    if([downLoadModel.video_id isEqualToString:@"0"]){
-        [loadingView initLoadingViewWithImage:image isVideo:NO];
-    }else{
-        [loadingView initLoadingViewWithImage:image isVideo:YES];
+    if([downLoadModel.video_id isEqualToString:@"0"]){  //推广
+        [loadingView initLoadingViewWithImageUrl:imageUrl isVideo:NO];
+    }else{  //视频
+        [loadingView initLoadingViewWithImageUrl:imageUrl isVideo:YES];
     }
     loadingView.backgroundColor = [UIColor whiteColor];
     [self.window addSubview:loadingView];
@@ -180,6 +196,40 @@
     [self loadMainViewCrollers];
 }
 
+- (void)loadJPushWithOptions:(NSDictionary *)launchOptions {
+    // Required
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                       UIUserNotificationTypeSound |
+                                                       UIUserNotificationTypeAlert)
+                                           categories:nil];
+    } else {
+        //categories 必须为nil
+        [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                       UIRemoteNotificationTypeSound |
+                                                       UIRemoteNotificationTypeAlert)
+                                           categories:nil];
+    }
+#else
+    //categories 必须为nil
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                   UIRemoteNotificationTypeSound |
+                                                   UIRemoteNotificationTypeAlert)
+                                       categories:nil];
+#endif
+    // Required
+    [APService setupWithOption:launchOptions];
+}
+
+#pragma mark - Flurry
+
+- (void)loadFlurry {
+    [Flurry setCrashReportingEnabled:YES];
+    [Flurry startSession:@"PJZBVWP6HTXW8FZFFZW5"];
+}
+
 #pragma mark- 社会化
 
 - (void)loadSocial {
@@ -203,6 +253,7 @@
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [application setApplicationIconBadgeNumber:0];
     [UMSocialSnsService  applicationDidBecomeActive];
 }
 
@@ -244,6 +295,38 @@
   completionHandler:(void (^)())completionHandler {
     self.backgroundSessionCompletionHandler = completionHandler;
     //add notification
+}
+
+#pragma mark- JPush
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Required
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [application setApplicationIconBadgeNumber:0];
+    // Required
+    [APService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // IOS 7 Support Required
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)beingBackgroundUpdateTask
+{
+    self.backgroundUpdateTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [self endBackgroundUpdateTask];
+    }];
+}
+
+- (void)endBackgroundUpdateTask
+{
+    [[UIApplication sharedApplication] endBackgroundTask: self.backgroundUpdateTask];
+    self.backgroundUpdateTask = UIBackgroundTaskInvalid;
 }
 
 @end

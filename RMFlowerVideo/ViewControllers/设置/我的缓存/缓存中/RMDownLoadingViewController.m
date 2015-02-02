@@ -177,6 +177,7 @@ static id _instance;
     }
     isBeginDownLoadAllTask = !isBeginDownLoadAllTask;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];

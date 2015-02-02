@@ -39,9 +39,7 @@
         NSDictionary *userInfo = [storage objectForKey:UserLoginInformation_KEY];
         token = [userInfo objectForKey:@"token"];
         if(token==nil){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有登录到小花视频" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-//            [self showEmpty];//显示还没有登录小花视频
+            [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(27, 27) withTitle:@"您还没有登录"];
             rightBarButton.hidden = YES;
             return;
         }
@@ -57,14 +55,17 @@
     [leftBarButton setBackgroundImage:LOADIMAGE(@"backup") forState:UIControlStateNormal];
     [rightBarButton setBackgroundImage:LOADIMAGE(@"nav_editing_btn") forState:UIControlStateNormal];
     [self setCustomNavTitle:@"我的收藏"];
+    
     [showMemoryView removeFromSuperview];
     pageCount = 1;
-    isPullToRefresh = YES;
-    isFirstViewAppear = YES;
+ 
     self.refreshControl=[[RefreshControl alloc] initWithScrollView:self.mainTableView delegate:self];
     self.refreshControl.topEnabled=YES;
     self.refreshControl.bottomEnabled=YES;
     [self.refreshControl registerClassForTopView:[CustomRefreshView class]];
+    
+    isPullToRefresh = YES;
+    isFirstViewAppear = YES;
 }
 #pragma mark tableView dataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -220,7 +221,6 @@
 }
 
 - (void)palyMovieWithIndex:(NSInteger)index{
-    NSLog(@"index:%ld",(long)index);
     RMPublicModel *model = [self.dataArray objectAtIndex:index];
     if ([model.video_type isEqualToString:@"1"]){
         NSString *mp4Url = [model.urls objectForKey:@"m_down_url"];
@@ -306,11 +306,11 @@
     }
 }
 
-- (void) requestFinishiDownLoadWith:(NSMutableArray *)data{
+- (void)requestFinishiDownLoadWith:(NSMutableArray *)data{
     if(requestManager.downLoadType == Http_getFavoriteVideoList){
         if(isPullToRefresh){
             if (data.count == 0){
-//                [self showEmpty];
+                [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(110, 110) withTitle:@"还没有收藏记录"];
             }
             [self.dataArray removeAllObjects];
             self.dataArray = data;
@@ -360,7 +360,7 @@
     if(token==nil){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有登录到小花视频" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-//        [self showEmpty];//显示没有登录小花视频
+        [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(27, 27) withTitle:@"您还没有登录"];
         [self.refreshControl finishRefreshingDirection:RefreshDirectionTop];
         return;
     }

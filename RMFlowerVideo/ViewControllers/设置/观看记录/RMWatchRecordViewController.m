@@ -68,6 +68,18 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.dataArray.count == 0) {
+        [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(110, 110) withTitle:@"您还没有观看记录"];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -118,7 +130,7 @@
     
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(isEditing){
         RMWatchRecordTableViewCell *cell = (RMWatchRecordTableViewCell *)[self.mainTableView cellForRowAtIndexPath:indexPath];
         if([[cellEditingImageArray objectAtIndex:indexPath.row] isEqualToString:@"cell_no_select"]){

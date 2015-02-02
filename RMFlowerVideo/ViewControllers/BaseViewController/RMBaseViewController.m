@@ -64,21 +64,21 @@
     
     leftBarButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBarButton.frame = CGRectMake(7, 14, 43, 16);
-    [leftBarButton setEnlargeEdgeWithTop:20 right:20 bottom:20 left:20];
-    [leftBarButton addTarget:self action:@selector(navgationBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     leftBarButton.tag = 1;
+    [leftBarButton addTarget:self action:@selector(navgationBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [leftBarButton setEnlargeEdgeWithTop:25 right:25 bottom:25 left:25];
     [customNav addSubview:leftBarButton];
     
     rightBarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBarButton setEnlargeEdgeWithTop:20 right:20 bottom:20 left:20];
     rightBarButton.frame = CGRectMake(ScreenWidth - 50, 14, 43, 16);
     rightBarButton.tag = 2;
     [rightBarButton addTarget:self action:@selector(navgationBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [rightBarButton setEnlargeEdgeWithTop:25 right:25 bottom:25 left:25];
     [customNav addSubview:rightBarButton];
 
     if (!emptyView){
         emptyView = [[UIView alloc] init];
-        emptyView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+        emptyView.frame = CGRectMake(0, 64, ScreenWidth, ScreenHeight-64);
         emptyView.userInteractionEnabled = YES;
         emptyView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:emptyView];
@@ -116,9 +116,10 @@
 - (void)showEmptyWithImage:(NSString *)imageName withImageSize:(CGSize)size withTitle:(NSString *)title {
     emptyView.hidden = NO;
     emptyImg.frame = CGRectMake(0, 0, size.width, size.height);
-    emptyImg.center = CGPointMake(ScreenWidth/2, ScreenHeight/2);
+    emptyImg.center = CGPointMake(ScreenWidth/2, ScreenHeight/2 - 64);
     emptyImg.image = LOADIMAGE(imageName);
     emptyTitle.text = title;
+    emptyTitle.center = CGPointMake(ScreenWidth/2, emptyImg.center.y + size.height/2 + 30);
 }
 
 - (void)hideEmpty {

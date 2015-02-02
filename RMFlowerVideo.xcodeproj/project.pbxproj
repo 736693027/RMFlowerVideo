@@ -172,6 +172,7 @@
 		1DADF8B51A615CF4009F8189 /* UITextField+LimitLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DADF8B41A615CF4009F8189 /* UITextField+LimitLength.m */; };
 		1DB35EAE1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAC1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib */; };
 		1DB35EAF1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */; };
+		1DBC3F321A7F2646000FEFF1 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBC3F311A7F2646000FEFF1 /* libFlurry_6.0.0.a */; };
 		1DE1C2981A53D7720096A89F /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1C2971A53D7720096A89F /* Animations.m */; };
 		910250251A7CD01C00805223 /* RMRankVarietyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910250241A7CD01C00805223 /* RMRankVarietyCell.xib */; };
 		910250271A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910250261A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib */; };
@@ -253,7 +254,6 @@
 		91366B4A1A5269A5001FD769 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91366A281A5269A4001FD769 /* AFSecurityPolicy.m */; };
 		91366B4B1A5269A5001FD769 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 91366A2B1A5269A4001FD769 /* AFURLRequestSerialization.m */; };
 		91366B4C1A5269A5001FD769 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 91366A2D1A5269A4001FD769 /* AFURLResponseSerialization.m */; };
-		91366B621A5269A5001FD769 /* libFlurry_5.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91366A601A5269A4001FD769 /* libFlurry_5.4.0.a */; };
 		91366B691A5269A5001FD769 /* Harpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91366A711A5269A4001FD769 /* Harpy.m */; };
 		91366B6F1A5269A5001FD769 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91366A821A5269A4001FD769 /* libPushSDK.a */; };
 		91366B701A5269A5001FD769 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91366A831A5269A5001FD769 /* PushConfig.plist */; };
@@ -610,6 +610,8 @@
 		1DADF8B41A615CF4009F8189 /* UITextField+LimitLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LimitLength.m"; sourceTree = "<group>"; };
 		1DB35EAC1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMVideoOrStarCell_6.xib; sourceTree = "<group>"; };
 		1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMVideoOrStarCell_6p.xib; sourceTree = "<group>"; };
+		1DBC3F301A7F2646000FEFF1 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		1DBC3F311A7F2646000FEFF1 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		1DE1C2961A53D7720096A89F /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animations.h; sourceTree = "<group>"; };
 		1DE1C2971A53D7720096A89F /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
 		910250241A7CD01C00805223 /* RMRankVarietyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankVarietyCell.xib; sourceTree = "<group>"; };
@@ -753,8 +755,6 @@
 		91366A2B1A5269A4001FD769 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		91366A2C1A5269A4001FD769 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
 		91366A2D1A5269A4001FD769 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		91366A5F1A5269A4001FD769 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		91366A601A5269A4001FD769 /* libFlurry_5.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_5.4.0.a; sourceTree = "<group>"; };
 		91366A701A5269A4001FD769 /* Harpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Harpy.h; sourceTree = "<group>"; };
 		91366A711A5269A4001FD769 /* Harpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Harpy.m; sourceTree = "<group>"; };
 		91366A721A5269A4001FD769 /* HarpyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HarpyConstants.h; sourceTree = "<group>"; };
@@ -950,6 +950,7 @@
 				91B4C4F11A5299F700854435 /* CFNetwork.framework in Frameworks */,
 				91B4C4EF1A5299EF00854435 /* CoreFoundation.framework in Frameworks */,
 				91B4C4ED1A5299E600854435 /* MobileCoreServices.framework in Frameworks */,
+				1DBC3F321A7F2646000FEFF1 /* libFlurry_6.0.0.a in Frameworks */,
 				91B4C4E51A5299A600854435 /* Security.framework in Frameworks */,
 				91B4C4E91A5299BF00854435 /* libz.dylib in Frameworks */,
 				91B4C4E71A5299B700854435 /* libiconv.dylib in Frameworks */,
@@ -967,7 +968,6 @@
 				91B4C4D71A52995300854435 /* MediaToolbox.framework in Frameworks */,
 				91B4C4D01A5298FE00854435 /* libsqlite3.dylib in Frameworks */,
 				91366B6F1A5269A5001FD769 /* libPushSDK.a in Frameworks */,
-				91366B621A5269A5001FD769 /* libFlurry_5.4.0.a in Frameworks */,
 				9134567E1A5BF025005CAFB1 /* libSocialWechat.a in Frameworks */,
 				9157DEDF1A58D42500692114 /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
 			);
@@ -2012,8 +2012,8 @@
 		91366A5E1A5269A4001FD769 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
-				91366A5F1A5269A4001FD769 /* Flurry.h */,
-				91366A601A5269A4001FD769 /* libFlurry_5.4.0.a */,
+				1DBC3F301A7F2646000FEFF1 /* Flurry.h */,
+				1DBC3F311A7F2646000FEFF1 /* libFlurry_6.0.0.a */,
 			);
 			path = Flurry;
 			sourceTree = "<group>";
