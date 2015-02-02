@@ -29,6 +29,7 @@
     [super viewDidDisappear:animated];
     [self hideLoading];
 }
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (isFirstViewAppear){
@@ -40,6 +41,7 @@
         if(token==nil){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有登录到小花视频" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+//            [self showEmpty];//显示还没有登录小花视频
             rightBarButton.hidden = YES;
             return;
         }
@@ -307,6 +309,9 @@
 - (void) requestFinishiDownLoadWith:(NSMutableArray *)data{
     if(requestManager.downLoadType == Http_getFavoriteVideoList){
         if(isPullToRefresh){
+            if (data.count == 0){
+//                [self showEmpty];
+            }
             [self.dataArray removeAllObjects];
             self.dataArray = data;
             [self.refreshControl finishRefreshingDirection:RefreshDirectionTop];
@@ -336,7 +341,8 @@
         [self hideLoading];
     }
 }
-- (void) requestFinishiDownLoadWithResults:(NSString *)results{
+
+- (void)requestFinishiDownLoadWithResults:(NSString *)results {
     if(requestManager.downLoadType == Http_deleteFavoriteVideo){
         if([results isEqualToString:@"success"]){
             NSLog(@"操作成功");
@@ -354,6 +360,8 @@
     if(token==nil){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有登录到小花视频" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
+//        [self showEmpty];//显示没有登录小花视频
+        [self.refreshControl finishRefreshingDirection:RefreshDirectionTop];
         return;
     }
     [self showLoadingSimpleWithUserInteractionEnabled:YES];
@@ -379,6 +387,7 @@
     [self hideLoading];
     rightBarButton.hidden = YES;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

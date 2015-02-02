@@ -63,24 +63,25 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
 
-- (void)requestFinishiDownLoadWithResults:(NSString *)results{
+- (void)requestFinishiDownLoadWithResults:(NSString *)results {
     [self hideLoading];
     if([results isEqualToString:@"success"]){
         [self.textView resignFirstResponder];
-        [self showMessage:@"发送成功" duration:1 withUserInteractionEnabled:YES];
+        [self showHUDWithImage:@"feedbackSucess" imageFrame:CGRectMake(0, 0, 110, 40) duration:2 userInteractionEnabled:YES];
         [self performSelector:@selector(popViewController) withObject:nil afterDelay:2.0];
     }
 }
-- (void)requestError:(NSError *)error{
+
+- (void)requestError:(NSError *)error {
     [self hideLoading];
 }
 
-- (void)popViewController{
+- (void)popViewController {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

@@ -43,6 +43,12 @@
 - (void)setCustomNavTitle:(NSString *)title;
 - (void)navgationBarButtonClick:(UIBarButtonItem *)sender;
 
+/**
+ *  显示/隐藏空数据UI
+ */
+- (void)showEmptyWithImage:(NSString *)imageName withImageSize:(CGSize)size withTitle:(NSString *)title;
+- (void)hideEmpty;
+        
 #pragma mark - HUD Method-
 
 - (void)showLoadingSimpleWithUserInteractionEnabled:(BOOL)enabled;//加载框

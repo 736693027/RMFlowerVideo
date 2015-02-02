@@ -1,18 +1,10 @@
 //
 //  DOPScrollableActionSheet.h
-//  DOPScrollableActionSheet
+//  RMFlowerVideo
 //
-//  Created by weizhou on 12/27/14.
-//  Copyright (c) 2014 fengweizhou. All rights reserved.
+//  Created by runmobile on 14-9-28.
+//  Copyright (c) 2014年 runmobile. All rights reserved.
 //
-
-/*
- 用法： 
- 各个分享平台的图片
- NSArray *Image = [NSArray arrayWithObjects:@"",@"",@"",@"",@"", nil];
- DOPScrollableActionSheet *as = [[DOPScrollableActionSheet alloc] initWithActionArray:actions];
- [as show];
- */
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -22,7 +14,8 @@
 
 @property (nonatomic, copy) NSString *videoName;
 @property (nonatomic, copy) NSString *video_pic;
-- (instancetype)initWithPlatformHeadImageArray:(NSArray *)images;
+
+- (void)initWithPlatformHeadImageArray:(NSArray *)images;
 
 - (void)show;
 

@@ -77,6 +77,11 @@ typedef enum{
         CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
         NSMutableArray * arr = [[NSMutableArray alloc] initWithArray:[storage objectForKey:UserSearchRecordData_KEY]];
         recordsDataArr = arr;
+        
+        NSArray* reversedArray = [[recordsDataArr reverseObjectEnumerator] allObjects];
+        [recordsDataArr removeAllObjects];
+        recordsDataArr = [NSMutableArray arrayWithArray:reversedArray];
+        
         if (recordsDataArr.count > 2){
             self.isDisplayMoreRecords = YES;
         }else{

@@ -132,6 +132,7 @@ typedef enum{
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [self hideLoading];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshUIWhenPlayerFailed" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -509,10 +510,14 @@ typedef enum{
             }else{
                 imageName = [NSArray arrayWithObjects:@"share_sina",@"share_wechat",@"share_qq",@"share_QQZore",@"share_friends", nil];
             }
-            DOPScrollableActionSheet *action = [[DOPScrollableActionSheet alloc] initWithPlatformHeadImageArray:imageName];
+            DOPScrollableActionSheet *action = [[DOPScrollableActionSheet alloc] init];
+            action.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+            action.backgroundColor = [UIColor clearColor];
+            [action initWithPlatformHeadImageArray:imageName];                                    
             action.VideoPlaybackDetailsDelegate = self;
             action.videoName = self.dataModel.name;
             action.video_pic = self.dataModel.pic;
+            [self.view addSubview:action];
             [action show];
             break;
         }

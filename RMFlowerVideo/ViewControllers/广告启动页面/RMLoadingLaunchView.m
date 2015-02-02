@@ -8,6 +8,7 @@
 
 #import "RMLoadingLaunchView.h"
 #import "CONST.h"
+#import "SDImageCache.h"
 
 @implementation RMLoadingLaunchView
 
