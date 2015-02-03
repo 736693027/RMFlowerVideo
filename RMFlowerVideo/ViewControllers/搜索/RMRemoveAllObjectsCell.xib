@@ -30,11 +30,21 @@
                             </mask>
                         </variation>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJG-me-eOQ">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.85861073369565211" green="0.85861073369565211" blue="0.85861073369565211" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="tq1-rP-oq2"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qgf-T3-4Ql" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="60I-Ou-0q1"/>
+                    <constraint firstAttribute="trailing" secondItem="MJG-me-eOQ" secondAttribute="trailing" id="8ZC-pA-jfQ"/>
                     <constraint firstItem="qgf-T3-4Ql" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="KQ2-xP-RXH"/>
+                    <constraint firstAttribute="bottom" secondItem="MJG-me-eOQ" secondAttribute="bottom" constant="-1" id="Qnx-iO-mI4"/>
                     <constraint firstAttribute="bottom" secondItem="qgf-T3-4Ql" secondAttribute="bottom" constant="10" id="SM0-XM-3FG"/>
+                    <constraint firstItem="MJG-me-eOQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tdg-eJ-dbu"/>
                     <constraint firstItem="qgf-T3-4Ql" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gu2-jP-2zj"/>
                     <constraint firstAttribute="trailing" secondItem="qgf-T3-4Ql" secondAttribute="trailing" id="hLN-jP-z9h"/>
                 </constraints>

@@ -95,7 +95,7 @@
         emptyTitle.textAlignment = NSTextAlignmentCenter;
         emptyTitle.textColor = [UIColor blackColor];
         emptyTitle.backgroundColor = [UIColor clearColor];
-        emptyTitle.font = FONT(16.0);
+        emptyTitle.font = FONT(18.0);
         [emptyView addSubview:emptyTitle];
     }
 }

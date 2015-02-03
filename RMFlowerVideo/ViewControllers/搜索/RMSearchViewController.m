@@ -240,19 +240,19 @@ typedef enum{
 - (void)DefaultSearchFootViewWithRecommendArr:(NSMutableArray *)arr {
     self.footView = [[UIView alloc] init];
     self.footView.backgroundColor = [UIColor clearColor];
-    self.footView.frame = CGRectMake(0, 0, ScreenWidth, 255); //176
+    self.footView.frame = CGRectMake(0, 0, ScreenWidth, 255);
     self.footView.userInteractionEnabled = YES;
     self.footView.multipleTouchEnabled = YES;
     
     UILabel * footTitle = [[UILabel alloc] init];
     footTitle.backgroundColor = [UIColor clearColor];
-    footTitle.frame = CGRectMake(10, 10, 100, 30);
+    footTitle.frame = CGRectMake(10, 15, 100, 30);
     footTitle.text = @"全网热榜";
     footTitle.textColor = [UIColor colorWithRed:0.22 green:0.22 blue:0.22 alpha:1];
     footTitle.font = FONT(20.0);
     [self.footView addSubview:footTitle];
     
-    self.tagList = [[RMTagList alloc] initWithFrame:CGRectMake(10, 50.0f, ScreenWidth - 20, 176)];
+    self.tagList = [[RMTagList alloc] initWithFrame:CGRectMake(10, 60.0f, ScreenWidth - 20, 176)];
     self.tagList.delegate = self;
     [self.tagList setTags:arr];
     [self.footView addSubview:self.tagList];
@@ -360,7 +360,7 @@ typedef enum{
     [UIView animateWithDuration:0.2 animations:^{
         self.footView.frame = CGRectMake(0, 0, ScreenWidth, height + 85);
         self.searchTableView.tableFooterView = self.footView;
-        self.tagList.frame = CGRectMake(10, 50.0f, ScreenWidth - 20, height + 20);
+        self.tagList.frame = CGRectMake(10, 60.0f, ScreenWidth - 20, height + 20);
     }];
 }
 

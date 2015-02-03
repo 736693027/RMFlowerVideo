@@ -71,7 +71,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (self.dataArray.count == 0) {
-        [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(110, 110) withTitle:@"您还没有观看记录"];
+        [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(55, 55) withTitle:@"您还没有观看记录"];
     }
 }
 

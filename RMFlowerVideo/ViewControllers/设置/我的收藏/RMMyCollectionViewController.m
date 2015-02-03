@@ -39,7 +39,7 @@
         NSDictionary *userInfo = [storage objectForKey:UserLoginInformation_KEY];
         token = [userInfo objectForKey:@"token"];
         if(token==nil){
-            [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(27, 27) withTitle:@"您还没有登录"];
+            [self showEmptyWithImage:@"error" withImageSize:CGSizeMake(55, 55) withTitle:@"您还没有登录"];
             rightBarButton.hidden = YES;
             return;
         }
@@ -310,7 +310,7 @@
     if(requestManager.downLoadType == Http_getFavoriteVideoList){
         if(isPullToRefresh){
             if (data.count == 0){
-                [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(110, 110) withTitle:@"还没有收藏记录"];
+                [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(55, 55) withTitle:@"您还没有添加收藏记录"];
             }
             [self.dataArray removeAllObjects];
             self.dataArray = data;
@@ -360,7 +360,7 @@
     if(token==nil){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还没有登录到小花视频" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-        [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(27, 27) withTitle:@"您还没有登录"];
+        [self showEmptyWithImage:@"error" withImageSize:CGSizeMake(55, 55) withTitle:@"您还没有登录"];
         [self.refreshControl finishRefreshingDirection:RefreshDirectionTop];
         return;
     }

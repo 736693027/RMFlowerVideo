@@ -11,7 +11,7 @@
 #define CORNER_RADIUS 10.0f
 #define LABEL_MARGIN 10.0f
 #define BOTTOM_MARGIN 10.0f
-#define FONT_SIZE 18.0f
+#define FONT_SIZE 17.0f
 #define HORIZONTAL_PADDING 7.0f
 #define VERTICAL_PADDING 3.0f
 #define BACKGROUND_COLOR [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.00]

@@ -17,7 +17,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展开更多搜索记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeB-eq-aRc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <color key="textColor" red="0.7568628191947937" green="0.023529414087533951" blue="0.08235294371843338" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="textColor" red="0.90588241815567017" green="0.22352942824363708" blue="0.14117647707462311" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4J-w9-ZHj">
@@ -29,15 +29,25 @@
                             <action selector="lastClickMethod:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="18u-pL-vnD"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEg-TK-e2m">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.88272758152173914" green="0.88272758152173914" blue="0.88272758152173914" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="OqJ-yh-rFm"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="V4J-w9-ZHj" secondAttribute="bottom" constant="-1" id="4Mw-5H-Tnp"/>
                     <constraint firstItem="V4J-w9-ZHj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Jgu-zZ-2YK"/>
                     <constraint firstItem="WeB-eq-aRc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PLK-gD-9vL"/>
                     <constraint firstAttribute="trailing" secondItem="V4J-w9-ZHj" secondAttribute="trailing" id="aYn-5n-ZSl"/>
+                    <constraint firstAttribute="trailing" secondItem="CEg-TK-e2m" secondAttribute="trailing" id="cB4-uL-LHD"/>
+                    <constraint firstItem="CEg-TK-e2m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eaN-mb-9YH"/>
                     <constraint firstItem="V4J-w9-ZHj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gDA-WL-5f1"/>
                     <constraint firstItem="WeB-eq-aRc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gMi-Xy-ypZ"/>
                     <constraint firstAttribute="bottom" secondItem="WeB-eq-aRc" secondAttribute="bottom" constant="-1" id="kAO-x7-dBS"/>
+                    <constraint firstAttribute="bottom" secondItem="CEg-TK-e2m" secondAttribute="bottom" constant="-1" id="kIO-g9-gUb"/>
                     <constraint firstAttribute="trailing" secondItem="WeB-eq-aRc" secondAttribute="trailing" id="qZ7-u9-u8n"/>
                 </constraints>
             </tableViewCellContentView>
