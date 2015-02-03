@@ -14,10 +14,6 @@
     UIView * customNav;
     UILabel * titleLabel;
     UIView * statusView;
-    
-    UIView * emptyView;
-    UIImageView * emptyImg;
-    UILabel * emptyTitle;
 }
 
 @end
@@ -75,29 +71,6 @@
     [rightBarButton addTarget:self action:@selector(navgationBarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [rightBarButton setEnlargeEdgeWithTop:25 right:25 bottom:25 left:25];
     [customNav addSubview:rightBarButton];
-
-    if (!emptyView){
-        emptyView = [[UIView alloc] init];
-        emptyView.frame = CGRectMake(0, 64, ScreenWidth, ScreenHeight-64);
-        emptyView.userInteractionEnabled = YES;
-        emptyView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:emptyView];
-        emptyView.hidden = YES;
-        
-        emptyImg = [[UIImageView alloc] init];
-        emptyImg.backgroundColor = [UIColor clearColor];
-        emptyImg.userInteractionEnabled = YES;
-        [emptyView addSubview:emptyImg];
-        
-        emptyTitle = [[UILabel alloc] init];
-        emptyTitle.frame = CGRectMake(0, 0, ScreenWidth, 30);
-        emptyTitle.center = CGPointMake(ScreenWidth/2, ScreenHeight/2 + 110);
-        emptyTitle.textAlignment = NSTextAlignmentCenter;
-        emptyTitle.textColor = [UIColor blackColor];
-        emptyTitle.backgroundColor = [UIColor clearColor];
-        emptyTitle.font = FONT(18.0);
-        [emptyView addSubview:emptyTitle];
-    }
 }
 
 - (void)hideCustomNavigationBar:(BOOL)navigationBar withHideCustomStatusBar:(BOOL)statusBar {
@@ -113,18 +86,6 @@
     titleLabel.text = title;
 }
 
-- (void)showEmptyWithImage:(NSString *)imageName withImageSize:(CGSize)size withTitle:(NSString *)title {
-    emptyView.hidden = NO;
-    emptyImg.frame = CGRectMake(0, 0, size.width, size.height);
-    emptyImg.center = CGPointMake(ScreenWidth/2, ScreenHeight/2 - 64);
-    emptyImg.image = LOADIMAGE(imageName);
-    emptyTitle.text = title;
-    emptyTitle.center = CGPointMake(ScreenWidth/2, emptyImg.center.y + size.height/2 + 30);
-}
-
-- (void)hideEmpty {
-    emptyView.hidden = YES;
-}
 
 #pragma mark - HUD Method-
 

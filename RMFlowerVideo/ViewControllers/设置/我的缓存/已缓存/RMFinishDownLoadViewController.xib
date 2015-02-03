@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RMFinishDownLoadViewController">
             <connections>
+                <outlet property="emptyImageView" destination="kdS-ea-s7D" id="5pO-mo-uRd"/>
+                <outlet property="errorTitleLable" destination="svr-Dv-d93" id="cAV-r2-xsi"/>
                 <outlet property="mainTableView" destination="EGF-9a-70n" id="OM5-YV-UWo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,6 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="kdS-ea-s7D">
+                    <rect key="frame" x="133" y="204" width="55" height="55"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您没有缓存完成的视频" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svr-Dv-d93">
+                    <rect key="frame" x="75" y="267" width="170" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EGF-9a-70n">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,13 +38,20 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="svr-Dv-d93" secondAttribute="centerX" id="A3Q-Yp-AQl"/>
+                <constraint firstItem="kdS-ea-s7D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="204" id="JiV-bf-ybh"/>
                 <constraint firstItem="EGF-9a-70n" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Wnc-i8-vth"/>
+                <constraint firstItem="svr-Dv-d93" firstAttribute="top" secondItem="kdS-ea-s7D" secondAttribute="bottom" constant="8" id="Zkd-80-AD0"/>
                 <constraint firstAttribute="trailing" secondItem="EGF-9a-70n" secondAttribute="trailing" id="fHe-iq-3bT"/>
                 <constraint firstItem="EGF-9a-70n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ikP-y6-0pc"/>
                 <constraint firstAttribute="bottom" secondItem="EGF-9a-70n" secondAttribute="bottom" id="lT1-p6-ZgK"/>
+                <constraint firstAttribute="centerX" secondItem="kdS-ea-s7D" secondAttribute="centerX" id="wpc-dD-AGY"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="340" y="162"/>
         </view>
     </objects>
+    <resources>
+        <image name="empty" width="55" height="55"/>
+    </resources>
 </document>

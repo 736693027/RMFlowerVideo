@@ -187,14 +187,13 @@ static id _instance;
     [self.startOrPauseBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     
     NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:DownLoadDataArray_KEY];
-//    [self showEmptyViewWithImage:[UIImage imageNamed:@"no_cashe_video"] WithTitle:@"您没有缓存记录"];
     NSArray * SavedownLoad = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if(SavedownLoad==nil){
-//        if(self.dataArray.count==0){
-//            [self isShouldSetHiddenEmptyView:NO];
-//        }else{
-//            [self isShouldSetHiddenEmptyView:YES];
-//        }
+        if(self.dataArray.count==0){
+            self.mainTableView.hidden = YES;
+        }else{
+            self.mainTableView.hidden = NO;
+        }
     }else{
          NSLog(@"成功取值");
         for(RMPublicModel *model in SavedownLoad){
@@ -202,7 +201,7 @@ static id _instance;
             [cellEditingImageArray addObject:@"cell_no_select"];
         }
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
-//        [self isShouldSetHiddenEmptyView:YES];
+        self.mainTableView.hidden = NO;
     }
     [self.mainTableView reloadData];
     if(self.dataArray.count==0){
@@ -320,6 +319,11 @@ static id _instance;
         [self.dataArray removeObjectAtIndex:indexPath.row];
         [self.mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         commitEditings(self.dataArray);
+        if(self.dataArray.count==0){
+            self.mainTableView.hidden = YES;
+        }else{
+            self.mainTableView.hidden = NO;
+        }
     }
 }
 - (void)tableViewcommitEditing:(void (^)(NSMutableArray *))block{
@@ -461,6 +465,11 @@ static id _instance;
     [selectCellArray removeAllObjects];
     isStartEditing = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControEndEditing object:nil];
+    if(self.dataArray.count==0){
+        self.mainTableView.hidden = YES;
+    }else{
+        self.mainTableView.hidden = NO;
+    }
 
 }
 - (void)didSelectTableViewCell:(void(^)(NSMutableArray *selectArray))block{
@@ -470,7 +479,9 @@ static id _instance;
 #pragma mark 准备下载，没添加一个新的下载任务或者已经下载完成一个任务的时候会调用
 - (void) BeginDownLoad{
     [self.mainTableView reloadData];
-//    [self isShouldSetHiddenEmptyView:YES];
+    if(self.mainTableView.hidden==YES){
+        self.mainTableView.hidden = NO;
+    }
     if(cellEditingImageArray.count<self.dataArray.count){
         if(cellEditingImageArray==nil){
             cellEditingImageArray = [[NSMutableArray alloc] init];
@@ -552,12 +563,12 @@ static id _instance;
             commitEditings(self.dataArray);
             self.isDownLoadNow = NO;
             if (self.dataArray.count==0) {
-//                [self isShouldSetHiddenEmptyView:NO];
+                self.mainTableView.hidden = YES;
                 [self.downloadTask cancel];
                 self.downloadTask = nil;
                 
             }else{
-//                [self isShouldSetHiddenEmptyView:YES];
+                self.mainTableView.hidden = NO;
                 if(self.downLoadIDArray.count>0){
                     [self BeginDownLoad];
                 }

@@ -68,24 +68,13 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (self.dataArray.count == 0) {
-        [self showEmptyWithImage:@"empty" withImageSize:CGSizeMake(55, 55) withTitle:@"您还没有观看记录"];
-    }
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [leftBarButton setBackgroundImage:LOADIMAGE(@"backup") forState:UIControlStateNormal];
     [rightBarButton setBackgroundImage:LOADIMAGE(@"nav_editing_btn") forState:UIControlStateNormal];
     [self setCustomNavTitle:@"观看记录"];
+
     [showMemoryView removeFromSuperview];
     
     self.dataArray = [[[Database sharedDatabase] readitemFromHistroyList] mutableCopy];
@@ -94,6 +83,7 @@
     }
     if(self.dataArray.count==0){
         rightBarButton.hidden = YES;
+        self.mainTableView.hidden = YES;
     }
 }
 
@@ -192,6 +182,7 @@
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         if(self.dataArray.count==0){
             rightBarButton.hidden = YES;
+            self.mainTableView.hidden = YES;
         }
     }
 }
@@ -242,6 +233,7 @@
         isEditing = NO;
         if(self.dataArray.count==0){
             rightBarButton.hidden = YES;
+            self.mainTableView.hidden = YES;
         }
     }
 }

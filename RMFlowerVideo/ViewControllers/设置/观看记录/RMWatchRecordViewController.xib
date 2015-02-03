@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RMWatchRecordViewController">
             <connections>
+                <outlet property="emptyImageView" destination="EIi-Bp-HDa" id="Oi9-ix-qcp"/>
+                <outlet property="errorTitleLable" destination="6VR-L3-vse" id="U1z-hC-FMW"/>
                 <outlet property="mainTableView" destination="KR1-wv-p6c" id="jka-9h-N42"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,6 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="EIi-Bp-HDa">
+                    <rect key="frame" x="133" y="245" width="55" height="55"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你没有观看记录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VR-L3-vse">
+                    <rect key="frame" x="101" y="308" width="119" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="KR1-wv-p6c">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,13 +38,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="6VR-L3-vse" firstAttribute="top" secondItem="EIi-Bp-HDa" secondAttribute="bottom" constant="8" id="9tY-oV-VBZ"/>
+                <constraint firstAttribute="centerX" secondItem="6VR-L3-vse" secondAttribute="centerX" id="AmS-hB-3qU"/>
                 <constraint firstItem="KR1-wv-p6c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FjR-bD-mgQ"/>
+                <constraint firstAttribute="centerX" secondItem="EIi-Bp-HDa" secondAttribute="centerX" id="IYP-Nq-FAq"/>
                 <constraint firstItem="KR1-wv-p6c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Ios-KY-rgP"/>
                 <constraint firstAttribute="bottom" secondItem="KR1-wv-p6c" secondAttribute="bottom" id="dyh-Gf-beE"/>
                 <constraint firstAttribute="trailing" secondItem="KR1-wv-p6c" secondAttribute="trailing" id="oYS-vq-IPr"/>
+                <constraint firstItem="EIi-Bp-HDa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="245" id="q4E-Ct-itm"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="627" y="213"/>
+            <point key="canvasLocation" x="1126" y="230"/>
         </view>
     </objects>
+    <resources>
+        <image name="empty" width="55" height="55"/>
+    </resources>
 </document>

@@ -133,6 +133,13 @@ typedef enum{
         [exitBtn setTitle:@"登录" forState:UIControlStateNormal];
         userHeader.image = LOADIMAGE(@"setup_head");
         
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setValue:nil forKey:@"userName"];
+        [dict setValue:nil forKey:@"userIconUrl"];
+        [dict setValue:nil forKey:@"token"];
+        CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+        [storage setObject:dict forKey:UserLoginInformation_KEY];
+        
     }else{
         RMLoginViewController *loginCtl = [[RMLoginViewController alloc] init];
         RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];

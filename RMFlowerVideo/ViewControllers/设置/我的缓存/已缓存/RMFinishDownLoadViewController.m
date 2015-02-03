@@ -29,7 +29,7 @@
     [self.dataArray removeAllObjects];
     NSArray *tmpArray = [[Database sharedDatabase] readItemFromDownLoadList];
     if ([tmpArray count] == 0){
-//        [self isShouldSetHiddenEmptyView:NO];
+        self.mainTableView.hidden = YES;
     }else{
         // dataBaseArray主要实在删除的时候使用 dataBaseArray包含的是所有的下载视屏数据
         if(dataBaseArray==nil){
@@ -39,7 +39,7 @@
             [dataBaseArray removeAllObjects];
             dataBaseArray = [tmpArray mutableCopy];
         }
-//        [self isShouldSetHiddenEmptyView:YES];
+        self.mainTableView.hidden =NO;
         for(RMPublicModel *model in tmpArray){
             if([model.name rangeOfString:@"电视剧"].location == NSNotFound){
                 [self.dataArray addObject:model];
@@ -185,6 +185,12 @@
         [self.dataArray removeObjectAtIndex:indexPath.row];
         [self.mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         commitEditings(self.dataArray);
+        if(self.dataArray.count>0){
+            self.mainTableView.hidden = NO;
+        }
+        else{
+            self.mainTableView.hidden = YES;
+        }
     }
 }
 - (void)tableViewcommitEditing:(void (^)(NSMutableArray *))block{
@@ -304,11 +310,11 @@
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:number.integerValue inSection:0];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
         [self.mainTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-//        if (self.dataArray.count==0) {
-//            [self isShouldSetHiddenEmptyView:NO];
-//        }else{
-//            [self isShouldSetHiddenEmptyView:YES];
-//        }
+        if (self.dataArray.count==0) {
+            self.mainTableView.hidden = YES;
+        }else{
+            self.mainTableView.hidden = NO;
+        }
     }
     commitEditings(self.dataArray);
     [selectCellArray removeAllObjects];
@@ -368,11 +374,11 @@
             }
         }
     }
-//    if (self.dataArray.count==0) {
-//        [self isShouldSetHiddenEmptyView:NO];
-//    }else{
-//        [self isShouldSetHiddenEmptyView:YES];
-//    }
+    if (self.dataArray.count==0) {
+        self.mainTableView.hidden = YES;
+    }else{
+        self.mainTableView.hidden = NO;
+    }
     [self.mainTableView reloadData];
     [cellEditingImageArray removeAllObjects];
     for (int i=0; i<self.dataArray.count; i++) {
