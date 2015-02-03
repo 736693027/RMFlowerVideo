@@ -39,6 +39,7 @@
         NSDictionary *userInfo = [storage objectForKey:UserLoginInformation_KEY];
         token = [userInfo objectForKey:@"token"];
         if(token==nil){
+            rightBarButton.hidden = YES;
             [self.emptyImageView setImage:LOADIMAGE(@"error")];
             self.errorTitleLable.text = @"请先登录到小花视频";
             self.mainTableView.hidden = YES;
