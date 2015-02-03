@@ -312,7 +312,7 @@ typedef enum{
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ([UtilityFunc isConnectionAvailable] == 0){
-        [self showLoadingSimpleWithUserInteractionEnabled:YES];
+        [self showMessage:kShowConnectionAvailableError duration:1.0 position:1 withUserInteractionEnabled:YES];
         return NO;
     }else{
         if (self.searchTextField.text.length == 0){

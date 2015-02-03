@@ -122,7 +122,7 @@
 */
 
 //提示
-#define kShowConnectionAvailableError               @"没有网络，请检查网络连接"
+#define kShowConnectionAvailableError               @"请检查网络链接"
 
 //APP 相关信息
 #define kAppName                            @"小花视频"
