@@ -107,14 +107,14 @@
         [cell.secondImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
         cell.secondImage.identifierString = model.tag_id;
         cell.secondName.text = model.name;
-        [cell.fristBackImage setImage:[UIImage imageNamed:imageString]];
+        [cell.secondBackImage setImage:[UIImage imageNamed:imageString]];
     }
     if(indexPath.row*3+2<dataArr.count){
         RMPublicModel *model = [dataArr objectAtIndex:indexPath.row*3+2];
         [cell.thirdImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
         cell.thirdImage.identifierString = model.tag_id;
         cell.thirdName.text = model.name;
-        [cell.fristBackImage setImage:[UIImage imageNamed:imageString]];
+        [cell.thridBackImage setImage:[UIImage imageNamed:imageString]];
     }
     return cell;
 }
