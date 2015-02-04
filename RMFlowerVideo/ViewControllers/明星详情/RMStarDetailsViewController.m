@@ -222,20 +222,31 @@ typedef enum{
                                   };
             starIntrodue.attributedText = [[NSAttributedString alloc] initWithString:model.detail attributes:ats];
             
+            UIImageView * jumpIntrodueImg;
+            UIButton * jumpBtn;
+            
             if (model.detail.length != 0){
-                UIImageView * jumpIntrodueImg = [[UIImageView alloc] init];
+                jumpIntrodueImg = [[UIImageView alloc] init];
                 jumpIntrodueImg.frame = CGRectMake(ScreenWidth-50, 200, 36, 13);
                 jumpIntrodueImg.image = LOADIMAGE(@"starDetails_show");
                 [self.view addSubview:jumpIntrodueImg];
                 
-                UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 jumpBtn.frame = CGRectMake(110, 75, ScreenWidth - 120, 140);
                 jumpBtn.backgroundColor = [UIColor clearColor];
                 [jumpBtn addTarget:self action:@selector(jumpIntrodueMethod) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:jumpBtn];
             }else{
+                jumpBtn.enabled = NO;
                 starIntrodue.text = @"暂无介绍";
             }
+            
+            if ([model.detail isEqualToString:@"暂无"]){
+                starIntrodue.text = @"暂无介绍";
+                jumpBtn.enabled = NO;
+                jumpIntrodueImg.hidden = YES;
+            }
+            
             [self startVideoNumRequest];
             [self hideLoading];
             break;

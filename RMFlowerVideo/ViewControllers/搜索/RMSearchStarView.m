@@ -86,8 +86,15 @@
         }
     }else{
         starIntrodue.text = @"暂无介绍";
+        jumpBtn.enabled = NO;
     }
 
+    if ([starDetail isEqualToString:@"暂无"]){
+        starIntrodue.text = @"暂无介绍";
+        jumpBtn.enabled = NO;
+        jumpIntrodueImg.hidden = YES;
+    }
+    
     NSArray * nameArr = [self getStarNameArrWithTVNum:[self.dataModel.tv_list count] withVarietyNum:[self.dataModel.variety_list count] withVodNum:[self.dataModel.vod_list count]];
     
     if (segmentedCtl){
@@ -119,6 +126,7 @@
     RMStarIntroViewController * starIntroCtl = [[RMStarIntroViewController alloc] init];
     starIntroCtl.starName = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"name"];
     starIntroCtl.starIntrodue = [[self.dataModel.star_list objectAtIndex:0] objectForKey:@"detail"];
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [sender presentViewController:starIntroCtl animated:YES completion:^{
     }];
 }
