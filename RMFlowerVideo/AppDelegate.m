@@ -26,7 +26,7 @@
 #import "Harpy.h"
 #import "APService.h"
 
-#define ITUNES_APP @"https://itunes.apple.com/cn/app/r-evolve/id944155902?mt=8" //itunes
+#define SocialJump @"http://vodadmin.runmobile.cn/app_check.html"
 
 @interface AppDelegate ()<LoadingDelegate,RMAFNRequestManagerDelegate> {
     BOOL isFadeOut;
@@ -236,8 +236,8 @@
 - (void)loadSocial {
     [UMSocialData setAppKey:UMengAppKey];
     [UMSocialData openLog:NO];
-    [UMSocialWechatHandler setWXAppId:@"wx4ec79b76fc3d8f4e" appSecret:@"7ea6a6911a6e1b6982e41b06c15073f8" url:ITUNES_APP];
-    [UMSocialQQHandler setQQWithAppId:@"1103514725" appKey:@"DPr140rgS4i2L53j" url:ITUNES_APP];
+    [UMSocialWechatHandler setWXAppId:@"wx4ec79b76fc3d8f4e" appSecret:@"7ea6a6911a6e1b6982e41b06c15073f8" url:SocialJump];
+    [UMSocialQQHandler setQQWithAppId:@"1103514725" appKey:@"DPr140rgS4i2L53j" url:SocialJump];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialQQHandler setSupportWebView:YES];
 }
@@ -247,7 +247,14 @@
  */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    NSString *urlStr = [[url absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    if ([urlStr isEqualToString:@"flowervideo://flower/open"]){
+        //第三方跳到小花视频
+        return  YES;
+    }else{
+        //处理社会化事件
+        return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    }
 }
 
 /**
