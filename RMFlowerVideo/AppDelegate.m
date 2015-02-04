@@ -14,6 +14,7 @@
 #import "RMCustomTabBarController.h"            //自定义TabBar
 #import "UMSocial.h"
 #import "UMSocialQQHandler.h"
+#import "UMSocialSinaHandler.h"
 #import "UMSocialWechatHandler.h"
 #import "RMHomeViewController.h"
 #import "RMRankingViewController.h"
@@ -237,6 +238,7 @@
     [UMSocialData openLog:NO];
     [UMSocialWechatHandler setWXAppId:@"wx4ec79b76fc3d8f4e" appSecret:@"7ea6a6911a6e1b6982e41b06c15073f8" url:ITUNES_APP];
     [UMSocialQQHandler setQQWithAppId:@"1103514725" appKey:@"DPr140rgS4i2L53j" url:ITUNES_APP];
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [UMSocialQQHandler setSupportWebView:YES];
 }
 

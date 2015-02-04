@@ -11,6 +11,7 @@
 #import "CONST.h"
 #import "RMVideoPlaybackDetailsViewController.h"
 #import "UIButton+EnlargeEdge.h"
+#import "UtilityFunc.h"
 
 @interface DOPScrollableActionSheet ()<UMSocialUIDelegate,UIGestureRecognizerDelegate>{
     float height;
@@ -80,50 +81,83 @@
 
 - (void)beginShareContent:(UIButton *)btn{
     [self dismiss];
+    selectIndex(btn.tag);
 
-    /*
-     NSArray *shareArray = [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray;
-     sina,
-     tencent,
-     wxsession,
-     wxtimeline,
-     wxfavorite,
-     qzone,
-     qq,
-     renren,
-     douban,
-     email,
-     sms,
-     facebook,
-     twitter
-     */
-    
-    RMVideoPlaybackDetailsViewController * videoPlaybackDetails = self.VideoPlaybackDetailsDelegate;
-    NSString *shareString = [NSString stringWithFormat:@"我正在看《%@》,精彩内容,精准推荐,尽在小花视频 %@",self.videoName,kAppAddress];
-//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:btn.tag]] content:shareString image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] location:nil urlResource:nil presentedController:videoPlaybackDetails completion:^(UMSocialResponseEntity *response){
-//        if (response.responseCode == UMSResponseCodeSuccess) {
-//            NSLog(@"分享成功！");
+//    /*
+//     NSArray *shareArray = [UMSocialSnsPlatformManager sharedInstance].allSnsValuesArray;
+//     sina,
+//     tencent,
+//     wxsession,
+//     wxtimeline,
+//     wxfavorite,
+//     qzone,
+//     qq,
+//     renren,
+//     douban,
+//     email,
+//     sms,
+//     facebook,
+//     twitter
+//     */
+//    
+//    RMVideoPlaybackDetailsViewController * videoPlaybackDetails = self.VideoPlaybackDetailsDelegate;
+//    NSString *shareString = [NSString stringWithFormat:@"我正在看《%@》,精彩内容,精准推荐,尽在小花视频 %@",self.videoName,kAppAddress];
+////    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:btn.tag]] content:shareString image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] location:nil urlResource:nil presentedController:videoPlaybackDetails completion:^(UMSocialResponseEntity *response){
+////        if (response.responseCode == UMSResponseCodeSuccess) {
+////            NSLog(@"分享成功！");
+////        }
+////    }];
+//    switch (btn.tag) {
+//        case 0:{
+////            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] socialUIDelegate:self];
+////            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+////            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
+//            
+//            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] socialUIDelegate:self];
+//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+//            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
+//            
+////            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina]
+////                                                                content:shareString
+////                                                                  image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]]
+////                                                               location:nil
+////                                                            urlResource:nil
+////                                                    presentedController:videoPlaybackDetails
+////                                                             completion:^(UMSocialResponseEntity *shareResponse){
+////                                                                 if (shareResponse.responseCode == UMSResponseCodeSuccess) {
+////                                                                     NSLog(@"分享成功！");
+////                                                                     shareSuccess();
+////                                                                 }
+////                                                                 else{
+////                                                                     shareError();
+////                                                                 }
+////                                                             }];
 //        }
-//    }];
-    switch (btn.tag) {
-        case 0:{
-            [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:nil socialUIDelegate:self];
-            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
-            snsPlatform.snsClickHandler(videoPlaybackDetails,[UMSocialControllerService defaultControllerService],YES);
-            
-        }
-            break;
-        default:{
-            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:btn.tag]] content:shareString image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]] location:nil urlResource:nil presentedController:videoPlaybackDetails completion:^(UMSocialResponseEntity *response){
-                if (response.responseCode == UMSResponseCodeSuccess) {
-                    NSLog(@"分享成功！");
-                }
-            }];
-        }
-            break;
-    }
+//            break;
+//        default:{
+//            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:btn.tag]]
+//                                                                content:shareString
+//                                                                  image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.video_pic]]]
+//                                                               location:nil urlResource:nil
+//                                                    presentedController:videoPlaybackDetails
+//                                                             completion:^(UMSocialResponseEntity *response){
+//                if (response.responseCode == UMSResponseCodeSuccess) {
+//                    NSLog(@"分享成功！");
+//                }
+//            }];
+//        }
+//            break;
+//    }
 }
-
+- (void)shareBtnSelectIndex:(void (^)(NSInteger))block{
+    selectIndex = block;
+}
+- (void)shareSuccess:(void(^)())block{
+    shareSuccess = block;
+}
+- (void)shareError:(void(^)())block{
+    shareError = block;
+}
 - (void)show {
     self.backgroundColor = [UIColor colorWithRed:0.14 green:0.14 blue:0.14 alpha:0.4];
     [UIView animateWithDuration:0.2 animations:^{
@@ -142,33 +176,33 @@
     }];
 }
 
-- (NSString *)getSocialSnsPlatformNameWithType:(NSInteger)type {
-    switch (type) {
-        case 0:{
-            return @"sina";
-            break;
-        }
-        case 1:{
-            return @"wxsession";
-            break;
-        }
-        case 2:{
-            return @"qq";
-            break;
-        }
-        case 3:{
-            return @"qzone";
-            break;
-        }
-        case 4:{
-            return @"wxtimeline";
-            break;
-        }
-            
-        default:
-            return nil;
-            break;
-    }
-}
+//- (NSString *)getSocialSnsPlatformNameWithType:(NSInteger)type {
+//    switch (type) {
+//        case 0:{
+//            return @"sina";
+//            break;
+//        }
+//        case 1:{
+//            return @"wxsession";
+//            break;
+//        }
+//        case 2:{
+//            return @"qq";
+//            break;
+//        }
+//        case 3:{
+//            return @"qzone";
+//            break;
+//        }
+//        case 4:{
+//            return @"wxtimeline";
+//            break;
+//        }
+//            
+//        default:
+//            return nil;
+//            break;
+//    }
+//}
 
 @end

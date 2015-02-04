@@ -19,6 +19,7 @@
 #import "RMLoadingWebViewController.h"
 #import "RMLoginViewController.h"
 
+#import "UMSocial.h"
 #import "RMTickerView.h"
 #import "RMTouchVIew.h"
 #import "RMCustomVideoPlayerView.h"
@@ -37,7 +38,7 @@ typedef enum{
     requestVideoDetailsType
 }RequestType;
 
-@interface RMVideoPlaybackDetailsViewController ()<BottomBtnDelegate,SwitchSelectedMethodDelegate,RMAFNRequestManagerDelegate,TouchViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,SourceTypeDelegate,TVEpisodeDelegate,RefreshPlayAddressDelegate>{
+@interface RMVideoPlaybackDetailsViewController ()<BottomBtnDelegate,SwitchSelectedMethodDelegate,RMAFNRequestManagerDelegate,TouchViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,SourceTypeDelegate,TVEpisodeDelegate,RefreshPlayAddressDelegate,UMSocialUIDelegate>{
     RMSegmentedController * segmentedCtl;
     RMPlayRelatedViewController * playRelatedCtl;
     RMPlayDetailsViewController * playDetailsCtl;
@@ -519,10 +520,67 @@ typedef enum{
             action.video_pic = self.dataModel.pic;
             [self.view addSubview:action];
             [action show];
+            [action shareSuccess:^{
+                [self showMessage:@"分享成功" duration:1 withUserInteractionEnabled:YES];
+            }];
+            [action shareError:^{
+                [self showMessage:@"分享失败" duration:1 withUserInteractionEnabled:YES];
+            }];
+            [action shareBtnSelectIndex:^(NSInteger Index) {
+                
+                NSString *shareString = [NSString stringWithFormat:@"我正在看《%@》,精彩内容,精准推荐,尽在小花视频 %@",self.dataModel.name,kAppAddress];
+                UIImage *shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.dataModel.pic]]];
+                if(Index==0){
+                    [[UMSocialControllerService defaultControllerService] setShareText:shareString shareImage:shareImage socialUIDelegate:self];
+                    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+                    snsPlatform.snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+                }else{
+                    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[[self getSocialSnsPlatformNameWithType:Index]]
+                                                                        content:shareString
+                                                                          image:shareImage
+                                                                       location:nil urlResource:nil
+                                                            presentedController:self
+                                                                     completion:^(UMSocialResponseEntity *response){
+                                                                         if (response.responseCode == UMSResponseCodeSuccess) {
+                                                                             NSLog(@"分享成功！");
+                                                                         }
+                                                                     }];
+                    
+                }
+                
+            }];
             break;
         }
             
         default:
+            break;
+    }
+}
+- (NSString *)getSocialSnsPlatformNameWithType:(NSInteger)type {
+    switch (type) {
+        case 0:{
+            return @"sina";
+            break;
+        }
+        case 1:{
+            return @"wxsession";
+            break;
+        }
+        case 2:{
+            return @"qq";
+            break;
+        }
+        case 3:{
+            return @"qzone";
+            break;
+        }
+        case 4:{
+            return @"wxtimeline";
+            break;
+        }
+            
+        default:
+            return nil;
             break;
     }
 }

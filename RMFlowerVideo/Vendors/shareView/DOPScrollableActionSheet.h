@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface DOPScrollableActionSheet : UIView
+@interface DOPScrollableActionSheet : UIView{
+    void(^shareSuccess)();
+    void(^shareError)();
+    void(^selectIndex)(NSInteger index);
+}
 @property (nonatomic, assign) id VideoPlaybackDetailsDelegate;
 
 @property (nonatomic, copy) NSString *videoName;
@@ -20,5 +24,9 @@
 - (void)show;
 
 - (void)dismiss;
+
+- (void)shareSuccess:(void(^)())block;
+- (void)shareError:(void(^)())block;
+- (void)shareBtnSelectIndex:(void(^)(NSInteger Index))block;
 
 @end
