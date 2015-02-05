@@ -233,12 +233,12 @@
 
 #pragma mark- 社会化
 
-- (void)loadSocial {
+- (void)loadSocial {//@"http://sns.whalecloud.com/sina2/callback"
     [UMSocialData setAppKey:UMengAppKey];
     [UMSocialData openLog:NO];
     [UMSocialWechatHandler setWXAppId:@"wx4ec79b76fc3d8f4e" appSecret:@"7ea6a6911a6e1b6982e41b06c15073f8" url:SocialJump];
     [UMSocialQQHandler setQQWithAppId:@"1103514725" appKey:@"DPr140rgS4i2L53j" url:SocialJump];
-    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialSinaHandler openSSOWithRedirectURL:SocialJump];
     [UMSocialQQHandler setSupportWebView:YES];
 }
 
