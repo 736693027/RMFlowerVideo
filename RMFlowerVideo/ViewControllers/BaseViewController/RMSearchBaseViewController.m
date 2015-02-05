@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tableHeadViewHeight = 223,searchBtnheight = 31,mainScorllViewHeight = 180,searchViewHeight = 43,originY = 11;
+    tableHeadViewHeight = 223,searchBtnheight = 31,mainScorllViewHeight = 172,searchViewHeight = 43,originY = 11;
     if(IS_IPHONE_6_SCREEN){
         tableHeadViewHeight = 252,searchBtnheight = 35, mainScorllViewHeight = 200,searchViewHeight = 47,originY = 14;
     }else if(IS_IPHONE_6p_SCREEN){

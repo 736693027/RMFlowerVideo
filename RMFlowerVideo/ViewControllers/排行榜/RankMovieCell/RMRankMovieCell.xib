@@ -121,7 +121,7 @@
                 <outlet property="topImage" destination="LtV-s0-Oir" id="Ypx-is-JBM"/>
                 <outlet property="topNumberLable" destination="q46-tN-Zdj" id="reh-cW-5Zx"/>
             </connections>
-            <point key="canvasLocation" x="550" y="297.5"/>
+            <point key="canvasLocation" x="898" y="287.5"/>
         </tableViewCell>
     </objects>
     <resources>

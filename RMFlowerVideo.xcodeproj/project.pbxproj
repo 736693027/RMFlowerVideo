@@ -368,6 +368,8 @@
 		91E457671A58E18100934D01 /* RMHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E457651A58E18100934D01 /* RMHomeTableViewCell.xib */; };
 		91E4576B1A58E72400934D01 /* RMSearchBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E457691A58E72400934D01 /* RMSearchBaseViewController.m */; };
 		91E4576C1A58E72400934D01 /* RMSearchBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E4576A1A58E72400934D01 /* RMSearchBaseViewController.xib */; };
+		91E91D9C1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */; };
+		91E91D9D1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */; };
 		91F3998B1A5937EE002142CD /* RMRankMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F399891A5937EE002142CD /* RMRankMovieCell.m */; };
 		91F3998C1A5937EE002142CD /* RMRankMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */; };
 		91F3998F1A59404C002142CD /* RMRankTableViewHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3998E1A59404C002142CD /* RMRankTableViewHeadView.m */; };
@@ -926,6 +928,8 @@
 		91E457681A58E72400934D01 /* RMSearchBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSearchBaseViewController.h; sourceTree = "<group>"; };
 		91E457691A58E72400934D01 /* RMSearchBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSearchBaseViewController.m; sourceTree = "<group>"; };
 		91E4576A1A58E72400934D01 /* RMSearchBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMSearchBaseViewController.xib; sourceTree = "<group>"; };
+		91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankTableViewHeadView_6.xib; sourceTree = "<group>"; };
+		91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankTableViewHeadView_6p.xib; sourceTree = "<group>"; };
 		91F399881A5937EE002142CD /* RMRankMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRankMovieCell.h; sourceTree = "<group>"; };
 		91F399891A5937EE002142CD /* RMRankMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRankMovieCell.m; sourceTree = "<group>"; };
 		91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankMovieCell.xib; sourceTree = "<group>"; };
@@ -2351,6 +2355,8 @@
 				91F3998D1A59404C002142CD /* RMRankTableViewHeadView.h */,
 				91F3998E1A59404C002142CD /* RMRankTableViewHeadView.m */,
 				91F399901A594066002142CD /* RMRankTableViewHeadView.xib */,
+				91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */,
+				91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */,
 			);
 			path = RankMovieCell;
 			sourceTree = "<group>";
@@ -2481,6 +2487,7 @@
 				1DAB4FD51A72232B00F9310A /* source_souhu_small@3x.png in Resources */,
 				913455DE1A5BB721005CAFB1 /* RMDownLoadingTableViewCell.xib in Resources */,
 				9166D2281A676BF80065F2A0 /* RMSpecialEditionDetailViewController.xib in Resources */,
+				91E91D9C1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib in Resources */,
 				913669871A5252D8001FD769 /* RMBaseViewController.xib in Resources */,
 				1DA31D151A708C600034A307 /* rm_hudbg@2x.png in Resources */,
 				1DAB4FEB1A72233400F9310A /* source_tudou_small@2x.png in Resources */,
@@ -2612,6 +2619,7 @@
 				1DAB4FD11A72232B00F9310A /* source_huashu_small@3x.png in Resources */,
 				1D25A3AE1A5578890095974E /* RMHomeMovieViewController.xib in Resources */,
 				916DE9A81A6DEF5000988DA5 /* redbg_@3x.png in Resources */,
+				91E91D9D1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib in Resources */,
 				913456261A5BD284005CAFB1 /* pull_loading@3x.png in Resources */,
 				1DA73C3C1A5C09FA00A5A365 /* RMPlayRelatedCell.xib in Resources */,
 				916DE9BF1A6E54E500988DA5 /* RMHomeStartCell_6p.xib in Resources */,

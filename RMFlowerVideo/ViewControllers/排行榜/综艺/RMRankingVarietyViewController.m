@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];
+    self.dataArray = [[NSMutableArray alloc] init];
     self.refreshControl=[[RefreshControl alloc] initWithScrollView:self.mainTableView delegate:self];
     self.refreshControl.topEnabled=YES;
     self.refreshControl.bottomEnabled=NO;
@@ -152,7 +153,6 @@
 }
 
 - (void)requestData{
-    self.dataArray = [[NSMutableArray alloc] init];
     [self showLoadingSimpleWithUserInteractionEnabled:YES];
     requestManager = [[RMAFNRequestManager alloc] init];
     requestManager.delegate = self;
@@ -162,7 +162,14 @@
 - (void)requestFinishiDownLoadWith:(NSMutableArray *)data{
     [self.dataArray removeAllObjects];
     self.dataArray = data;
-    RMRankTableViewHeadView *headView = [[[NSBundle mainBundle] loadNibNamed:@"RMRankTableViewHeadView" owner:self options:nil] lastObject];
+    RMRankTableViewHeadView *headView;
+    if(IS_IPHONE_6_SCREEN){
+        headView = [[[NSBundle mainBundle] loadNibNamed:@"RMRankTableViewHeadView_6" owner:self options:nil] lastObject];
+    }else if(IS_IPHONE_6p_SCREEN){
+        headView = [[[NSBundle mainBundle] loadNibNamed:@"RMRankTableViewHeadView_6p" owner:self options:nil] lastObject];
+    }else{
+        headView = [[[NSBundle mainBundle] loadNibNamed:@"RMRankTableViewHeadView" owner:self options:nil] lastObject];
+    }
     RMPublicModel *model = [self.dataArray objectAtIndex:0];
     [headView.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
     headView.titleLable.text = model.name;

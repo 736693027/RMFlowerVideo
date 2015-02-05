@@ -173,6 +173,9 @@
         self.scrollViewDataArray = data;
          __block RMHomeTVViewController *blockSelf = self;
         self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+            if(pageIndex<0||pageIndex>data.count){
+                return nil;
+            }
             RMPublicModel *model = [data objectAtIndex:pageIndex];
             RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];
             if (IS_IPHONE_6_SCREEN){

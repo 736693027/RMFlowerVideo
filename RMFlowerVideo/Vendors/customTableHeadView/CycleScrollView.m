@@ -33,7 +33,12 @@
         self.pageControl.currentPage = 0;
         [self.pageControl addTarget:self action:@selector(clickPageControl:) forControlEvents:UIControlEventValueChanged];
         self.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame)*_totalPageCount, CGRectGetHeight(self.scrollView.frame));
+        if(_totalPageCount>1){
+            self.scrollView.contentSize = CGSizeMake(3 * CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
+        }else{
+            self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame)*_totalPageCount, CGRectGetHeight(self.scrollView.frame));
+        }
+        
         [self addSubview:self.pageControl];
     }
     self.pageControl.numberOfPages = _totalPageCount;
@@ -132,7 +137,10 @@
         return self.totalPageCount - 1;
     } else if (currentPageIndex == self.totalPageCount) {
         return 0;
-    } else {
+    } else if (currentPageIndex <-1){
+        return 0;
+    }
+    else {
         return currentPageIndex;
     }
 }
