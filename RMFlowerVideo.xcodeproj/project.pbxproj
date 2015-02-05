@@ -73,6 +73,7 @@
 		1D632EA71A5A94FB002674DF /* RMPlayCreatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D632EA51A5A94FB002674DF /* RMPlayCreatorViewController.xib */; };
 		1D7B84F51A6CE49600BDFFFA /* RMRemoveAllObjectsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7B84F31A6CE49600BDFFFA /* RMRemoveAllObjectsCell.m */; };
 		1D7B84F61A6CE49600BDFFFA /* RMRemoveAllObjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D7B84F41A6CE49600BDFFFA /* RMRemoveAllObjectsCell.xib */; };
+		1D7EF4191A8368CA0031B994 /* RMSearchErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D7EF4181A8368CA0031B994 /* RMSearchErrorView.m */; };
 		1D8369DC1A761519005865B3 /* RMTopJumpWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8369DB1A761519005865B3 /* RMTopJumpWebView.m */; };
 		1D8369DF1A777578005865B3 /* RMSearchStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D8369DE1A777578005865B3 /* RMSearchStarView.m */; };
 		1DA31CCB1A708C230034A307 /* RMCustomSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA31CBF1A708C230034A307 /* RMCustomSVProgressHUD.m */; };
@@ -496,6 +497,8 @@
 		1D7B84F21A6CE49600BDFFFA /* RMRemoveAllObjectsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRemoveAllObjectsCell.h; sourceTree = "<group>"; };
 		1D7B84F31A6CE49600BDFFFA /* RMRemoveAllObjectsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRemoveAllObjectsCell.m; sourceTree = "<group>"; };
 		1D7B84F41A6CE49600BDFFFA /* RMRemoveAllObjectsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRemoveAllObjectsCell.xib; sourceTree = "<group>"; };
+		1D7EF4171A8368CA0031B994 /* RMSearchErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSearchErrorView.h; sourceTree = "<group>"; };
+		1D7EF4181A8368CA0031B994 /* RMSearchErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSearchErrorView.m; sourceTree = "<group>"; };
 		1D8369DA1A761519005865B3 /* RMTopJumpWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTopJumpWebView.h; sourceTree = "<group>"; };
 		1D8369DB1A761519005865B3 /* RMTopJumpWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTopJumpWebView.m; sourceTree = "<group>"; };
 		1D8369DD1A777578005865B3 /* RMSearchStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSearchStarView.h; sourceTree = "<group>"; };
@@ -1565,6 +1568,8 @@
 				913455FF1A5BD22A005CAFB1 /* RMSearchViewController.xib */,
 				1D8369DD1A777578005865B3 /* RMSearchStarView.h */,
 				1D8369DE1A777578005865B3 /* RMSearchStarView.m */,
+				1D7EF4171A8368CA0031B994 /* RMSearchErrorView.h */,
+				1D7EF4181A8368CA0031B994 /* RMSearchErrorView.m */,
 				913456001A5BD22A005CAFB1 /* RMTagList.h */,
 				913456011A5BD22A005CAFB1 /* RMTagList.m */,
 				1D7B84F21A6CE49600BDFFFA /* RMRemoveAllObjectsCell.h */,
@@ -2799,6 +2804,7 @@
 				9134563F1A5BD2B5005CAFB1 /* AESCrypt.m in Sources */,
 				913456351A5BD297005CAFB1 /* JDStatusBarView.m in Sources */,
 				9166D22D1A676F670065F2A0 /* RMTVDownLoadViewController.m in Sources */,
+				1D7EF4191A8368CA0031B994 /* RMSearchErrorView.m in Sources */,
 				91F399961A596350002142CD /* RMHomeStartCell.m in Sources */,
 				1D7B84F51A6CE49600BDFFFA /* RMRemoveAllObjectsCell.m in Sources */,
 				1D632EA11A5A94E0002674DF /* RMPlayDetailsViewController.m in Sources */,

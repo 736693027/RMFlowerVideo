@@ -95,6 +95,8 @@ typedef enum{
 @property (nonatomic, assign) NSInteger currentPlayVideoOrder;      //当前播放视频的集数
 
 @property (nonatomic, assign) BOOL isCollection;                    //当前是否已经收藏
+@property (nonatomic, assign) NSInteger currentWatchVideo;          //当前观看电视剧的集数
+
 @end
 
 @implementation RMVideoPlaybackDetailsViewController
@@ -170,12 +172,14 @@ typedef enum{
     [self.view addSubview:segmentedCtl];
 
     isFirstViewAppear = YES;
+    self.currentWatchVideo = 0;
 }
 
 /*
  *  选集 刷新视频
  */
 - (void)videoEpisodeWithOrder:(NSInteger)order {
+    self.currentWatchVideo = order - 1;
     for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
         if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
             [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
@@ -188,6 +192,7 @@ typedef enum{
  *  重新加载界面
  */
 - (void)reloadViewDidLoadWithVideo_id:(NSString *)video_id {
+    self.currentWatchVideo = 0;
     [self stratRequestWithVideo_id:video_id];
 }
 
@@ -195,6 +200,7 @@ typedef enum{
  *  重新刷新播放当前类型下的视频资源
  */
 - (void)refreshPlayAddressMethod {
+    self.currentWatchVideo = 0;
     [self replaceAVPlayer];
     if (self.dataModel.video_type.integerValue == 1){
         if ([self.dataModel.playurl count] == 0){
@@ -233,7 +239,7 @@ typedef enum{
 */
 - (void)reloadFirstPlayerContent {
     [self replaceAVPlayer];
-
+    self.currentWatchVideo = 0;
     if (self.dataModel.video_type.integerValue == 1){
         if ([self.dataModel.playurl count] == 0){
             [self refreshUIWhenPlayerFailed];
@@ -300,7 +306,7 @@ typedef enum{
                     if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
                     }else{
                         RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
-                        loadingWebCtl.loadingUrl = [[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"jumpurl"];
+                        loadingWebCtl.loadingUrl = [[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentWatchVideo] objectForKey:@"jumpurl"];
                         loadingWebCtl.name = self.dataModel.name;
                         [self presentViewController:loadingWebCtl animated:YES completion:^{
                         }];

@@ -24,6 +24,7 @@
 #import "RMPlayer.h"
 #import "RMModel.h"
 #import "RMLoadingWebViewController.h"
+#import "RMSearchErrorView.h"
 
 #define kMaxLength 20
 
@@ -46,6 +47,7 @@ typedef enum{
 @property (nonatomic, strong) UITableView * searchTableView;                        //默认搜索的tableView
 @property (nonatomic, strong) UITableView * displayResultTableView;                 //搜索结果的tableView
 @property (nonatomic, strong) RMSearchStarView * searchStarView;
+@property (nonatomic, strong) RMSearchErrorView * searchErrorView;
 
 @property (nonatomic, strong) RMBaseTextField * searchTextField;
 @property (nonatomic, strong) RefreshControl * refreshControl;
@@ -55,7 +57,6 @@ typedef enum{
 @property (nonatomic, strong) UIView      * footView;                   //tableView 的 footView
 @property (nonatomic, strong) RMTagList   * tagList;                    //全网热榜推荐list
 @property (nonatomic, strong) RMPublicModel *dataModel;
-
 @end
 
 @implementation RMSearchViewController
@@ -519,6 +520,7 @@ typedef enum{
         }else{ //联想搜索
             RMPublicModel * model = [resultDataArr objectAtIndex:indexPath.row];
             [self updateUserSearchRecord:model.name];
+            self.searchTextField.text = model.name;
             [self.searchTableView reloadData];
             [self startSearchRequest:model.name];
         }
@@ -642,6 +644,7 @@ typedef enum{
         self.refreshControl.topEnabled = YES;
         self.refreshControl.bottomEnabled = YES;
         self.searchTableView.hidden = YES;
+        self.searchErrorView.hidden = YES;
         self.displayResultTableView.hidden = NO;
         if (isRefresh){
             [resultDataArr removeAllObjects];
@@ -661,12 +664,22 @@ typedef enum{
     }else{  //有明星  也有对应下的视频列表
         self.searchTableView.hidden = YES;
         self.displayResultTableView.hidden = YES;
+        self.searchErrorView.hidden = YES;
         self.searchStarView.hidden = NO;
         self.searchStarView.frame = CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64);
         self.searchStarView.dataModel = self.dataModel;
         [self.searchStarView initSearchStarView];
     }
     [self hideLoading];
+    
+    if ([self.dataModel.star_list count] == 0 && [self.dataModel.video_list count] == 0){
+        if (!self.searchErrorView){
+            self.searchErrorView = [[RMSearchErrorView alloc] init];
+            [self.view addSubview:self.searchErrorView];
+        }
+        self.searchErrorView.hidden = NO;
+        [self.searchErrorView loadSearchErrorView];
+    }
 }
 
 - (void)requestFinishiDownLoadWith:(NSMutableArray *)data {
@@ -681,6 +694,7 @@ typedef enum{
         }
         [self DefaultSearchFootViewWithRecommendArr:recommendArr];
     }else{ //联想搜索
+        self.searchErrorView.hidden = YES;
         self.refreshControl.topEnabled = NO;
         self.refreshControl.bottomEnabled = NO;
         self.searchTableView.hidden = YES;
