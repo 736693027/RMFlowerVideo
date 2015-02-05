@@ -25,6 +25,8 @@
 #import "Flurry.h"
 #import "Harpy.h"
 #import "APService.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 #define SocialJump @"http://vodadmin.runmobile.cn/app_check.html"
 
@@ -78,6 +80,8 @@
     }
     //JPush
     [self loadJPushWithOptions:launchOptions];
+    
+    [Fabric with:@[CrashlyticsKit]];
 
     return YES;
 }

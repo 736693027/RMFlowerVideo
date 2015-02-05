@@ -370,6 +370,8 @@
 		91E4576C1A58E72400934D01 /* RMSearchBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E4576A1A58E72400934D01 /* RMSearchBaseViewController.xib */; };
 		91E91D9C1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */; };
 		91E91D9D1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */; };
+		91E91DC31A83573D0093C5AB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E91DC11A83573D0093C5AB /* Crashlytics.framework */; };
+		91E91DC41A83573D0093C5AB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E91DC21A83573D0093C5AB /* Fabric.framework */; };
 		91F3998B1A5937EE002142CD /* RMRankMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F399891A5937EE002142CD /* RMRankMovieCell.m */; };
 		91F3998C1A5937EE002142CD /* RMRankMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */; };
 		91F3998F1A59404C002142CD /* RMRankTableViewHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3998E1A59404C002142CD /* RMRankTableViewHeadView.m */; };
@@ -930,6 +932,8 @@
 		91E4576A1A58E72400934D01 /* RMSearchBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMSearchBaseViewController.xib; sourceTree = "<group>"; };
 		91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankTableViewHeadView_6.xib; sourceTree = "<group>"; };
 		91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankTableViewHeadView_6p.xib; sourceTree = "<group>"; };
+		91E91DC11A83573D0093C5AB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		91E91DC21A83573D0093C5AB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		91F399881A5937EE002142CD /* RMRankMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRankMovieCell.h; sourceTree = "<group>"; };
 		91F399891A5937EE002142CD /* RMRankMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRankMovieCell.m; sourceTree = "<group>"; };
 		91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankMovieCell.xib; sourceTree = "<group>"; };
@@ -957,6 +961,7 @@
 				91B4C4ED1A5299E600854435 /* MobileCoreServices.framework in Frameworks */,
 				1DBC3F321A7F2646000FEFF1 /* libFlurry_6.0.0.a in Frameworks */,
 				91B4C4E51A5299A600854435 /* Security.framework in Frameworks */,
+				91E91DC41A83573D0093C5AB /* Fabric.framework in Frameworks */,
 				91B4C4E91A5299BF00854435 /* libz.dylib in Frameworks */,
 				91B4C4E71A5299B700854435 /* libiconv.dylib in Frameworks */,
 				9134567B1A5BF025005CAFB1 /* libSocialQQ.a in Frameworks */,
@@ -971,6 +976,7 @@
 				91B4C4D91A52995F00854435 /* ImageIO.framework in Frameworks */,
 				91B4C4D61A52995300854435 /* MediaPlayer.framework in Frameworks */,
 				91B4C4D71A52995300854435 /* MediaToolbox.framework in Frameworks */,
+				91E91DC31A83573D0093C5AB /* Crashlytics.framework in Frameworks */,
 				91B4C4D01A5298FE00854435 /* libsqlite3.dylib in Frameworks */,
 				9134567E1A5BF025005CAFB1 /* libSocialWechat.a in Frameworks */,
 				9157DEDF1A58D42500692114 /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
@@ -2285,6 +2291,8 @@
 		91B4C4D11A52992900854435 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91E91DC11A83573D0093C5AB /* Crashlytics.framework */,
+				91E91DC21A83573D0093C5AB /* Fabric.framework */,
 				91695C391A5F6637007617C5 /* CoreGraphics.framework */,
 				91B4C4F61A529A1700854435 /* StoreKit.framework */,
 				91B4C4F41A529A0500854435 /* QuartzCore.framework */,
@@ -2383,6 +2391,7 @@
 				913669541A52522A001FD769 /* Sources */,
 				913669551A52522A001FD769 /* Frameworks */,
 				913669561A52522A001FD769 /* Resources */,
+				91E91D9E1A834D260093C5AB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2655,6 +2664,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		91E91D9E1A834D260093C5AB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ec7bb2e08de72736ec9393a97477bc98a58ce1aa 08dc0932f44c0b67e2bb1b0adc89a60df4b4f685cc240272286f87f7a9bdbf60";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		913669541A52522A001FD769 /* Sources */ = {
@@ -2947,6 +2972,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RMFlowerVideo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -2976,6 +3003,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RMFlowerVideo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
