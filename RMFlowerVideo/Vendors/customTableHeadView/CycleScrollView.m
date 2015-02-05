@@ -27,17 +27,21 @@
 {
     _totalPageCount = totalPagesCount();
     
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.bounds.size.width-80, self.bounds.size.height-20,80, 20)];
-    [self.pageControl setBackgroundColor:[UIColor clearColor]];
-    self.pageControl.currentPage = 2;
+    if(self.pageControl==nil){
+        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.bounds.size.width-80, self.bounds.size.height-20,80, 20)];
+        [self.pageControl setBackgroundColor:[UIColor clearColor]];
+        self.pageControl.currentPage = 0;
+        [self.pageControl addTarget:self action:@selector(clickPageControl:) forControlEvents:UIControlEventValueChanged];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame)*_totalPageCount, CGRectGetHeight(self.scrollView.frame));
+        [self addSubview:self.pageControl];
+    }
     self.pageControl.numberOfPages = _totalPageCount;
-    [self.pageControl addTarget:self action:@selector(clickPageControl:) forControlEvents:UIControlEventValueChanged];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     
-    [self addSubview:self.pageControl];
     if (_totalPageCount > 0) {
         [self configContentViews];
-        [self.animationTimer resumeTimerAfterTimeInterval:self.animationDuration];
+        if(_totalPageCount>1)
+            [self.animationTimer resumeTimerAfterTimeInterval:self.animationDuration];
     }
 }
 - (void)clickPageControl:(UIPageControl *)pageControl{
@@ -71,7 +75,7 @@
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView.autoresizingMask = 0xFF;
         self.scrollView.contentMode = UIViewContentModeCenter;
-        self.scrollView.contentSize = CGSizeMake(3 * CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
+        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
         self.scrollView.delegate = self;
         self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.scrollView.frame), 0);
         self.scrollView.pagingEnabled = YES;
@@ -173,6 +177,7 @@
 
 - (void)animationTimerDidFired:(NSTimer *)timer
 {
+
     CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame), self.scrollView.contentOffset.y);
     [self.scrollView setContentOffset:newOffset animated:YES];
 }

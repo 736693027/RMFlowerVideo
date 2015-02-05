@@ -542,10 +542,9 @@ typedef enum{
                                                             presentedController:self
                                                                      completion:^(UMSocialResponseEntity *response){
                                                                          if (response.responseCode == UMSResponseCodeSuccess) {
-                                                                             NSLog(@"分享成功！");
+                                                                             NSLog(@"分享成功!");
                                                                          }
                                                                      }];
-                    
                 }
                 
             }];
