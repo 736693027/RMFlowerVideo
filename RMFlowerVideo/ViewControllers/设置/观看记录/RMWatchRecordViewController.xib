@@ -19,10 +19,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="EIi-Bp-HDa">
-                    <rect key="frame" x="133" y="245" width="55" height="55"/>
+                    <rect key="frame" x="133" y="227" width="55" height="55"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你没有观看记录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VR-L3-vse">
-                    <rect key="frame" x="101" y="308" width="119" height="21"/>
+                    <rect key="frame" x="101" y="305" width="119" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -38,14 +38,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="6VR-L3-vse" firstAttribute="top" secondItem="EIi-Bp-HDa" secondAttribute="bottom" constant="8" id="9tY-oV-VBZ"/>
+                <constraint firstItem="6VR-L3-vse" firstAttribute="top" secondItem="EIi-Bp-HDa" secondAttribute="bottom" constant="23" id="9tY-oV-VBZ"/>
                 <constraint firstAttribute="centerX" secondItem="6VR-L3-vse" secondAttribute="centerX" id="AmS-hB-3qU"/>
                 <constraint firstItem="KR1-wv-p6c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FjR-bD-mgQ"/>
                 <constraint firstAttribute="centerX" secondItem="EIi-Bp-HDa" secondAttribute="centerX" id="IYP-Nq-FAq"/>
+                <constraint firstAttribute="centerY" secondItem="EIi-Bp-HDa" secondAttribute="centerY" constant="30" id="Ih7-lq-WtA"/>
                 <constraint firstItem="KR1-wv-p6c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Ios-KY-rgP"/>
                 <constraint firstAttribute="bottom" secondItem="KR1-wv-p6c" secondAttribute="bottom" id="dyh-Gf-beE"/>
                 <constraint firstAttribute="trailing" secondItem="KR1-wv-p6c" secondAttribute="trailing" id="oYS-vq-IPr"/>
-                <constraint firstItem="EIi-Bp-HDa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="245" id="q4E-Ct-itm"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1126" y="230"/>
