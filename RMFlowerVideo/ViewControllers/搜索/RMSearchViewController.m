@@ -475,6 +475,7 @@ typedef enum{
             }
             RMPublicModel * model = [resultDataArr objectAtIndex:indexPath.row];
             cell.textLabel.text = model.name;
+            cell.textLabel.font = FONT(17.0);
             return cell;
         }
     }

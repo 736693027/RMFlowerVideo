@@ -27,7 +27,7 @@
 {
     _totalPageCount = totalPagesCount();
     
-    if(self.pageControl==nil){
+    if(self.pageControl==nil&&_totalPageCount>1){
         self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.bounds.size.width-80, self.bounds.size.height-20,80, 20)];
         [self.pageControl setBackgroundColor:[UIColor clearColor]];
         self.pageControl.currentPage = 0;
@@ -38,7 +38,6 @@
         }else{
             self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame)*_totalPageCount, CGRectGetHeight(self.scrollView.frame));
         }
-        
         [self addSubview:self.pageControl];
     }
     self.pageControl.numberOfPages = _totalPageCount;
@@ -51,10 +50,12 @@
 }
 - (void)clickPageControl:(UIPageControl *)pageControl{
 
-    [self.animationTimer pauseTimer];
-    CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame)*pageControl.currentPage, self.scrollView.contentOffset.y);
-    [self.scrollView setContentOffset:newOffset animated:YES];
-    [self.animationTimer resumeTimer];
+    if(_totalPageCount>1){
+        [self.animationTimer pauseTimer];
+        CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame)*pageControl.currentPage, self.scrollView.contentOffset.y);
+        [self.scrollView setContentOffset:newOffset animated:YES];
+        [self.animationTimer resumeTimer];
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration
@@ -163,14 +164,16 @@
     int contentOffsetX = scrollView.contentOffset.x;
     if(contentOffsetX >= (2 * CGRectGetWidth(scrollView.frame))) {
         self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
-        
-        [self.pageControl setCurrentPage:self.currentPageIndex];
+        if(_totalPageCount>1){
+            [self.pageControl setCurrentPage:self.currentPageIndex];
+        }
         [self configContentViews];
     }
     if(contentOffsetX <= 0) {
         self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
-        
-        [self.pageControl setCurrentPage:self.currentPageIndex];
+        if(_totalPageCount>1){
+            [self.pageControl setCurrentPage:self.currentPageIndex];
+        }
         [self configContentViews];
     }
 }
@@ -193,6 +196,13 @@
 - (void)contentViewTapAction:(UITapGestureRecognizer *)tap
 {
     if (self.TapActionBlock) {
+        if(self.currentPageIndex<0){
+            if(self.totalPageCount<0)
+                self.currentPageIndex = 0;
+            else
+                self.currentPageIndex = self.totalPageCount-1;
+        }
+        
         self.TapActionBlock(self.currentPageIndex);
     }
 }
