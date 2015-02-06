@@ -681,13 +681,15 @@ typedef enum{
     }
     [self hideLoading];
     
-    if ([self.dataModel.star_list count] == 0 && [self.dataModel.video_list count] == 0){
-        if (!self.searchErrorView){
-            self.searchErrorView = [[RMSearchErrorView alloc] init];
-            [self.view addSubview:self.searchErrorView];
+    if (pageCount == 1){
+        if ([self.dataModel.star_list count] == 0 && [self.dataModel.video_list count] == 0){
+            if (!self.searchErrorView){
+                self.searchErrorView = [[RMSearchErrorView alloc] init];
+                [self.view addSubview:self.searchErrorView];
+            }
+            self.searchErrorView.hidden = NO;
+            [self.searchErrorView loadSearchErrorView];
         }
-        self.searchErrorView.hidden = NO;
-        [self.searchErrorView loadSearchErrorView];
     }
 }
 

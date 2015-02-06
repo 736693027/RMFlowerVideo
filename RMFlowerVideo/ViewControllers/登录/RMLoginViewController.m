@@ -55,6 +55,7 @@
             break;
         }
         case 2:{
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
             [self dismissViewControllerAnimated:YES completion:^{
             }];
             break;
@@ -132,6 +133,7 @@
     
 //    RMGenderTabViewController *genderTarVC = [[RMGenderTabViewController alloc] init];
 //    [self.navigationController pushViewController:genderTarVC animated:YES];
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }

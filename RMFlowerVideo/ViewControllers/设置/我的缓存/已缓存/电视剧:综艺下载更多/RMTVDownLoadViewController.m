@@ -201,6 +201,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else{
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

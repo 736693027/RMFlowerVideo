@@ -154,6 +154,7 @@ typedef enum{
             }
             
             if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]){
+                [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                 [self dismissViewControllerAnimated:YES completion:^{
                 }];
             }

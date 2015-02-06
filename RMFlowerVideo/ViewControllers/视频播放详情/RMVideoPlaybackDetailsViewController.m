@@ -419,6 +419,7 @@ typedef enum{
     switch (sender) {
         case 1:{    //返回
             [self replaceAVPlayer];
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
             [self dismissViewControllerAnimated:YES completion:^{
             }];
             break;
