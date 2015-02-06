@@ -174,6 +174,7 @@
                     RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                     loadingWebCtl.name = model.name;
                     loadingWebCtl.loadingUrl = [[model.urls_arr objectAtIndex:0] objectForKey:@"jumpurl"];
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                     [sender presentViewController:loadingWebCtl animated:YES completion:^{
                     }];
                 }
@@ -195,6 +196,7 @@
                     RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                     loadingWebCtl.name = model.name;
                     loadingWebCtl.loadingUrl = [[model.urls_arr objectAtIndex:0] objectForKey:@"jumpurl"];
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                     [sender presentViewController:loadingWebCtl animated:YES completion:^{
                     }];
                 }

@@ -143,6 +143,7 @@ typedef enum{
     }else{
         RMLoginViewController *loginCtl = [[RMLoginViewController alloc] init];
         RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self presentViewController:loginNav animated:YES completion:^{
         }];
     }

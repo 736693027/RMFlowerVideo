@@ -131,6 +131,7 @@
                     RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                     loadingWebCtl.name = model.name;
                     loadingWebCtl.loadingUrl = [[model.urls_arr objectAtIndex:0] objectForKey:@"jumpurl"];
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                     [rankingCtl presentViewController:loadingWebCtl animated:YES completion:^{
                     }];
                 }
@@ -173,7 +174,13 @@
         headView = [[[NSBundle mainBundle] loadNibNamed:@"RMRankTableViewHeadView" owner:self options:nil] lastObject];
     }
     RMPublicModel *model = [self.dataArray objectAtIndex:0];
-    [headView.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
+    if (IS_IPHONE_6_SCREEN){
+        [headView.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"353_200")];
+    }else if (IS_IPHONE_6p_SCREEN){
+        [headView.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"392_220")];
+    }else{
+        [headView.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_172")];
+    }
     headView.titleLable.text = model.name;
     headView.playcount.text = [NSString stringWithFormat:@"点播数:%@",model.hits];
     [headView.headImage addTarget:self WithSelector:@selector(topPlayMethod:)];

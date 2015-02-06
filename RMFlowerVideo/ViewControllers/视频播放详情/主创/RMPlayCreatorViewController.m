@@ -113,6 +113,7 @@
         starDetailsCtl.tag_id = imageView.identifierString;
         RMCustomPresentNavViewController *starDetailsNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:starDetailsCtl];
         starDetailsNav.navigationBar.hidden = YES;
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [videoPlaybackDetailsCtl presentViewController:starDetailsNav animated:YES completion:^{
         }];
     }

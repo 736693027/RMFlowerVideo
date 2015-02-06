@@ -133,6 +133,7 @@
                 RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                 loadingWebCtl.name = model.name;
                 loadingWebCtl.loadingUrl = [[model.urls_arr objectAtIndex:0] objectForKey:@"jumpurl"];
+                [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                 [homeCtl presentViewController:loadingWebCtl animated:YES completion:^{
                 }];
             }
@@ -166,7 +167,6 @@
 }
 
 - (void)requestFinishiDownLoadWith:(NSMutableArray *)data{
-    
     if(requestManeger.downLoadType == Http_getSlideList){
         self.scrollViewDataArray = data;
          __block RMHomeVarietyViewController *blockSelf = self;
@@ -174,9 +174,9 @@
             RMPublicModel *model = [data objectAtIndex:pageIndex];
             RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];
             if (IS_IPHONE_6_SCREEN){
-                [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_180")];
+                [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"347_200")];
             }else if (IS_IPHONE_6p_SCREEN){
-                [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_180")];
+                [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"384_220")];
             }else{
                 [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_180")];
             }

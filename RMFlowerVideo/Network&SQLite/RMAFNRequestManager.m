@@ -22,6 +22,11 @@
 #define baseUrl         @"http://vodapi.runmobile.cn/version2_00/api.php/vod/"
 
 #define kPassWord       @"yu32uzy4"                 //接口密匙
+@interface RMAFNRequestManager (){
+    UIImageView * HUDImage;
+}
+
+@end
 
 @implementation RMAFNRequestManager
 
@@ -867,10 +872,10 @@
                 [self.delegate requestFinishiDownLoadWithResults:@"success"];
             }
         }else{
-            [self checkTheNetworkConnectionWithTitle:@"意见提交失败"];
+            [self showHUDWithImage:@"submitMessagefailed" imageFrame:CGRectMake(0, 0, 130, 40) duration:1.5 userInteractionEnabled:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self checkTheNetworkConnectionWithTitle:@"意见提交失败"];
+        [self showHUDWithImage:@"submitMessagefailed" imageFrame:CGRectMake(0, 0, 130, 40) duration:1.5 userInteractionEnabled:YES];
         if([self.delegate respondsToSelector:@selector(requestError:)]){
             [self.delegate requestError:error];
         }
@@ -940,6 +945,43 @@
     hud.removeFromSuperViewOnHide = YES;
     
     [hud hide:YES afterDelay:2.0];
+}
+
+- (void)showHUDWithImage:(NSString *)imageName imageFrame:(CGRect)frame duration:(NSTimeInterval)interval userInteractionEnabled:(BOOL)enabled {
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = enabled;
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    if (!HUDImage){
+        HUDImage = [[UIImageView alloc] init];
+    }
+    HUDImage.frame = frame;
+    HUDImage.center = CGPointMake(width/2, height/2);
+    HUDImage.backgroundColor = [UIColor clearColor];
+    HUDImage.image = [UIImage imageNamed:imageName];
+    HUDImage.alpha = 0.f;
+    [[UIApplication sharedApplication].keyWindow addSubview:HUDImage];
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:0 animations:^{
+        HUDImage.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [self hideHUDImageWithAnimation:YES afterDelay:interval];
+}
+
+- (void)hideHUDImageWithAnimation:(BOOL)animation afterDelay:(NSTimeInterval)interval {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView animateWithDuration:0.3 delay:0.0 options:0 animations:^{
+            HUDImage.alpha = 0.f;
+        } completion:^(BOOL finished) {
+            [HUDImage removeFromSuperview];
+            HUDImage = nil;
+        }];
+    });
 }
 
 @end

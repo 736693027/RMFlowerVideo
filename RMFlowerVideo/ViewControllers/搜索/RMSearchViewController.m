@@ -34,7 +34,7 @@ typedef enum{
     requestSearchRecommend                  //搜索推荐标签
 }RequestManagerType;
 
-@interface RMSearchViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate,SearchRecordsDelegate,LastRecordsDelegate,TagListDelegate,RefreshControlDelegate,SearchResultDelegate,RMAFNRequestManagerDelegate>{
+@interface RMSearchViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,SearchRecordsDelegate,LastRecordsDelegate,TagListDelegate,RefreshControlDelegate,SearchResultDelegate,RMAFNRequestManagerDelegate>{
     
     NSMutableArray * recordsDataArr;            //搜索记录的Arr
     NSMutableArray * resultDataArr;             //搜索结果的Arr
@@ -495,6 +495,7 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.searchTableView){
         if ([UtilityFunc isConnectionAvailable] == 0){
+            [self showMessage:kShowConnectionAvailableError duration:1.0 position:1 withUserInteractionEnabled:YES];
             return ;
         }
         if (indexPath.row == [recordsDataArr count]){
@@ -507,6 +508,10 @@ typedef enum{
             [self startSearchRequest:str];
         }
     }else{
+        if ([UtilityFunc isConnectionAvailable] == 0){
+            [self showMessage:kShowConnectionAvailableError duration:1.0 position:1 withUserInteractionEnabled:YES];
+            return ;
+        }
         if (requestManagerType == requestSearchType){ //目标搜索
             RMVideoPlaybackDetailsViewController * videoPlaybackDetailsCtl = [[RMVideoPlaybackDetailsViewController alloc] init];
             if ([[[resultDataArr objectAtIndex:indexPath.row] objectForKey:@"video_type"] isEqualToString:@"1"]){
@@ -515,6 +520,7 @@ typedef enum{
                 videoPlaybackDetailsCtl.segVideoType = @"电视剧";
             }
             videoPlaybackDetailsCtl.video_id = [[resultDataArr objectAtIndex:indexPath.row] objectForKey:@"video_id"];
+            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
             [self presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{
             }];
         }else{ //联想搜索
@@ -544,6 +550,7 @@ typedef enum{
                     RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                     loadingWebCtl.name = [[resultDataArr objectAtIndex:i] objectForKey:@"name"];
                     loadingWebCtl.loadingUrl = [[[resultDataArr objectAtIndex:i] objectForKey:@"urls"] objectForKey:@"jumpurl"];
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                     [self presentViewController:loadingWebCtl animated:YES completion:^{
                     }];
                 }
@@ -559,6 +566,7 @@ typedef enum{
                     RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                     loadingWebCtl.name = [[resultDataArr objectAtIndex:i] objectForKey:@"name"];
                     loadingWebCtl.loadingUrl = [[[[resultDataArr objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"jumpurl"];
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                     [self presentViewController:loadingWebCtl animated:YES completion:^{
                     }];
                 }

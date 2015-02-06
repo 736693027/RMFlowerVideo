@@ -117,6 +117,7 @@
 - (void)loadingViewJumpWebWithURL:(NSString *)url{
     RMLoadingWebViewController *loadingWebVC = [[RMLoadingWebViewController alloc] init];
     loadingWebVC.loadingUrl = url;
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self presentViewController:loadingWebVC animated:YES completion:nil];
 }
 
@@ -124,6 +125,7 @@
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     RMVideoPlaybackDetailsViewController * videoPlaybackDetailsCtl = [[RMVideoPlaybackDetailsViewController alloc] init];
     videoPlaybackDetailsCtl.video_id = video_ID;
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{
     }];
 }

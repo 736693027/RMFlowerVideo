@@ -38,7 +38,7 @@ typedef enum{
     requestVideoDetailsType
 }RequestType;
 
-@interface RMVideoPlaybackDetailsViewController ()<BottomBtnDelegate,SwitchSelectedMethodDelegate,RMAFNRequestManagerDelegate,TouchViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,SourceTypeDelegate,TVEpisodeDelegate,RefreshPlayAddressDelegate,UMSocialUIDelegate>{
+@interface RMVideoPlaybackDetailsViewController ()<BottomBtnDelegate,SwitchSelectedMethodDelegate,RMAFNRequestManagerDelegate,TouchViewDelegate,UIScrollViewDelegate,SourceTypeDelegate,TVEpisodeDelegate,RefreshPlayAddressDelegate,UMSocialUIDelegate>{
     RMSegmentedController * segmentedCtl;
     RMPlayRelatedViewController * playRelatedCtl;
     RMPlayDetailsViewController * playDetailsCtl;
@@ -279,15 +279,15 @@ typedef enum{
 - (void)delayJumpWeb {
     if ([self.dataModel.video_type isEqualToString:@"1"]){   //电影
         if (self.dataModel.playurl.count == 0){
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"没有找到播放地址" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
             [self hideLoading];
+            [self showHUDWithImage:@"videoIsNotAddress" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
         }else{
             for (NSInteger i=0; i<[self.dataModel.playurl count]; i++){
                 if ([[[self.dataModel.playurl objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
                     RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                     loadingWebCtl.loadingUrl = [[self.dataModel.playurl objectAtIndex:i] objectForKey:@"jumpurl"];
                     loadingWebCtl.name = self.dataModel.name;
+                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                     [self presentViewController:loadingWebCtl animated:YES completion:^{
                     }];
                     break;
@@ -297,9 +297,8 @@ typedef enum{
         }
     }else{  //电视剧 综艺
         if (self.dataModel.playurls.count == 0){
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"没有找到播放地址" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
             [self hideLoading];
+            [self showHUDWithImage:@"videoIsNotAddress" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
         }else{
             for (NSInteger i=0; i<[self.dataModel.playurls count]; i++){
                 if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
@@ -308,6 +307,7 @@ typedef enum{
                         RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
                         loadingWebCtl.loadingUrl = [[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentWatchVideo] objectForKey:@"jumpurl"];
                         loadingWebCtl.name = self.dataModel.name;
+                        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                         [self presentViewController:loadingWebCtl animated:YES completion:^{
                         }];
                     }
@@ -425,8 +425,7 @@ typedef enum{
         }
         case 2:{//下载
             if ([self.dataModel.is_download isEqualToString:@"0"]){
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频暂时不能下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
+                [self showHUDWithImage:@"videoIsNotDownload" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                 return;
             }
             RMDownLoadingViewController *rmDownLoading = [RMDownLoadingViewController shared];
@@ -434,16 +433,13 @@ typedef enum{
                 for(NSDictionary *dict in self.dataModel.playurl){
                     if([[dict objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
                         if([dict objectForKey:@"m_down_url"]==nil||![[[dict objectForKey:@"m_down_url"] pathExtension] isEqualToString:@"mp4"]){
-                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频暂时不能下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            [alert show];
+                            [self showHUDWithImage:@"videoIsNotDownload" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                         }
                         else if([[Database sharedDatabase] isDownLoadMovieWith:self.dataModel]){
-                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频已下载" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            [alert show];
+                            [self showHUDWithImage:@"videoIsDownloaded" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                         }
                         else if( [self isContainsModel:rmDownLoading.dataArray modelName:self.dataModel.name]){
-                            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"该视频已在下载队列" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            [alert show];
+                            [self showHUDWithImage:@"videoIsQueue" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                         }
                         else{
                             RMPublicModel *model = [[RMPublicModel alloc] init];
@@ -475,6 +471,7 @@ typedef enum{
                 tvDownLoadMoreViewControl.video_id = self.dataModel.video_id;
                 RMCustomPresentNavViewController *nav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:tvDownLoadMoreViewControl];
                 nav.navigationBar.hidden = YES;
+                [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                 [self presentViewController:nav animated:YES completion:nil];
             }
             break;
@@ -488,6 +485,7 @@ typedef enum{
             if (![[AESCrypt decrypt:[storage objectForKey:LoginStatus_KEY] password:PASSWORD] isEqualToString:@"islogin"]){
                 RMLoginViewController * loginCtl = [[RMLoginViewController alloc] init];
                 RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];
+                [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
                 [self presentViewController:loginNav animated:YES completion:^{
                 }];
                 return;
@@ -674,8 +672,7 @@ typedef enum{
         for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
             if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] integerValue] == type){
                 if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
-                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"没有找到播放地址" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
+                    [self showHUDWithImage:@"videoIsNotAddress" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                 }else{
                     [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
                 }
@@ -721,6 +718,7 @@ typedef enum{
             [self.detailsBottomView switchCollectionState:self.isCollection];
         }
     }
+    [self hideLoading];
 }
 
 - (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
@@ -869,45 +867,6 @@ typedef enum{
 - (void)hideHUD {
     self.loadingView.hidden = YES;
     [self.loadingView stopAnimation];
-}
-
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 201){
-        switch (buttonIndex) {
-            case 0:{
-                [self.player pause];
-                if (playbackObserver) {
-                    [self.player.moviePlayer removeTimeObserver:playbackObserver];
-                    playbackObserver = nil;
-                }
-                [self.player removeObserver];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
-                break;
-            }
-            case 1:{
-                break;
-            }
-                
-            default:
-                break;
-        }
-    }else if (alertView.tag == 202){
-        switch (buttonIndex) {
-            case 0:{
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
-                break;
-            }
-                
-            default:
-                break;
-        }
-    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -1397,8 +1356,7 @@ typedef enum{
             for (NSInteger i=0; i<[self.dataModel.playurls count]; i++){
                 if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
                     if (self.currentPlayVideoOrder > [[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count]){
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已经播放完所有视频" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                        [alert show];
+                        [self showHUDWithImage:@"videoIsAllPlayed" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                     }else{
                         [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentPlayVideoOrder] objectForKey:@"m_down_url"]];
                     }
