@@ -179,6 +179,7 @@
     if(requestManeger.downLoadType == Http_getSlideList){
         if(data.count>0){
             __block RMHomeMovieViewController *blockSelf = self;
+            [self setTabelViewHeadViewWith:YES];
             self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
                  RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];
                 if(data.count>0){
@@ -227,6 +228,8 @@
                     }
                 }
             };
+        }else{
+            [self setTabelViewHeadViewWith:NO];
         }
         [requestManeger getIndexVideoListWithVideoTpye:@"1" searchPageNumber:[NSString stringWithFormat:@"%ld",(long)pageCount] andLimit:@""];
     }

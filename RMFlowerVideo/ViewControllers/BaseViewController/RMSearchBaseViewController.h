@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 @property (nonatomic, strong) RefreshControl * refreshControl;
+@property (nonatomic, strong) UIView *tableHeadView;
 
 @property (strong,nonatomic) UIView *searchView;
 
@@ -32,4 +33,12 @@
 - (void)refreshControlBeginPullToRefresh;
 //下拉加载
 - (void)refreshControlBeginDropDownLoad;
+
+/**
+ *  设置tableView的 headView
+ *
+ *  @param state YES 表示有滚动的scrollview NO 表示只有搜索栏
+ */
+- (void)setTabelViewHeadViewWith:(BOOL)state;
+
 @end

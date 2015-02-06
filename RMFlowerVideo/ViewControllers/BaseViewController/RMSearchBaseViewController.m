@@ -26,9 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tableHeadViewHeight = 223,searchBtnheight = 31,mainScorllViewHeight = 172,searchViewHeight = 43,originY = 11;
+    tableHeadViewHeight = 215,searchBtnheight = 31,mainScorllViewHeight = 172,searchViewHeight = 43,originY = 11;
     if(IS_IPHONE_6_SCREEN){
-        tableHeadViewHeight = 252,searchBtnheight = 35, mainScorllViewHeight = 200,searchViewHeight = 47,originY = 14;
+        tableHeadViewHeight = 247,searchBtnheight = 35, mainScorllViewHeight = 200,searchViewHeight = 47,originY = 14;
     }else if(IS_IPHONE_6p_SCREEN){
         tableHeadViewHeight = 279,searchBtnheight = 35,mainScorllViewHeight = 222,searchViewHeight = 47,originY = 15;
     }
@@ -50,8 +50,8 @@
     [self.view addSubview:self.searchView];
 
     //table view 的 headView
-    UIView *tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, tableHeadViewHeight)];
-    
+    self.tableHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, tableHeadViewHeight)];
+
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     searchBtn.frame = CGRectMake(originY, 6, ScreenWidth-originY*2, searchBtnheight);
     if(IS_IPHONE_6_SCREEN){
@@ -62,13 +62,10 @@
         [searchBtn setBackgroundImage:LOADIMAGE(@"home_search_btn") forState:UIControlStateNormal];
     }
     [searchBtn addTarget:self action:@selector(beginSearch) forControlEvents:UIControlEventTouchUpInside];
-    [tableHeadView addSubview:searchBtn];
+    [self.tableHeadView addSubview:searchBtn];
     
     self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(originY, searchViewHeight, ScreenWidth-originY*2, mainScorllViewHeight) animationDuration:4];
     self.mainScorllView.backgroundColor = [UIColor clearColor];
-    [tableHeadView addSubview:self.mainScorllView];
-
-    self.mainTableView.tableHeaderView = tableHeadView;
     
     self.refreshControl=[[RefreshControl alloc] initWithScrollView:self.mainTableView delegate:self];
     self.refreshControl.topEnabled=YES;
@@ -109,8 +106,20 @@
         [self showSearchView];
     }
 }
+- (void)setTabelViewHeadViewWith:(BOOL)state{
+    self.mainTableView.tableHeaderView = nil;
+    if(state){
+        self.tableHeadView.frame = CGRectMake(0, 0, ScreenWidth, tableHeadViewHeight+6);
+        [self.tableHeadView addSubview:self.mainScorllView];
+    }
+    else{
+        [self.mainScorllView removeFromSuperview];
+        self.tableHeadView.frame = CGRectMake(0, 0, ScreenWidth, searchBtnheight+6);
+    }
+    self.mainTableView.tableHeaderView = self.tableHeadView;
+}
 
-#pragma mark 以下俩个方法需要在子类中重写 
+#pragma mark 以下俩个方法需要在子类中重写
 - (void)refreshControlBeginDropDownLoad{
     
 }
@@ -124,6 +133,5 @@
         [self refreshControlBeginDropDownLoad];
     }
 }
-
 
 @end

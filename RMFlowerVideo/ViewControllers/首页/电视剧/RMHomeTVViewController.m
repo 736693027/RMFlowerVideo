@@ -171,59 +171,64 @@
 
 - (void)requestFinishiDownLoadWith:(NSMutableArray *)data{
     if(requestManeger.downLoadType == Http_getSlideList){
-        self.scrollViewDataArray = data;
-         __block RMHomeTVViewController *blockSelf = self;
-        
-        self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-             RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];
-            if(blockSelf.scrollViewDataArray.count>0){
-                RMPublicModel *model = [blockSelf.scrollViewDataArray objectAtIndex:pageIndex];
-                if (IS_IPHONE_6_SCREEN){
-                    [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"347_200")];
-                }else if (IS_IPHONE_6p_SCREEN){
-                    [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"384_220")];
+        if(data.count>0){
+            self.scrollViewDataArray = data;
+            __block RMHomeTVViewController *blockSelf = self;
+            //设置tableview的headView
+            [self setTabelViewHeadViewWith:YES];
+            self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+                RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];
+                if(blockSelf.scrollViewDataArray.count>0){
+                    RMPublicModel *model = [blockSelf.scrollViewDataArray objectAtIndex:pageIndex];
+                    if (IS_IPHONE_6_SCREEN){
+                        [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"347_200")];
+                    }else if (IS_IPHONE_6p_SCREEN){
+                        [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"384_220")];
+                    }else{
+                        [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_180")];
+                    }
                 }else{
-                    [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_180")];
+                    if (IS_IPHONE_6_SCREEN){
+                        [showImage setImage:LOADIMAGE(@"347_200")];
+                    }else if (IS_IPHONE_6p_SCREEN){
+                        [showImage setImage:LOADIMAGE(@"384_220")];
+                    }else{
+                        [showImage setImage:LOADIMAGE(@"298_180")];
+                    }
                 }
-            }else{
-                if (IS_IPHONE_6_SCREEN){
-                    [showImage setImage:LOADIMAGE(@"347_200")];
-                }else if (IS_IPHONE_6p_SCREEN){
-                    [showImage setImage:LOADIMAGE(@"384_220")];
-                }else{
-                    [showImage setImage:LOADIMAGE(@"298_180")];
+                return showImage;
+            };
+            
+            self.mainScorllView.totalPagesCount = ^NSInteger(void){
+                if(blockSelf.scrollViewDataArray.count>0)
+                    return blockSelf.scrollViewDataArray.count;
+                return 1;
+            };
+            
+            self.mainScorllView.TapActionBlock = ^(NSInteger pageIndex){
+                if(blockSelf.scrollViewDataArray.count>0){
+                    RMPublicModel *model = [blockSelf.scrollViewDataArray objectAtIndex:pageIndex];
+                    RMHomeViewController * homeCtl = blockSelf.delegate;
+                    if([model.video_id isEqualToString:@"0"]){
+                        RMRankRecommendedViewController *rankRecommendedCtl = [[RMRankRecommendedViewController alloc] init];
+                        rankRecommendedCtl.webUrl = model.source_url;
+                        rankRecommendedCtl.titleString = model.name;
+                        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+                        [homeCtl.navigationController pushViewController:rankRecommendedCtl animated:YES];
+                    }else{
+                        RMVideoPlaybackDetailsViewController * videoPlaybackDetailsCtl = [[RMVideoPlaybackDetailsViewController alloc] init];
+                        videoPlaybackDetailsCtl.video_id = model.video_id;
+                        videoPlaybackDetailsCtl.segVideoType = @"电视剧";
+                        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+                        [homeCtl presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{
+                        }];
+                    }
+                    
                 }
-             }
-            return showImage;
-        };
-        
-        self.mainScorllView.totalPagesCount = ^NSInteger(void){
-            if(blockSelf.scrollViewDataArray.count>0)
-                return blockSelf.scrollViewDataArray.count;
-            return 1;
-        };
-        
-        self.mainScorllView.TapActionBlock = ^(NSInteger pageIndex){
-            if(blockSelf.scrollViewDataArray.count>0){
-                RMPublicModel *model = [blockSelf.scrollViewDataArray objectAtIndex:pageIndex];
-                RMHomeViewController * homeCtl = blockSelf.delegate;
-                if([model.video_id isEqualToString:@"0"]){
-                    RMRankRecommendedViewController *rankRecommendedCtl = [[RMRankRecommendedViewController alloc] init];
-                    rankRecommendedCtl.webUrl = model.source_url;
-                    rankRecommendedCtl.titleString = model.name;
-                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
-                    [homeCtl.navigationController pushViewController:rankRecommendedCtl animated:YES];
-                }else{
-                    RMVideoPlaybackDetailsViewController * videoPlaybackDetailsCtl = [[RMVideoPlaybackDetailsViewController alloc] init];
-                    videoPlaybackDetailsCtl.video_id = model.video_id;
-                    videoPlaybackDetailsCtl.segVideoType = @"电视剧";
-                    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
-                    [homeCtl presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{
-                    }];
-                }
-
-            }
-        };
+            };
+        }else{
+            [self setTabelViewHeadViewWith:NO];
+        }
         [requestManeger getIndexVideoListWithVideoTpye:@"2" searchPageNumber:@"1" andLimit:@""];
     }else{
         if(isPullToRefresh){
