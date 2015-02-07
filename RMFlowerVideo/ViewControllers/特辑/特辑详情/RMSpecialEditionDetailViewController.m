@@ -14,6 +14,7 @@
 #import "RMPlayer.h"
 #import "RMModel.h"
 #import "RMLoadingWebViewController.h"
+#import "Flurry.h"
 
 @interface RMSpecialEditionDetailViewController ()<RMAFNRequestManagerDelegate,UITableViewDataSource,UITableViewDelegate,RefreshControlDelegate,RMHomeTableViewCellDelegate>{
     NSInteger pageCount;
@@ -31,7 +32,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [Flurry logEvent:@"VIEW_SpecialEditionDetail" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_SpecialEditionDetail" withParameters:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -281,10 +287,6 @@
         [self.mainTableView reloadData];
     }
     [self hideLoading];
-}
-
-- (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
-    //To ignore this method
 }
 
 - (void)requestError:(NSError *)error {

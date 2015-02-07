@@ -26,6 +26,11 @@
 
 @implementation RMHomeStartViewController
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     pageCount = 1;

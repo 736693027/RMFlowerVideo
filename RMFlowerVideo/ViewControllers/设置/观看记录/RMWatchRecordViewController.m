@@ -13,6 +13,7 @@
 #import "RMModel.h"
 #import "RMPlayer.h"
 #import "RMLoadingWebViewController.h"
+#import "Flurry.h"
 
 @interface RMWatchRecordViewController ()<RMWatchRecordTableViewCellDelegate>
 
@@ -66,6 +67,16 @@
         default:
             break;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_WatchRecord" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_WatchRecord" withParameters:nil];
 }
 
 - (void)viewDidLoad {

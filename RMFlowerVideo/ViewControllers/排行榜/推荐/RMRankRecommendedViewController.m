@@ -14,8 +14,8 @@
 
 @implementation RMRankRecommendedViewController
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [self hideLoading];
 }
 
@@ -44,7 +44,8 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [self hideLoading];
 }
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [self showMessage:@"加载错误" duration:1 withUserInteractionEnabled:YES];
+    [self hideLoading];
 }
 @end

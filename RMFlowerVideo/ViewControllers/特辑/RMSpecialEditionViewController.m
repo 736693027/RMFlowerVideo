@@ -11,6 +11,7 @@
 #import "RMSpecialEditionCell.h"
 #import "RefreshControl.h"
 #import "CustomRefreshView.h"
+#import "Flurry.h"
 
 @interface RMSpecialEditionViewController ()<UITableViewDataSource,UITableViewDelegate,RMSpecialEditionCellDelegate,RMAFNRequestManagerDelegate,RefreshControlDelegate>{
     UITableView * mTableView;
@@ -29,6 +30,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_SpecialEdition" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_SpecialEdition" withParameters:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -206,10 +213,6 @@
         [mTableView reloadData];
     }
     [self hideLoading];
-}
-
-- (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
-    //To ignore this method
 }
 
 - (void)requestError:(NSError *)error {

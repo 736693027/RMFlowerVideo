@@ -7,12 +7,23 @@
 //
 
 #import "RMStarIntroViewController.h"
+#import "Flurry.h"
 
 @interface RMStarIntroViewController ()<UIScrollViewDelegate>
 
 @end
 
 @implementation RMStarIntroViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_StarIntro" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_StarIntro" withParameters:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -223,8 +223,11 @@
 }
 
 - (void)hideLoading {
-    [HUD hide:YES];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    while (HUD) {
+        [HUD hide:YES];
+        HUD = nil;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
 }
 
 //进度处理交给子类去实现

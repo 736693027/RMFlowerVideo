@@ -24,8 +24,9 @@
 
 @implementation RMHomeTVViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
 }
 
 - (void)viewDidLoad {

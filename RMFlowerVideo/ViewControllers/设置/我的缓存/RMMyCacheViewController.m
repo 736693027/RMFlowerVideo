@@ -10,6 +10,7 @@
 #import "RMDownLoadingViewController.h"
 #import "RMFinishDownLoadViewController.h"
 #import "RMSegmentedController.h"
+#import "Flurry.h"
 
 @interface RMMyCacheViewController ()<SwitchSelectedMethodDelegate>{
     RMDownLoadingViewController *downLoadingCtl;
@@ -22,6 +23,16 @@
 @end
 
 @implementation RMMyCacheViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_MyCache" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_MyCache" withParameters:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

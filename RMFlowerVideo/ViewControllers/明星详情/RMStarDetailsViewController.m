@@ -12,6 +12,7 @@
 #import "RMChannelTeleplayViewController.h"
 #import "RMChannelVarietyViewController.h"
 #import "RMSegmentedMultiSelectController.h"
+#import "Flurry.h"
 
 typedef enum{
     requestStarType = 1,
@@ -44,6 +45,16 @@ typedef enum{
         [self startStarRequest];
         isFirstViewAppear = NO;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_StarDetail" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_StarDetail" withParameters:nil];
 }
 
 - (void)viewDidLoad {

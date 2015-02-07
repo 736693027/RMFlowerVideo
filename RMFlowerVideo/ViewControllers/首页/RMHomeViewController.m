@@ -14,6 +14,7 @@
 #import "RMHomeStartViewController.h"
 #import "RMLoadingWebViewController.h"
 #import "RMVideoPlaybackDetailsViewController.h"
+#import "Flurry.h"
 
 @interface RMHomeViewController ()<SUNSlideSwitchViewDelegate>{
     RMHomeMovieViewController *movieViewContro;
@@ -26,6 +27,16 @@
 @end
 
 @implementation RMHomeViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_Home" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_Home" withParameters:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

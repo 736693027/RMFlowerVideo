@@ -9,6 +9,7 @@
 #import "RMMoreAppViewController.h"
 #import "RMMoreAPPTableViewCell.h"
 #import "RMAFNRequestManager.h"
+#import "Flurry.h"
 
 @interface RMMoreAppViewController ()<RMMoreAPPTableViewCellDelegate,RMAFNRequestManagerDelegate>{
     NSMutableArray *dataArray;
@@ -20,6 +21,16 @@
 
 @implementation RMMoreAppViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_MoreApp" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_MoreApp" withParameters:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if(!isFristDownLoad){
@@ -30,9 +41,15 @@
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+}
+
 - (void)navgationBarButtonClick:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [leftBarButton setBackgroundImage:LOADIMAGE(@"backup") forState:UIControlStateNormal];

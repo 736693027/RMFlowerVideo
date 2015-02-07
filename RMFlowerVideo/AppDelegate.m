@@ -231,7 +231,7 @@
 #pragma mark - Flurry
 
 - (void)loadFlurry {
-    [Flurry setCrashReportingEnabled:YES];
+    [Flurry setCrashReportingEnabled:NO];
     [Flurry startSession:@"PJZBVWP6HTXW8FZFFZW5"];
 }
 

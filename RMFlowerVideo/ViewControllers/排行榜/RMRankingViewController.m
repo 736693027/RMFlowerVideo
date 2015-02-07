@@ -11,6 +11,7 @@
 #import "RMRankingTVViewController.h"
 #import "RMRankingVarietyViewController.h"
 #import "SUNSlideSwitchView.h"
+#import "Flurry.h"
 
 @interface RMRankingViewController ()<SUNSlideSwitchViewDelegate>{
     RMRankingMovieViewController *rankingMovieCtl;
@@ -22,6 +23,16 @@
 @end
 
 @implementation RMRankingViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_Ranking" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_Ranking" withParameters:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

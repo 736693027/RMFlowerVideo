@@ -8,6 +8,7 @@
 
 #import "RMAboutViewController.h"
 #import "RMAFNRequestManager.h"
+#import "Flurry.h"
 
 @interface RMAboutViewController ()<RMAFNRequestManagerDelegate,UIWebViewDelegate>{
     RMAFNRequestManager *requestManager;
@@ -17,6 +18,16 @@
 @end
 
 @implementation RMAboutViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_About" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_About" withParameters:nil];
+}
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

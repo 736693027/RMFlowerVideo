@@ -9,6 +9,7 @@
 #import "RMFeedBackViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RMAFNRequestManager.h"
+#import "Flurry.h"
 
 @interface RMFeedBackViewController ()<UITextViewDelegate,RMAFNRequestManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -16,6 +17,16 @@
 @end
 
 @implementation RMFeedBackViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_FeedBack" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_FeedBack" withParameters:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated{
     [self.textView becomeFirstResponder];

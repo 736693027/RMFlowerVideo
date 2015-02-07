@@ -25,6 +25,7 @@
 #import "RMModel.h"
 #import "RMLoadingWebViewController.h"
 #import "RMSearchErrorView.h"
+#import "Flurry.h"
 
 #define kMaxLength 20
 
@@ -63,11 +64,13 @@ typedef enum{
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_Search" timed:YES];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFiledEditChanged:) name:@"UITextFieldTextDidChangeNotification" object:self.searchTextField];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_Search" withParameters:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:nil];
 }
 

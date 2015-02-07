@@ -13,6 +13,7 @@
 #import "UMSocial.h"
 #import "RMLoginViewController.h"
 #import "RMCustomPresentNavViewController.h"
+#import "Flurry.h"
 
 typedef enum{
     kRMDefault = 100,
@@ -36,6 +37,16 @@ typedef enum{
 @end
 
 @implementation RMSetViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_Set" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_Set" withParameters:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated{
     CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];

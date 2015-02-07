@@ -31,6 +31,7 @@
 #import "RMDownLoadingViewController.h"
 #import "RMTVDownLoadViewController.h"
 #import "RMCustomPresentNavViewController.h"
+#import "Flurry.h"
 
 typedef enum{
     requestAddFavoriteType = 1,
@@ -103,8 +104,16 @@ typedef enum{
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_VideoPlayDetail" timed:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUIWhenPlayerFailed) name:@"refreshUIWhenPlayerFailed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kDeviceOrientationDidChangeNotification:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_VideoPlayDetail" withParameters:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayJumpWeb) object:nil];
+    [self hideLoading];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -125,12 +134,6 @@ typedef enum{
     RMAFNRequestManager * statisticalRequest = [[RMAFNRequestManager alloc] init];
     [statisticalRequest getDeviceHitsWithVideo_id:self.video_id Device:@"iPhone"];
     statisticalRequest.delegate = self;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayJumpWeb) object:nil];
-    [self hideLoading];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -425,6 +428,7 @@ typedef enum{
             break;
         }
         case 2:{//下载
+            [Flurry logEvent:@"Click_DownLoad"];
             if ([self.dataModel.is_download isEqualToString:@"0"]){
                 [self showHUDWithImage:@"videoIsNotDownload" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                 return;
@@ -478,6 +482,7 @@ typedef enum{
             break;
         }
         case 3:{    //添加收藏   删除收藏
+            [Flurry logEvent:@"Click_Collection"];
             if ([self.dataModel.video_id isEqualToString:@""] || self.dataModel.video_id.integerValue == 0){
                 return;
             }
@@ -508,6 +513,7 @@ typedef enum{
             break;
         }
         case 4:{    //分享
+            [Flurry logEvent:@"Click_Share"];
             NSArray *imageName;
             if(IS_IPHONE_6_SCREEN){
                 imageName = [NSArray arrayWithObjects:@"share_sina_6",@"share_wechat_6",@"share_qq_6",@"share_QQZore_6",@"share_friends_6", nil];

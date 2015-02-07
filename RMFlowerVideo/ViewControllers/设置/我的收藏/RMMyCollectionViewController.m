@@ -12,6 +12,8 @@
 #import "RMModel.h"
 #import "RMLoadingWebViewController.h"
 #import "RMPlayer.h"
+#import "Flurry.h"
+
 @interface RMMyCollectionViewController ()<RMWatchRecordTableViewCellDelegate>
 {
     RMAFNRequestManager *requestManager;
@@ -24,6 +26,16 @@
 @end
 
 @implementation RMMyCollectionViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_MyCollection" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_MyCollection" withParameters:nil];
+}
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

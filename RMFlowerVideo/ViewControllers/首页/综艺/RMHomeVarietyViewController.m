@@ -24,6 +24,11 @@
 
 @implementation RMHomeVarietyViewController
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     pageCount = 1;
@@ -255,7 +260,7 @@
     [self hideLoading];
 }
 
-- (void) requestData{
+- (void)requestData{
     if(!isAlreadDownLoad){
         [self showLoadingSimpleWithUserInteractionEnabled:YES];
         requestManeger = [[RMAFNRequestManager alloc] init];

@@ -12,6 +12,7 @@
 #import "CUSFileStorage.h"
 #import "CUSSerializer.h"
 #import "RMGenderTabViewController.h"
+#import "Flurry.h"
 
 @interface RMLoginViewController ()<UMSocialUIDelegate,RMAFNRequestManagerDelegate>{
     RMAFNRequestManager *requestManager;
@@ -24,6 +25,16 @@
 @end
 
 @implementation RMLoginViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [Flurry logEvent:@"VIEW_UserLogin" timed:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [Flurry endTimedEvent:@"VIEW_UserLogin" withParameters:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

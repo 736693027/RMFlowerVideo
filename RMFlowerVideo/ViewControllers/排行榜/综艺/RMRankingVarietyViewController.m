@@ -25,6 +25,11 @@
 
 @implementation RMRankingVarietyViewController
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];
@@ -34,6 +39,7 @@
     self.refreshControl.bottomEnabled=NO;
     [self.refreshControl registerClassForTopView:[CustomRefreshView class]];
 }
+
 #pragma mark tableView dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count-1;

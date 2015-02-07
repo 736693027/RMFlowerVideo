@@ -25,6 +25,11 @@
 
 @implementation RMRankingTVViewController
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];

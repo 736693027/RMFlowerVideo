@@ -15,7 +15,7 @@
 
 @implementation RMLoadingWebViewController
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self hideLoading];
 }
