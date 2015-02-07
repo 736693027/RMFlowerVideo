@@ -95,14 +95,11 @@
 }
 
 - (void)slideSwitchView:(SUNSlideSwitchView *)view didselectTab:(NSUInteger)number {
-    RMBaseViewController *viewContro = nil;
     if (number == 0) {
-        viewContro = rankingMovieCtl;
+        
     } else if (number == 1) {
-        viewContro = rankingTVCtl;
         [rankingTVCtl requestData];
     } else if (number == 2) {
-        viewContro = rankingVarietyCtl;
         [rankingVarietyCtl requestData];
     }
 }

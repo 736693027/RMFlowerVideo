@@ -159,6 +159,7 @@ typedef UIColor * (^floatColorBlock)(float);
         CGContextSetFillColorWithColor(ctx,colorBlock(fraction).CGColor);
         CGContextSetStrokeColorWithColor(ctx, colorBlock(fraction).CGColor);
         CGContextSetMiterLimit(ctx, 0);
+        CGPathRelease(scaledPath);
         
         CGContextDrawPath(ctx, kCGPathFillStroke);
         
@@ -179,6 +180,8 @@ typedef UIColor * (^floatColorBlock)(float);
     CGContextMoveToPoint(ctx, p4.x, p4.y);
     CGContextAddLineToPoint(ctx, p5.x, p5.y);
     CGContextStrokePath(ctx);
+    CGPathRelease(innerEnveloppe);
+    CGPathRelease(outerEnveloppe);
 }
 
 -(void)drawRect:(CGRect)rect {

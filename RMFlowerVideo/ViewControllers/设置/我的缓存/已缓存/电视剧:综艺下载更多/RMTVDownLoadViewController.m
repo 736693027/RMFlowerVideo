@@ -211,10 +211,6 @@
     if(data.count>0){
         
         self.TVdataArray = data;
-        int count = 5,width = 50;
-        if(IS_IPHONE_6_SCREEN||IS_IPHONE_6p_SCREEN){
-            count = 6; width = 50;
-        }
         [self addShowAllEpisodeNumberBtnWidth:69];
         [self addTVDetailEveryEpisodeViewFromArray:self.TVdataArray andEveryTVViewWidth:40 andEveryRowHaveTVViewCount:6];
     }

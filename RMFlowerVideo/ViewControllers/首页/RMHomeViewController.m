@@ -106,20 +106,15 @@
 }
 
 - (void)slideSwitchView:(SUNSlideSwitchView *)view didselectTab:(NSUInteger)number {
-    RMBaseViewController *viewContro = nil;
     if (number == 0) {
-        viewContro = movieViewContro;
         [self hideLoading];
     } else if (number == 1) {
-        viewContro = tvViewContro;
         [self hideLoading];
         [tvViewContro requestData];
     } else if (number == 2) {
-        viewContro = varietyViewContro;
         [self hideLoading];
         [varietyViewContro requestData];
     } else if (number == 3) {
-        viewContro = startViewContro;
         [self hideLoading];
         [startViewContro requestData];
     }

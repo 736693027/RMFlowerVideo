@@ -179,7 +179,7 @@
 }
 
 -(NSMutableDictionary *)readFromDisk{
-    NSMutableDictionary *retDic = [NSMutableDictionary dictionary];
+    NSMutableDictionary *retDic;
     NSString *filePath = [self getTableNameFilePath];
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         retDic = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];;
