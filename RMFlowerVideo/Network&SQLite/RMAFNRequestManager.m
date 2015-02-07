@@ -207,6 +207,11 @@
                 [self.delegate requestFinishiDownLoadWith:dataArray];
             }
         }
+        else{
+            if([self.delegate respondsToSelector:@selector(requestError:)]){
+                [self.delegate requestError:nil];
+            }
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self checkTheNetworkConnectionWithTitle:@"下载失败"];
         if([self.delegate respondsToSelector:@selector(requestError:)]){
@@ -243,6 +248,11 @@
                 [self.delegate requestFinishiDownLoadWith:dataArray];
             }
         }
+        else{
+            if([self.delegate respondsToSelector:@selector(requestError:)]){
+                [self.delegate requestError:nil];
+            }
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self checkTheNetworkConnectionWithTitle:@"下载失败"];
         if([self.delegate respondsToSelector:@selector(requestError:)]){
@@ -259,16 +269,22 @@
     url = [NSString stringWithFormat:@"%@page=%@&limit=%@",url,page,limit];
     url = [self encryptUrl:url];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableArray *dataArray = [NSMutableArray array];
-        for(NSDictionary *dict in [responseObject objectForKey:@"data"]){
-            RMPublicModel *model = [[RMPublicModel alloc] init];
-            model.name = [dict objectForKey:@"name"];
-            model.pic = [dict objectForKey:@"pic"];
-            model.tag_id = [dict objectForKey:@"tag_id"];
-            [dataArray addObject:model];
-        }
-        if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
-            [self.delegate requestFinishiDownLoadWith:dataArray];
+        if([[responseObject objectForKey:@"code"] intValue] == 4001){
+            NSMutableArray *dataArray = [NSMutableArray array];
+            for(NSDictionary *dict in [responseObject objectForKey:@"data"]){
+                RMPublicModel *model = [[RMPublicModel alloc] init];
+                model.name = [dict objectForKey:@"name"];
+                model.pic = [dict objectForKey:@"pic"];
+                model.tag_id = [dict objectForKey:@"tag_id"];
+                [dataArray addObject:model];
+            }
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
+                [self.delegate requestFinishiDownLoadWith:dataArray];
+            }
+        }else{
+            if([self.delegate respondsToSelector:@selector(requestError:)]){
+                [self.delegate requestError:nil];
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self checkTheNetworkConnectionWithTitle:@"下载失败"];
@@ -373,6 +389,9 @@
                 [self.delegate requestFinishiDownLoadWith:dataArray];
             }
         }else{
+            if([self.delegate respondsToSelector:@selector(requestError:)]){
+                [self.delegate requestError:nil];
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([self.delegate respondsToSelector:@selector(requestError:)]){
@@ -752,6 +771,11 @@
             }
             if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
                 [self.delegate requestFinishiDownLoadWith:dataArray];
+            }
+        }
+        else{
+            if([self.delegate respondsToSelector:@selector(requestError:)]){
+                [self.delegate requestError:nil];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
