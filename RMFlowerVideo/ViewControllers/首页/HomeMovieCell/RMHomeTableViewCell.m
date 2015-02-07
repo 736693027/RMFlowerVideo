@@ -46,6 +46,11 @@
     }else{
         self.fristScore.frame = CGRectMake(self.fristHeadImage.frame.origin.x, self.fristScore.frame.origin.y, self.fristHeadImage.frame.size.width, self.fristScore.frame.size.height);
     }
+    if([title isEqualToString:@"暂无评分"]){
+        self.fristLable.font = [UIFont systemFontOfSize:11];
+    }else{
+         self.fristLable.font = [UIFont systemFontOfSize:12];
+    }
     self.fristScore.text = title;
 }
 
@@ -60,6 +65,11 @@
     }else{
         self.secondScore.frame = CGRectMake(self.secondHeadImage.frame.origin.x, self.secondScore.frame.origin.y, self.secondHeadImage.frame.size.width, self.secondScore.frame.size.height);
     }
+    if([title isEqualToString:@"暂无评分"]){
+        self.secondScore.font = [UIFont systemFontOfSize:11];
+    }else{
+        self.secondScore.font = [UIFont systemFontOfSize:12];
+    }
     self.secondScore.text = title;
 }
 
@@ -73,6 +83,11 @@
         self.thridScore.frame = CGRectMake((self.thridHeadImage.frame.size.width+self.thridHeadImage.frame.origin.x)-rect.size.width-2, self.thridScore.frame.origin.y, rect.size.width+2, self.thridScore.frame.size.height);
     }else{
         self.thridScore.frame = CGRectMake(self.thridHeadImage.frame.origin.x, self.thridScore.frame.origin.y, self.thridHeadImage.frame.size.width, self.thridScore.frame.size.height);
+    }
+    if([title isEqualToString:@"暂无评分"]){
+        self.thridScore.font = [UIFont systemFontOfSize:11];
+    }else{
+        self.thridScore.font = [UIFont systemFontOfSize:12];
     }
     self.thridScore.text = title;
 }
