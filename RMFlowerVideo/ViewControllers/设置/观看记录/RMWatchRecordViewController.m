@@ -199,6 +199,7 @@
 }
 
 - (void)EditingViewBtnClick:(UIButton *)sender{
+    if(isEditing) return;
     if(sender==selectAllBtn){
         [selectCellArray removeAllObjects];
         if(!isSeleltAllCell){

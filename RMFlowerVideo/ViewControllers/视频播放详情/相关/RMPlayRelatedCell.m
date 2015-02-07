@@ -31,7 +31,7 @@
 
 - (void)setTitleLableWithString:(NSString *)title {
     NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:17.0], NSFontAttributeName, nil];
-    CGRect rect = [title boundingRectWithSize:CGSizeMake(200, 21)
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(500, 21)
                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                    attributes:attrs
                                       context:nil];
@@ -40,7 +40,7 @@
         self.videoName.frame = CGRectMake(self.videoName.frame.origin.x, self.videoName.frame.origin.y, screenWidth-120-32, self.videoName.frame.size.height);
         self.videoScore.frame = CGRectMake(self.videoName.frame.origin.x+screenWidth-120-32, 15, self.videoScore.frame.size.width, self.videoScore.frame.size.height);
     }else{
-        self.videoName.frame = CGRectMake(self.videoName.frame.origin.x, self.videoName.frame.origin.y, rect.size.width, 21);
+        self.videoName.frame = CGRectMake(self.videoName.frame.origin.x, self.videoName.frame.origin.y, rect.size.width+2, 21);
         self.videoScore.frame = CGRectMake(self.videoName.frame.origin.x+rect.size.width+10, 15, self.videoScore.frame.size.width, self.videoScore.frame.size.height);
     }
     self.videoName.text = title;

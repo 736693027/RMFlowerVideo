@@ -28,7 +28,7 @@
 
 - (void)setNameWithString:(NSString *)title {
     NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:17.0], NSFontAttributeName, nil];
-    CGRect rect = [title boundingRectWithSize:CGSizeMake(200, 20)
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(500, 20)
                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                    attributes:attrs
                                       context:nil];

@@ -80,7 +80,7 @@
         [cell.fristPlayBtn setBackgroundColor:[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1]];
         [cell.fristPlayBtn setTitle:@"播放" forState:UIControlStateNormal];
         cell.fristScore.hidden = NO;
-        cell.fristScore.text = model.status;
+        [cell setFristScoreWithTitle:model.status]; ;
     }
     if(indexPath.row*3+1<self.tableViewDataArray.count){
         RMPublicModel *model = [self.tableViewDataArray objectAtIndex:indexPath.row*3+1];
@@ -91,7 +91,7 @@
         [cell.secondPlayBtn setBackgroundColor:[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1]];
         [cell.secondPlayBtn setTitle:@"播放" forState:UIControlStateNormal];
         cell.secondScore.hidden = NO;
-        cell.secondScore.text = model.status;
+        [cell setSecondScoreWithTitle:model.status];
     }
     if(indexPath.row*3+2<self.tableViewDataArray.count){
         RMPublicModel *model = [self.tableViewDataArray objectAtIndex:indexPath.row*3+2];
@@ -102,7 +102,7 @@
         [cell.thirdPlayBtn setBackgroundColor:[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1]];
         [cell.thirdPlayBtn setTitle:@"播放" forState:UIControlStateNormal];
         cell.thridScore.hidden = NO;
-        cell.thridScore.text = model.status;
+        [cell setThirdScoreWithTitle:model.status];
     }
     return cell;
 }

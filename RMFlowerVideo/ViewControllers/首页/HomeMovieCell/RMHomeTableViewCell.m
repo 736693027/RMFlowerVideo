@@ -36,43 +36,43 @@
 }
 
 - (void) setFristScoreWithTitle:(NSString *)title{
-    NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:FONT(13), NSFontAttributeName, nil];
-    CGRect rect = [title boundingRectWithSize:CGSizeMake(200, 17)
+    NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:FONT(12), NSFontAttributeName, nil];
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(500, 17)
                                      options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                   attributes:attrs
                                      context:nil];
     if(rect.size.width<self.fristHeadImage.frame.size.width){
-        self.fristScore.frame = CGRectMake((self.fristHeadImage.frame.size.width+self.fristHeadImage.frame.origin.x)-rect.size.width, self.fristScore.frame.origin.y, rect.size.width, self.fristScore.frame.size.height);
+        self.fristScore.frame = CGRectMake((self.fristHeadImage.frame.size.width+self.fristHeadImage.frame.origin.x)-rect.size.width-2, self.fristScore.frame.origin.y, rect.size.width+2, self.fristScore.frame.size.height);
     }else{
-        self.fristScore.frame = CGRectMake((self.fristHeadImage.frame.size.width+self.fristHeadImage.frame.origin.x)-rect.size.width, self.fristScore.frame.origin.y, self.fristHeadImage.frame.size.width, self.fristScore.frame.size.height);
+        self.fristScore.frame = CGRectMake(self.fristHeadImage.frame.origin.x, self.fristScore.frame.origin.y, self.fristHeadImage.frame.size.width, self.fristScore.frame.size.height);
     }
     self.fristScore.text = title;
 }
 
 - (void) setSecondScoreWithTitle:(NSString *)title{
-    NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:FONT(13), NSFontAttributeName, nil];
-    CGRect rect = [title boundingRectWithSize:CGSizeMake(200, 17)
+    NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:FONT(12), NSFontAttributeName, nil];
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(500, 17)
                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                    attributes:attrs
                                       context:nil];
     if(rect.size.width<self.secondHeadImage.frame.size.width){
-        self.secondScore.frame = CGRectMake((self.secondHeadImage.frame.size.width+self.secondHeadImage.frame.origin.x)-rect.size.width, self.secondScore.frame.origin.y, rect.size.width, self.secondScore.frame.size.height);
+        self.secondScore.frame = CGRectMake((self.secondHeadImage.frame.size.width+self.secondHeadImage.frame.origin.x)-rect.size.width-2, self.secondScore.frame.origin.y, rect.size.width+2, self.secondScore.frame.size.height);
     }else{
-        self.secondScore.frame = CGRectMake((self.secondHeadImage.frame.size.width+self.secondHeadImage.frame.origin.x)-rect.size.width, self.secondScore.frame.origin.y, self.secondHeadImage.frame.size.width, self.secondScore.frame.size.height);
+        self.secondScore.frame = CGRectMake(self.secondHeadImage.frame.origin.x, self.secondScore.frame.origin.y, self.secondHeadImage.frame.size.width, self.secondScore.frame.size.height);
     }
     self.secondScore.text = title;
 }
 
 - (void)setThirdScoreWithTitle:(NSString *)title{
-    NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:FONT(13), NSFontAttributeName, nil];
-    CGRect rect = [title boundingRectWithSize:CGSizeMake(200, 17)
+    NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:FONT(12), NSFontAttributeName, nil];
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(500, 17)
                                       options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                    attributes:attrs
                                       context:nil];
     if(rect.size.width<self.thridHeadImage.frame.size.width){
-        self.thridScore.frame = CGRectMake((self.thridHeadImage.frame.size.width+self.thridHeadImage.frame.origin.x)-rect.size.width, self.thridScore.frame.origin.y, rect.size.width, self.thridScore.frame.size.height);
+        self.thridScore.frame = CGRectMake((self.thridHeadImage.frame.size.width+self.thridHeadImage.frame.origin.x)-rect.size.width-2, self.thridScore.frame.origin.y, rect.size.width+2, self.thridScore.frame.size.height);
     }else{
-        self.thridScore.frame = CGRectMake((self.thridHeadImage.frame.size.width+self.thridHeadImage.frame.origin.x)-rect.size.width, self.thridScore.frame.origin.y, self.thridScore.frame.size.width, self.thridScore.frame.size.height);
+        self.thridScore.frame = CGRectMake(self.thridHeadImage.frame.origin.x, self.thridScore.frame.origin.y, self.thridHeadImage.frame.size.width, self.thridScore.frame.size.height);
     }
     self.thridScore.text = title;
 }

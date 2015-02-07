@@ -99,8 +99,13 @@
     [cell.editingImage setImage:[UIImage imageNamed:[cellEditingImageArray objectAtIndex:indexPath.row]]];
     [cell.headImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"92_138")];
     cell.titleLable.text = model.name;
-    cell.starringLable.text = model.actors;
+    if([model.video_type isEqualToString:@"3"]){
+        cell.starringLable.text = model.presenters;
+    }else{
+        cell.starringLable.text = model.actors;
+    }
     cell.playCount.text = model.hits;
+    cell.directorLable.text = model.directors;
     cell.delegate = self;
     cell.playBtn.tag = indexPath.row;
     return cell;
@@ -241,6 +246,7 @@
 }
 
 - (void)palyMovieWithIndex:(NSInteger)index{
+    if(isEditing) return;
     RMPublicModel *model = [self.dataArray objectAtIndex:index];
     if ([model.video_type isEqualToString:@"1"]){
         NSString *mp4Url = [model.urls objectForKey:@"m_down_url"];
