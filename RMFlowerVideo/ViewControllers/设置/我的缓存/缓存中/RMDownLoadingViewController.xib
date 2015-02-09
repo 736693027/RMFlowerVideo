@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RMDownLoadingViewController">
             <connections>
-                <outlet property="mainTableView" destination="1vP-8J-JYU" id="1UW-rR-xGD"/>
                 <outlet property="startOrPauseBtn" destination="OP9-Np-Bgk" id="i23-IT-pfe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -52,27 +51,15 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1vP-8J-JYU">
-                    <rect key="frame" x="0.0" y="46" width="320" height="523"/>
-                    <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="K4A-BM-UkB"/>
-                        <outlet property="delegate" destination="-1" id="H4c-6V-4vv"/>
-                    </connections>
-                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="0L0-SX-Ozc" secondAttribute="centerX" id="34I-Gq-kzJ"/>
-                <constraint firstAttribute="bottom" secondItem="1vP-8J-JYU" secondAttribute="bottom" constant="-1" id="HJf-il-MCh"/>
-                <constraint firstItem="1vP-8J-JYU" firstAttribute="top" secondItem="OP9-Np-Bgk" secondAttribute="bottom" constant="13" id="J1s-7S-8Or"/>
                 <constraint firstItem="OP9-Np-Bgk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="JWR-X2-SB2"/>
                 <constraint firstAttribute="centerY" secondItem="kmw-3p-dMw" secondAttribute="centerY" constant="51.5" id="M8i-Vf-ckS"/>
-                <constraint firstAttribute="trailing" secondItem="1vP-8J-JYU" secondAttribute="trailing" id="OzI-0j-2hG"/>
                 <constraint firstItem="58i-C7-BPw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Rxe-c1-RNo"/>
                 <constraint firstAttribute="trailing" secondItem="58i-C7-BPw" secondAttribute="trailing" id="Teu-Yx-GYd"/>
                 <constraint firstItem="0L0-SX-Ozc" firstAttribute="top" secondItem="kmw-3p-dMw" secondAttribute="bottom" constant="23" id="g9h-iK-9HI"/>
-                <constraint firstItem="1vP-8J-JYU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hTx-Qr-6Vh"/>
                 <constraint firstAttribute="centerX" secondItem="kmw-3p-dMw" secondAttribute="centerX" id="m8V-8x-gHK"/>
                 <constraint firstItem="OP9-Np-Bgk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="11" id="r2j-1L-P5i"/>
                 <constraint firstItem="58i-C7-BPw" firstAttribute="top" secondItem="OP9-Np-Bgk" secondAttribute="bottom" constant="12" id="yVd-Ns-l0f"/>

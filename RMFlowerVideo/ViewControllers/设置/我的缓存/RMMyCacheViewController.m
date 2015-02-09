@@ -83,7 +83,7 @@
         [self upDataMemory];
     }];
     if (! downLoadingCtl){
-        downLoadingCtl = [[RMDownLoadingViewController shared] init];
+        downLoadingCtl = [RMDownLoadingViewController shared];
     }
     [downLoadingCtl didSelectTableViewCell:^(NSMutableArray *selectArray) {
         if(selectArray.count==0){

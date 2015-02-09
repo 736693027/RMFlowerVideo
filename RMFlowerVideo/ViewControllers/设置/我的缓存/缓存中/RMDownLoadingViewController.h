@@ -27,7 +27,7 @@
 @property (nonatomic) NSURLSessionDownloadTask *downloadTask;
 
 @property (weak, nonatomic) IBOutlet UIButton *startOrPauseBtn;
-@property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+@property (strong, nonatomic) UITableView *mainTableView;
 
 +(instancetype)shared;
 

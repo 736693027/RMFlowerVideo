@@ -53,6 +53,8 @@ typedef enum{
     BOOL isDeviceRotating;                  //设备是否旋转
     id playbackObserver;
     RequestType requestType;
+    
+    RMDownLoadingViewController *rmDownLoading;//下载视图
 }
 @property (nonatomic, strong) UIImageView * topView;                //上工具条
 @property (nonatomic, strong) UIView * selectEpisodeView;           //选集视图
@@ -508,7 +510,7 @@ typedef enum{
                 [self showHUDWithImage:@"videoIsNotDownload" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                 return;
             }
-            RMDownLoadingViewController *rmDownLoading = [RMDownLoadingViewController shared];
+            rmDownLoading = [RMDownLoadingViewController shared];
             if (self.dataModel.video_type.integerValue == 1){   //电影]
                 for(NSDictionary *dict in self.dataModel.playurl){
                     if([[dict objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){

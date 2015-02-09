@@ -59,6 +59,15 @@ static id _instance;
                 time = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(showDownLoadIngSpeed) userInfo:nil repeats:YES];
                 [[NSRunLoop currentRunLoop]addTimer:time forMode:NSDefaultRunLoopMode];
                 [time setFireDate:[NSDate distantFuture]];
+                cellEditingImageArray = [[NSMutableArray alloc] init];
+                selectCellArray = [[NSMutableArray alloc] init];
+                if(self.mainTableView==nil){
+                    self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 46, ScreenWidth, ScreenHeight-46) style:UITableViewStylePlain];
+                    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+                    self.mainTableView.delegate = self;
+                    self.mainTableView.dataSource = self;
+                    [self.view addSubview:self.mainTableView];
+                }
             }
         }
     });
@@ -181,9 +190,7 @@ static id _instance;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];
-    self.dataArray = [[NSMutableArray alloc] init];
-    cellEditingImageArray = [[NSMutableArray alloc] init];
-    selectCellArray = [[NSMutableArray alloc] init];
+    
     [self.startOrPauseBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
     
     NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:DownLoadDataArray_KEY];
@@ -521,8 +528,6 @@ static id _instance;
         self.downloadTask = [self.session downloadTaskWithRequest:request];
     }
     [self.downloadTask resume];
-    
-    
 }
 
 #pragma mark 下载流量显示
