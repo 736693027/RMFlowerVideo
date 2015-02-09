@@ -540,6 +540,7 @@ typedef enum{
                             [rmDownLoading.dataArray addObject:model];
                             [rmDownLoading.downLoadIDArray addObject:model];
                             [rmDownLoading BeginDownLoad];
+                            [self showHUDWithImage:@"videoAddSucess" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                         }
                     }
                 }

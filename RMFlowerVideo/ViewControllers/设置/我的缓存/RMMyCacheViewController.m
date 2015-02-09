@@ -17,7 +17,8 @@
     RMFinishDownLoadViewController *finishedCtl;
     RMSegmentedController *segmentedCtl;
     int selectViewControIndex;  //标示当前是那个控制器，1--已缓存的控制器  2--缓存中的控制器
-    BOOL isSelectAllCells; //是否全选 
+    BOOL isSelectAllCells; //是否全选
+    BOOL isFirstViewAppear;
 }
 
 @end
@@ -36,7 +37,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self switchSelectedMethodWithValue:(int)self.selectIndex withTitle:nil];
+    if (isFirstViewAppear){
+        [self switchSelectedMethodWithValue:(int)self.selectIndex withTitle:nil];
+        isFirstViewAppear = NO;
+    }
 }
 
 - (void)viewDidLoad {
@@ -110,6 +114,7 @@
         if(commitArray.count==0) rightBarButton.hidden = YES;
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downLoadSuccessUpdate) name:@"DownLoadSuccess" object:nil];
+    isFirstViewAppear = YES;
 }
 
 - (void)downLoadSuccessUpdate{
