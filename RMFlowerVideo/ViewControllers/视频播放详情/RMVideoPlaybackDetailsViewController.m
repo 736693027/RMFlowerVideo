@@ -182,11 +182,21 @@ typedef enum{
  *  选集 刷新视频
  */
 - (void)videoEpisodeWithOrder:(NSInteger)order {
-    self.currentWatchVideo = order - 1;
-    for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
-        if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
-            [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
-            break;
+    if (self.dataModel.video_type.integerValue == 2){   //电视剧
+        self.currentWatchVideo = order - 1;
+        for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
+            if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
+                [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
+                break;
+            }
+        }
+    }else{  //综艺
+        self.currentWatchVideo = order - 1;
+        for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
+            if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
+                [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
+                break;
+            }
         }
     }
 }
@@ -195,7 +205,12 @@ typedef enum{
  *  重新加载界面
  */
 - (void)reloadViewDidLoadWithVideo_id:(NSString *)video_id {
-    self.currentWatchVideo = 0;
+    if (self.dataModel.video_type.integerValue == 2){   //电视剧
+        self.currentWatchVideo = 0;
+    }else if (self.dataModel.video_type.integerValue == 3){  //综艺
+        self.currentWatchVideo = [[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] count] - 1;
+    }else{
+    }
     [self stratRequestWithVideo_id:video_id];
 }
 
@@ -203,7 +218,6 @@ typedef enum{
  *  重新刷新播放当前类型下的视频资源
  */
 - (void)refreshPlayAddressMethod {
-    self.currentWatchVideo = 0;
     [self replaceAVPlayer];
     if (self.dataModel.video_type.integerValue == 1){
         if ([self.dataModel.playurl count] == 0){
@@ -221,15 +235,32 @@ typedef enum{
         if ([self.dataModel.playurls count] == 0){
             [self refreshUIWhenPlayerFailed];
         }else{
-            if ([[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] count] == 0){
-                [self refreshUIWhenPlayerFailed];
-            }else{
-                for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
-                    if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
-                        [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
-                        break;
-                    }else{
-                        
+            if (self.dataModel.video_type.integerValue == 2){   //电视剧
+                self.currentWatchVideo = 0;
+                if ([[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] count] == 0){
+                    [self refreshUIWhenPlayerFailed];
+                }else{
+                    for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
+                        if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
+                            [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
+                            break;
+                        }else{
+                            
+                        }
+                    }
+                }
+            }else{  //综艺
+                if ([[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] count] == 0){
+                    [self refreshUIWhenPlayerFailed];
+                }else{
+                    for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
+                        if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
+                            self.currentWatchVideo = [[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] - 1;
+                            [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
+                            break;
+                        }else{
+                            
+                        }
                     }
                 }
             }
@@ -242,7 +273,13 @@ typedef enum{
 */
 - (void)reloadFirstPlayerContent {
     [self replaceAVPlayer];
-    self.currentWatchVideo = 0;
+    if (self.dataModel.video_type.integerValue == 2){   //电视剧
+        self.currentWatchVideo = 0;
+    }else if (self.dataModel.video_type.integerValue == 3){  //综艺
+        self.currentWatchVideo = [[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] count] - 1;
+    }else{
+        
+    }
     if (self.dataModel.video_type.integerValue == 1){
         if ([self.dataModel.playurl count] == 0){
             [self refreshUIWhenPlayerFailed];
@@ -303,21 +340,40 @@ typedef enum{
             [self hideLoading];
             [self showHUDWithImage:@"videoIsNotAddress" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
         }else{
-            for (NSInteger i=0; i<[self.dataModel.playurls count]; i++){
-                if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
-                    if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
+            if (self.dataModel.video_type.integerValue == 2){   //电视剧
+                for (NSInteger i=0; i<[self.dataModel.playurls count]; i++){
+                    if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
+                        if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
+                        }else{
+                            RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
+                            loadingWebCtl.loadingUrl = [[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentWatchVideo] objectForKey:@"jumpurl"];
+                            loadingWebCtl.name = self.dataModel.name;
+                            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+                            [self presentViewController:loadingWebCtl animated:YES completion:^{
+                            }];
+                        }
+                        break;
                     }else{
-                        RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
-                        loadingWebCtl.loadingUrl = [[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentWatchVideo] objectForKey:@"jumpurl"];
-                        loadingWebCtl.name = self.dataModel.name;
-                        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
-                        [self presentViewController:loadingWebCtl animated:YES completion:^{
-                        }];
                     }
-                    break;
-                }else{
+                }
+            }else{  //综艺
+                for (NSInteger i=0; i<[self.dataModel.playurls count]; i++){
+                    if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
+                        if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
+                        }else{
+                            RMLoadingWebViewController * loadingWebCtl = [[RMLoadingWebViewController alloc] init];
+                            loadingWebCtl.loadingUrl = [[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentWatchVideo] objectForKey:@"jumpurl"];
+                            loadingWebCtl.name = self.dataModel.name;
+                            [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+                            [self presentViewController:loadingWebCtl animated:YES completion:^{
+                            }];
+                        }
+                        break;
+                    }else{
+                    }
                 }
             }
+
         }
     }
     [self hideLoading];
