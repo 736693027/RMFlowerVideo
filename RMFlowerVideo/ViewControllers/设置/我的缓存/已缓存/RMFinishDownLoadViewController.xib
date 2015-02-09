@@ -20,6 +20,10 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="kdS-ea-s7D">
                     <rect key="frame" x="133" y="205" width="55" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="FrE-ta-v6q"/>
+                        <constraint firstAttribute="height" constant="55" id="fZ3-Xw-lMn"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您没有缓存完成的视频" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svr-Dv-d93">
                     <rect key="frame" x="75" y="283" width="170" height="21"/>

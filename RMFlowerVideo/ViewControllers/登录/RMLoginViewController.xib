@@ -20,6 +20,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTg-PD-0Ko">
                     <rect key="frame" x="48" y="177" width="225" height="55"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="225" id="Jc8-dQ-bFX"/>
                         <constraint firstAttribute="height" constant="55" id="vba-T4-wXh"/>
                     </constraints>
                     <state key="normal" image="weibo_login">

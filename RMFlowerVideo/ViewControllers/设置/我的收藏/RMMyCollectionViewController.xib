@@ -20,6 +20,10 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="xHH-nu-sah">
                     <rect key="frame" x="133" y="227" width="55" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="WZZ-w2-hNv"/>
+                        <constraint firstAttribute="width" constant="55" id="frT-sg-ChK"/>
+                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请先登录到小花视频" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GA0-SN-0Hh">
                     <rect key="frame" x="84" y="305" width="153" height="21"/>
