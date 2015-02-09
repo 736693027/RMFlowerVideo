@@ -156,7 +156,6 @@ static void *CustomVideoPlayerViewStatusObservationContext = &CustomVideoPlayerV
             }
 //            NSString *showtimeNew = [formatter stringFromDate:d];            
         }else if (playerItem.status == AVPlayerStatusFailed) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshUIWhenPlayerFailed" object:nil];
             if (self.videoPlaybackDetails){
                 [self.videoPlaybackDetails playerFinishedPlay];
             }
@@ -164,6 +163,7 @@ static void *CustomVideoPlayerViewStatusObservationContext = &CustomVideoPlayerV
             if (self.customVideoplayerCtl){
                 [self.customVideoplayerCtl playerFinishedPlay];
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshUIWhenPlayerFailed" object:nil];
             NSLog(@"播放失败");
         }
     }

@@ -97,6 +97,7 @@ typedef enum{
 
 @property (nonatomic, assign) BOOL isCollection;                    //当前是否已经收藏
 @property (nonatomic, assign) NSInteger currentWatchVideo;          //当前观看电视剧的集数
+@property (nonatomic, assign) NSInteger currentPlayState;           //1为mp4地址正在加载   2为mp4地址加载失败   3为mp4地址加载成功
 
 @end
 
@@ -215,10 +216,11 @@ typedef enum{
 }
 
 /*
- *  重新刷新播放当前类型下的视频资源
+ *  点击 重新刷新播放当前类型下的视频资源
  */
 - (void)refreshPlayAddressMethod {
     [self replaceAVPlayer];
+    topJumpWebView.hidden = YES;
     if (self.dataModel.video_type.integerValue == 1){
         if ([self.dataModel.playurl count] == 0){
             [self refreshUIWhenPlayerFailed];
@@ -301,22 +303,39 @@ typedef enum{
 
 - (void)refreshUIWhenPlayerFailed {
     [self hideHUD];
-    isDeviceRotating = NO;
+    NSLog(@"failed");
+    self.currentPlayState = 2;
+    isDeviceRotating = YES;
     [self loadTopJumpWebUI];
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        self.player.isFullScreenMode = NO;
+        int val = UIInterfaceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
 }
 
 - (void)loadTopJumpWebUI {
-    topJumpWebView = [[RMTopJumpWebView alloc] init];
-    topJumpWebView.delegate = self;
-    topJumpWebView.frame = CGRectMake(0, 0, ScreenWidth, 180);
-    topJumpWebView.backgroundColor = [UIColor blackColor];
-    [topJumpWebView initTopJumpWebView];
-    [self.view addSubview:topJumpWebView];
+    if (!topJumpWebView){
+        topJumpWebView = [[RMTopJumpWebView alloc] init];
+        topJumpWebView.delegate = self;
+        topJumpWebView.frame = CGRectMake(0, 0, ScreenWidth, 180);
+        topJumpWebView.backgroundColor = [UIColor blackColor];
+        [topJumpWebView initTopJumpWebView];
+        [self.view addSubview:topJumpWebView];
+    }
+    topJumpWebView.hidden = NO;
     [self showLoadingSimpleWithUserInteractionEnabled:YES];
     [self performSelector:@selector(delayJumpWeb) withObject:nil afterDelay:1.0];
 }
 
 - (void)delayJumpWeb {
+    isDeviceRotating = NO;
+    NSLog(@"跳web");
     if ([self.dataModel.video_type isEqualToString:@"1"]){   //电影
         if (self.dataModel.playurl.count == 0){
             [self hideLoading];
@@ -951,6 +970,8 @@ typedef enum{
 //    NSString* pathExtention = [url pathExtension];
 //    if([pathExtention isEqualToString:@"mp4"]) {
         isDeviceRotating = YES;
+        self.currentPlayState = 1;
+        [self showHUD];
         NSURL * _URL = [NSURL URLWithString:url];
         [self.player contentURL:_URL];
         [self.player play];
@@ -1567,8 +1588,10 @@ typedef enum{
 
 - (BOOL)shouldAutorotate {
     if (isDeviceRotating){
+        NSLog(@"可旋转");
         return YES;
     }else{
+        NSLog(@"不可旋转");
         return NO;
     }
 }
@@ -1609,6 +1632,11 @@ typedef enum{
     [UIView animateWithDuration:duration animations:^{
         if(UIDeviceOrientationIsLandscape(toInterfaceOrientation)) {
             //横屏
+            NSLog(@"横屏");
+            if (self.currentPlayState == 1){    //正在加载
+                topJumpWebView.hidden = YES;
+            }else if (self.currentPlayState == 2){      //加载失败
+            }
             self.player.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
             self.topView.frame = CGRectMake(0, 0, ScreenWidth, 36);
             self.belowView.frame = CGRectMake(0, ScreenHeight - 40, ScreenWidth, 40);
@@ -1623,10 +1651,15 @@ typedef enum{
             self.zoomBtn.frame = CGRectMake(ScreenWidth - 35, 13, 15, 15);
             [self.zoomBtn setBackgroundImage:[UIImage imageNamed:@"narrow"] forState:UIControlStateNormal];
             self.player.playerLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-
             [self.player setIsFullScreenMode:YES];
         }else{
             //竖屏
+            NSLog(@"竖屏");
+            if (self.currentPlayState == 1){    //正在加载
+            }else if (self.currentPlayState == 2){      //加载失败
+                topJumpWebView.hidden = NO;
+                topJumpWebView.frame = CGRectMake(0, 0, ScreenWidth, 180);
+            }
             self.player.frame = CGRectMake(0, 0, ScreenWidth, 180);
             self.topView.frame = CGRectMake(0, 0, ScreenWidth, 36);
             self.belowView.frame = CGRectMake(0, 140, ScreenWidth, 40);
