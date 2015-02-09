@@ -218,7 +218,8 @@
         if(model.isTVModel){
              NSLog(@"电视剧详情");
             RMFinishDownLoadDetailViewController *finishDownLoadDetail = [[RMFinishDownLoadDetailViewController alloc] init];
-            finishDownLoadDetail.navTitleString = model.name;
+            NSString *titleString = [model.name substringFromIndex:[model.name rangeOfString:@"_"].location+1];
+            finishDownLoadDetail.navTitleString = [titleString substringToIndex:[titleString rangeOfString:@"_"].location];
             [mainCasheViewContro.navigationController pushViewController:finishDownLoadDetail animated:YES];
         }else{
              NSLog(@"播放器");
@@ -229,9 +230,7 @@
             //EpisodeValue  集数
             RMModel *tmpModel = [[RMModel alloc] init];
             tmpModel.url = [NSString stringWithFormat:@"%@/%@.mp4",document,model.name];
-            NSString *tmpTitle = [model.name substringFromIndex:[model.name rangeOfString:@"_"].location+1];
-            NSString *title = tmpTitle;
-            tmpModel.title = [title substringToIndex:[title rangeOfString:@"_"].location];
+            tmpModel.title = model.name;
             [RMPlayer presentVideoPlayerWithPlayModel:tmpModel withUIViewController:mainCasheViewContro withVideoType:1 withIsLocationVideo:YES];
         }
     }

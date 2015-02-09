@@ -185,6 +185,7 @@
 #pragma mark - 首页循坏滚动电影、电视剧、综艺
 
 - (void)getSlideListWithVideo_type:(NSString *)video_type {
+    __weak RMAFNRequestManager *weekSelf = self;
     AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
     self.downLoadType = Http_getSlideList;
     NSString *url = [self urlPathadress:Http_getSlideList];
@@ -203,19 +204,19 @@
                 model.videoDescription = [dict objectForKey:@"description"];
                 [dataArray addObject:model];
             }
-            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
-                [self.delegate requestFinishiDownLoadWith:dataArray];
+            if([weekSelf.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
+                [weekSelf.delegate requestFinishiDownLoadWith:dataArray];
             }
         }
         else{
-            if([self.delegate respondsToSelector:@selector(requestError:)]){
-                [self.delegate requestError:nil];
+            if([weekSelf.delegate respondsToSelector:@selector(requestError:)]){
+                [weekSelf.delegate requestError:nil];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self checkTheNetworkConnectionWithTitle:@"下载失败"];
-        if([self.delegate respondsToSelector:@selector(requestError:)]){
-            [self.delegate requestError:error];
+        [weekSelf checkTheNetworkConnectionWithTitle:@"下载失败"];
+        if([weekSelf.delegate respondsToSelector:@selector(requestError:)]){
+            [weekSelf.delegate requestError:error];
         }
     }];
 }
@@ -223,6 +224,7 @@
 #pragma mark - 首页视频电影、电视剧、综艺
 
 - (void)getIndexVideoListWithVideoTpye:(NSString *)videoType searchPageNumber:(NSString *)page andLimit:(NSString *)limit {
+    __weak RMAFNRequestManager *weekSelf = self;
     AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
      self.downLoadType = Http_getIndexVideoList;
     NSString *url = [self urlPathadress:Http_getIndexVideoList];
@@ -244,19 +246,19 @@
                 model.video_id = [dict objectForKey:@"video_id"];
                 [dataArray addObject:model];
             }
-            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
-                [self.delegate requestFinishiDownLoadWith:dataArray];
+            if([weekSelf.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
+                [weekSelf.delegate requestFinishiDownLoadWith:dataArray];
             }
         }
         else{
-            if([self.delegate respondsToSelector:@selector(requestError:)]){
-                [self.delegate requestError:nil];
+            if([weekSelf.delegate respondsToSelector:@selector(requestError:)]){
+                [weekSelf.delegate requestError:nil];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self checkTheNetworkConnectionWithTitle:@"下载失败"];
-        if([self.delegate respondsToSelector:@selector(requestError:)]){
-            [self.delegate requestError:error];
+        [weekSelf checkTheNetworkConnectionWithTitle:@"下载失败"];
+        if([weekSelf.delegate respondsToSelector:@selector(requestError:)]){
+            [weekSelf.delegate requestError:error];
         }
     }];
 }
@@ -264,6 +266,7 @@
 #pragma mark - 首页明星
 
 - (void)getStarListWithPage:(NSString *)page andLimit:(NSString *)limit {
+    __weak RMAFNRequestManager *weekSelf = self;
     AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getStarList];
     url = [NSString stringWithFormat:@"%@page=%@&limit=%@",url,page,limit];
@@ -278,18 +281,18 @@
                 model.tag_id = [dict objectForKey:@"tag_id"];
                 [dataArray addObject:model];
             }
-            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
-                [self.delegate requestFinishiDownLoadWith:dataArray];
+            if([weekSelf.delegate respondsToSelector:@selector(requestFinishiDownLoadWith:)]){
+                [weekSelf.delegate requestFinishiDownLoadWith:dataArray];
             }
         }else{
-            if([self.delegate respondsToSelector:@selector(requestError:)]){
-                [self.delegate requestError:nil];
+            if([weekSelf.delegate respondsToSelector:@selector(requestError:)]){
+                [weekSelf.delegate requestError:nil];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self checkTheNetworkConnectionWithTitle:@"下载失败"];
-        if([self.delegate respondsToSelector:@selector(requestError:)]){
-            [self.delegate requestError:error];
+        [weekSelf checkTheNetworkConnectionWithTitle:@"下载失败"];
+        if([weekSelf.delegate respondsToSelector:@selector(requestError:)]){
+            [weekSelf.delegate requestError:error];
         }
     }];
 }
