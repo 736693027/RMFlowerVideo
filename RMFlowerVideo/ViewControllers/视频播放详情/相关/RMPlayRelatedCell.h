@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *videoPlayNum;
 @property (weak, nonatomic) IBOutlet RMImageView *directBroadcast;
 
+@property (weak, nonatomic) IBOutlet UIView *liew;
 - (void)setTitleLableWithString:(NSString *)title;
 
 @end

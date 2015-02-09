@@ -39,7 +39,7 @@
     mTableView.dataSource = self;
     mTableView.backgroundColor = [UIColor clearColor];
     mTableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 10);
-//    mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:mTableView];
 }
 

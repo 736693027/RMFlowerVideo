@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -45,16 +45,22 @@
                         <color key="textColor" red="0.56078433990478516" green="0.56078433990478516" blue="0.56078433990478516" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" id="pdd-6O-X5R">
+                        <rect key="frame" x="10" y="159" width="300" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.87441871279761907" green="0.87441871279761907" blue="0.87441871279761907" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="directBroadcast" destination="Rqf-Rd-mpf" id="RsM-KV-qdn"/>
+                <outlet property="liew" destination="pdd-6O-X5R" id="eUm-fE-kJK"/>
                 <outlet property="videoImage" destination="zge-g6-jKJ" id="AIb-Fi-aBg"/>
                 <outlet property="videoName" destination="uMO-YB-MCI" id="v4g-cr-Epz"/>
                 <outlet property="videoPlayNum" destination="6nJ-v2-OAC" id="md2-H4-pVF"/>
                 <outlet property="videoScore" destination="HJM-32-Wdf" id="Azp-8l-kqf"/>
             </connections>
-            <point key="canvasLocation" x="-467" y="208"/>
+            <point key="canvasLocation" x="-537" y="24"/>
         </tableViewCell>
     </objects>
     <resources>

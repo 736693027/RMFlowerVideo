@@ -44,6 +44,12 @@
         self.videoScore.frame = CGRectMake(self.videoName.frame.origin.x+rect.size.width+10, 15, self.videoScore.frame.size.width, self.videoScore.frame.size.height);
     }
     self.videoName.text = title;
+    [self updateFrame];
+}
+
+- (void)updateFrame {
+    float screenWidth = [UIScreen mainScreen].bounds.size.width;
+    self.liew.frame = CGRectMake(10, 159, screenWidth-20, 1);
 }
 
 @end
