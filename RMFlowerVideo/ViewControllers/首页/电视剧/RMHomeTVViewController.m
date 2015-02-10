@@ -19,7 +19,6 @@
     NSInteger pageCount;
     BOOL isPullToRefresh;
 }
-@property (nonatomic,strong) NSMutableArray *scrollViewDataArray;
 @end
 
 @implementation RMHomeTVViewController
@@ -35,7 +34,6 @@
     isPullToRefresh = YES;
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];
     _tableViewDataArray = [[NSMutableArray alloc] init];
-    _scrollViewDataArray = [[NSMutableArray alloc] init];
 }
 
 #pragma mark table veie dateSource
@@ -173,15 +171,14 @@
 - (void)requestFinishiDownLoadWith:(NSMutableArray *)data{
     if(requestManeger.downLoadType == Http_getSlideList){
         if(data.count>0){
-            self.scrollViewDataArray = data;
             __block RMHomeTVViewController *blockSelf = self;
             //设置tableview的headView
             [self creatTableViewheadScrollView];
             [self setTabelViewHeadViewWith:YES];
             self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
                 RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];
-                if(blockSelf.scrollViewDataArray.count>0){
-                    RMPublicModel *model = [blockSelf.scrollViewDataArray objectAtIndex:pageIndex];
+                if(pageIndex<data.count){
+                    RMPublicModel *model = [data objectAtIndex:pageIndex];
                     if (IS_IPHONE_6_SCREEN){
                         [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"347_200")];
                     }else if (IS_IPHONE_6p_SCREEN){
@@ -189,27 +186,18 @@
                     }else{
                         [showImage sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:LOADIMAGE(@"298_180")];
                     }
-                }else{
-                    if (IS_IPHONE_6_SCREEN){
-                        [showImage setImage:LOADIMAGE(@"347_200")];
-                    }else if (IS_IPHONE_6p_SCREEN){
-                        [showImage setImage:LOADIMAGE(@"384_220")];
-                    }else{
-                        [showImage setImage:LOADIMAGE(@"298_180")];
-                    }
+                    return showImage;
                 }
-                return showImage;
+                return nil;
             };
             
             self.mainScorllView.totalPagesCount = ^NSInteger(void){
-                if(blockSelf.scrollViewDataArray.count>0)
-                    return blockSelf.scrollViewDataArray.count;
-                return 1;
+                return data.count;
             };
             
             self.mainScorllView.TapActionBlock = ^(NSInteger pageIndex){
-                if(blockSelf.scrollViewDataArray.count>0){
-                    RMPublicModel *model = [blockSelf.scrollViewDataArray objectAtIndex:pageIndex];
+                if(pageIndex<data.count){
+                    RMPublicModel *model = [data objectAtIndex:pageIndex];
                     RMHomeViewController * homeCtl = blockSelf.delegate;
                     if([model.video_id isEqualToString:@"0"]){
                         RMRankRecommendedViewController *rankRecommendedCtl = [[RMRankRecommendedViewController alloc] init];
@@ -225,7 +213,6 @@
                         [homeCtl presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{
                         }];
                     }
-                    
                 }
             };
         }else{

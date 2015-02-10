@@ -222,7 +222,6 @@
                         [homeCtl presentViewController:videoPlaybackDetailsCtl animated:YES completion:^{
                         }];
                     }
-                    
                 }
             };
         }else{

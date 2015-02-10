@@ -136,7 +136,11 @@ static id _instance;
     else{
         cell.progressLable.text = [NSString stringWithFormat:@"%.1fkb/s",self.downLoadSpeed/1024.0];
         double progress = (double)self.haveReadTheSchedule/(double)self.totalDownLoad;
-        cell.progressView.progress = progress;
+        if(self.haveReadTheSchedule==0){
+            cell.progressView.progress = [model.cacheProgress floatValue];
+        }else{
+            cell.progressView.progress = progress;
+        }
         model.alreadyCasheMemory = [NSString stringWithFormat:@"%lldM",self.haveReadTheSchedule/1024/1024];
         model.cacheProgress = [NSString stringWithFormat:@"%f",progress];
         cell.tatleProgressLable.text = [NSString stringWithFormat:@"%@/%@",model.alreadyCasheMemory,model.totalMemory];
