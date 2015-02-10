@@ -34,6 +34,9 @@
 //下拉加载
 - (void)refreshControlBeginDropDownLoad;
 
+//创建滚动视图
+- (void)creatTableViewheadScrollView;
+
 /**
  *  设置tableView的 headView
  *

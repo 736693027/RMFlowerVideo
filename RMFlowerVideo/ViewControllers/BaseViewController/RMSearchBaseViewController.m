@@ -64,15 +64,19 @@
     [searchBtn addTarget:self action:@selector(beginSearch) forControlEvents:UIControlEventTouchUpInside];
     [self.tableHeadView addSubview:searchBtn];
     
-    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(originY, searchViewHeight, ScreenWidth-originY*2, mainScorllViewHeight) animationDuration:4];
-    self.mainScorllView.backgroundColor = [UIColor clearColor];
-    
     self.refreshControl=[[RefreshControl alloc] initWithScrollView:self.mainTableView delegate:self];
     self.refreshControl.topEnabled=YES;
     self.refreshControl.bottomEnabled=YES;
     [self.refreshControl registerClassForTopView:[CustomRefreshView class]];
 }
-
+- (void)creatTableViewheadScrollView{
+    if(self.mainScorllView){
+        [self.mainScorllView removeFromSuperview];
+        self.mainScorllView = nil;
+    }
+    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(originY, searchViewHeight, ScreenWidth-originY*2, mainScorllViewHeight) animationDuration:4];
+    self.mainScorllView.backgroundColor = [UIColor clearColor];
+}
 - (void)beginSearch{
     
 }

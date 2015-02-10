@@ -176,6 +176,7 @@
         if(data.count>0){
             self.scrollViewDataArray = data;
             __block RMHomeVarietyViewController *blockSelf = self;
+            [self creatTableViewheadScrollView];
             [self setTabelViewHeadViewWith:YES];
             self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
                 RMImageView *showImage = [[RMImageView alloc] initWithFrame:CGRectMake(0, 0, blockSelf.mainScorllView.frame.size.width, blockSelf.mainScorllView.frame.size.height)];

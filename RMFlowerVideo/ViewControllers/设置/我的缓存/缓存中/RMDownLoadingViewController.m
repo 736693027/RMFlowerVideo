@@ -62,11 +62,35 @@ static id _instance;
                 cellEditingImageArray = [[NSMutableArray alloc] init];
                 selectCellArray = [[NSMutableArray alloc] init];
                 if(self.mainTableView==nil){
-                    self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 46, ScreenWidth, ScreenHeight-46) style:UITableViewStylePlain];
+                    self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 46, ScreenWidth, self.view.frame.size.height-46) style:UITableViewStylePlain];
                     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
                     self.mainTableView.delegate = self;
                     self.mainTableView.dataSource = self;
                     [self.view addSubview:self.mainTableView];
+                }
+               
+                NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:DownLoadDataArray_KEY];
+                NSArray * SavedownLoad = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                if(SavedownLoad==nil){
+                    self.mainTableView.hidden = YES;
+                }else{
+                    NSLog(@"成功取值");
+                    for(RMPublicModel *model in SavedownLoad){
+                        [self.dataArray addObject:model];
+                        [cellEditingImageArray addObject:@"cell_no_select"];
+                    }
+                    self.mainTableView.hidden = NO;
+                    [self.mainTableView reloadData];
+                }
+                if(self.dataArray.count==0){
+                    isBeginDownLoadAllTask = YES;
+                    [self.startOrPauseBtn setImage:[UIImage imageNamed:@"setup_downLoad_start"] forState:UIControlStateNormal];
+                    [self.startOrPauseBtn setTitle:@"全部开始" forState:UIControlStateNormal];
+                    
+                }else{
+                    isBeginDownLoadAllTask = NO;
+                    [self.startOrPauseBtn setImage:[UIImage imageNamed:@"setup_downLoad_pause"] forState:UIControlStateNormal];
+                    [self.startOrPauseBtn setTitle:@"全部暂停" forState:UIControlStateNormal];
                 }
             }
         }
@@ -114,7 +138,7 @@ static id _instance;
         double progress = (double)self.haveReadTheSchedule/(double)self.totalDownLoad;
         cell.progressView.progress = progress;
         model.alreadyCasheMemory = [NSString stringWithFormat:@"%lldM",self.haveReadTheSchedule/1024/1024];
-//        model.cacheProgress = [NSString stringWithFormat:@"%f",progress];
+        model.cacheProgress = [NSString stringWithFormat:@"%f",progress];
         cell.tatleProgressLable.text = [NSString stringWithFormat:@"%@/%@",model.alreadyCasheMemory,model.totalMemory];
     }
     self.downLoadSpeed = 0;
@@ -144,7 +168,6 @@ static id _instance;
             [time setFireDate:[NSDate date]];
             [self startDownloadWithMovieName:model];
         }
-
     }
     else{
         [sender setImage:[UIImage imageNamed:@"setup_downLoad_start"] forState:UIControlStateNormal];
@@ -192,36 +215,6 @@ static id _instance;
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];
     
     [self.startOrPauseBtn setEnlargeEdgeWithTop:5 right:5 bottom:5 left:5];
-    
-    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:DownLoadDataArray_KEY];
-    NSArray * SavedownLoad = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if(SavedownLoad==nil){
-        if(self.dataArray.count==0){
-            self.mainTableView.hidden = YES;
-        }else{
-            self.mainTableView.hidden = NO;
-        }
-    }else{
-         NSLog(@"成功取值");
-        for(RMPublicModel *model in SavedownLoad){
-            [self.dataArray addObject:model];
-            [cellEditingImageArray addObject:@"cell_no_select"];
-        }
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
-        self.mainTableView.hidden = NO;
-    }
-    [self.mainTableView reloadData];
-    if(self.dataArray.count==0){
-        isBeginDownLoadAllTask = YES;
-        [self.startOrPauseBtn setImage:[UIImage imageNamed:@"setup_downLoad_start"] forState:UIControlStateNormal];
-        [self.startOrPauseBtn setTitle:@"全部开始" forState:UIControlStateNormal];
-
-    }else{
-        isBeginDownLoadAllTask = NO;
-        [self.startOrPauseBtn setImage:[UIImage imageNamed:@"setup_downLoad_pause"] forState:UIControlStateNormal];
-        [self.startOrPauseBtn setTitle:@"全部暂停" forState:UIControlStateNormal];
-    }
-    self.isDownLoadNow = NO;
     UIView *view =[ [UIView alloc]init];
     view.backgroundColor = [UIColor clearColor];
     [self.mainTableView setTableFooterView:view];
@@ -327,8 +320,11 @@ static id _instance;
         [self.mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         commitEditings(self.dataArray);
         if(self.dataArray.count==0){
+            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
             self.mainTableView.hidden = YES;
         }else{
+            NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.dataArray];
+            [[NSUserDefaults standardUserDefaults] setObject:data forKey:DownLoadDataArray_KEY];
             self.mainTableView.hidden = NO;
         }
     }
@@ -381,7 +377,7 @@ static id _instance;
             model.downLoadState =@"等待缓存";
             cell.progressLable.text = model.downLoadState;
             [self.downLoadIDArray addObject:model];
-            [self BeginDownLoad];
+            [self performSelector:@selector(BeginDownLoad) withObject:nil afterDelay:1];
         }
         else {
             [time setFireDate:[NSDate distantFuture]];
@@ -411,12 +407,14 @@ static id _instance;
 }
 #pragma mark 开始编辑
 - (void)beginEditingTableViewCell{
+    self.mainTableView.frame = CGRectMake(0, 46, ScreenWidth, self.view.frame.size.height-46);
     [self.mainTableView setEditing:NO animated:YES];
     isStartEditing = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControStartEditing object:nil];
 }
 #pragma mark 结束编辑
 - (void)endEditingTableViewCell{
+    self.mainTableView.frame = CGRectMake(0, 46, ScreenWidth, self.view.frame.size.height-46);
     isStartEditing = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControEndEditing object:nil];
     for(int i=0;i<selectCellArray.count;i++){
@@ -472,10 +470,14 @@ static id _instance;
     [selectCellArray removeAllObjects];
     isStartEditing = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControEndEditing object:nil];
+    
     if(self.dataArray.count==0){
         self.mainTableView.hidden = YES;
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
     }else{
         self.mainTableView.hidden = NO;
+        NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.dataArray];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:DownLoadDataArray_KEY];
     }
 
 }
@@ -498,7 +500,7 @@ static id _instance;
             [cellEditingImageArray addObject:@"cell_no_select"];
         }
     }
-    if(!self.isDownLoadNow){
+    if(!self.isDownLoadNow&&self.downLoadIDArray.count>0){
         RMPublicModel *model = [self.downLoadIDArray objectAtIndex:0];
         for (RMPublicModel *tmpmodel in self.dataArray) {
             if([tmpmodel.name isEqualToString:model.name]){
@@ -511,6 +513,8 @@ static id _instance;
         isBeginDownLoadAllTask = NO;
         [time setFireDate:[NSDate date]];
         [self startDownloadWithMovieName:model];
+    }else{
+        self.isDownLoadNow = NO;
     }
 }
 
@@ -540,8 +544,10 @@ static id _instance;
 #pragma mark 下载成功
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)downloadURL {
     
-    if(self.dataArray.count==0) return;
-    
+    if(self.dataArray.count==0) {
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
+        return;
+    }
     [time setFireDate:[NSDate distantFuture]];
     RMPublicModel *model = [self.dataArray objectAtIndex:downLoadIndex];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -571,11 +577,14 @@ static id _instance;
                 self.mainTableView.hidden = YES;
                 [self.downloadTask cancel];
                 self.downloadTask = nil;
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
                 
             }else{
+                NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self.dataArray];
+                [[NSUserDefaults standardUserDefaults] setObject:data forKey:DownLoadDataArray_KEY];
                 self.mainTableView.hidden = NO;
                 if(self.downLoadIDArray.count>0){
-                    [self BeginDownLoad];
+                    [self performSelector:@selector(BeginDownLoad) withObject:nil afterDelay:1];
                 }
             }
             
@@ -701,7 +710,6 @@ static id _instance;
         for(RMPublicModel *model in SavedownLoad){
             [self.dataArray addObject:model];
         }
-        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:DownLoadDataArray_KEY];
     }
     for (RMPublicModel *tmpModel in self.dataArray){
         if([tmpModel.name isEqualToString:model.name]){

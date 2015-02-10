@@ -180,7 +180,12 @@
     switch (sender.tag) {
         case 1:{
             if(isEditing){
-                [[NSNotificationCenter defaultCenter] postNotificationName:kEndEditingTableViewCell object:nil];
+                if(selectViewControIndex==1){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControEndEditing object:nil];
+                }
+                else{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kFinishDownLoadControEndEditing object:nil];
+                }
             }
             [self.navigationController popViewControllerAnimated:YES];
             break;

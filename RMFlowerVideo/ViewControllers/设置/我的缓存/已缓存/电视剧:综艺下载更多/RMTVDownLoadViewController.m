@@ -140,6 +140,8 @@
     [rmDownLoading BeginDownLoad];
     downLoadingCount++;
     [self.showDownLoadTVCountBtn setTitle:[NSString stringWithFormat:@"%ld",(long)downLoadingCount] forState:UIControlStateNormal];
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:rmDownLoading.dataArray];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:DownLoadDataArray_KEY];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -189,8 +191,11 @@
             downLoadingCount++;
         }
     }
-    if(rmDownLoading.downLoadIDArray.count>0)
+    if(rmDownLoading.downLoadIDArray.count>0){
         [rmDownLoading BeginDownLoad];
+        NSData * data = [NSKeyedArchiver archivedDataWithRootObject:rmDownLoading.dataArray];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:DownLoadDataArray_KEY];
+    }
     [self.showDownLoadTVCountBtn setTitle:[NSString stringWithFormat:@"%ld",(long)downLoadingCount] forState:UIControlStateNormal];
 }
 

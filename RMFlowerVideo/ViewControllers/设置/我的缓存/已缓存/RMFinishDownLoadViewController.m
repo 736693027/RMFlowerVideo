@@ -40,7 +40,8 @@
             dataBaseArray = [tmpArray mutableCopy];
         }
         self.mainTableView.hidden =NO;
-        for(RMPublicModel *model in tmpArray){
+        NSArray *reverseOrderArray = [[tmpArray reverseObjectEnumerator] allObjects];
+        for(RMPublicModel *model in reverseOrderArray){
             if([model.name rangeOfString:@"电视剧"].location == NSNotFound){
                 [self.dataArray addObject:model];
             }else {
@@ -360,7 +361,8 @@
         [dataBaseArray removeAllObjects];
         dataBaseArray = [tmpArray mutableCopy];
     }
-    for(RMPublicModel *model in tmpArray){
+    NSArray *reverseOrderArray = [[tmpArray reverseObjectEnumerator] allObjects];
+    for(RMPublicModel *model in reverseOrderArray){
         if([model.name rangeOfString:@"电视剧"].location == NSNotFound){
             [self.dataArray addObject:model];
         }else {

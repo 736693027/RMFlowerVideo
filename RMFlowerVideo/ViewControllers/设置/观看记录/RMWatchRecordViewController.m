@@ -88,7 +88,9 @@
 
     [showMemoryView removeFromSuperview];
     
-    self.dataArray = [[[Database sharedDatabase] readitemFromHistroyList] mutableCopy];
+    NSArray *dataBaseArray = [[Database sharedDatabase] readitemFromHistroyList];
+    self.dataArray = [[[dataBaseArray reverseObjectEnumerator] allObjects] mutableCopy];
+    
     for(int i=0;i<self.dataArray.count;i++){
         [cellEditingImageArray addObject:@"cell_no_select"];
     }
@@ -199,7 +201,7 @@
 }
 
 - (void)EditingViewBtnClick:(UIButton *)sender{
-    if(isEditing) return;
+    
     if(sender==selectAllBtn){
         [selectCellArray removeAllObjects];
         if(!isSeleltAllCell){
@@ -251,6 +253,7 @@
 }
 
 - (void)palyMovieWithIndex:(NSInteger)index{
+    if(isEditing) return;
     RMPublicModel *model = [self.dataArray objectAtIndex:index];
     if ([model.name rangeOfString:@"电视剧"].location == NSNotFound&&[model.name rangeOfString:@"综艺"].location){
         NSString* pathExtention = [model.m_down_url pathExtension];

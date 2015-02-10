@@ -525,7 +525,7 @@ typedef enum{
                         }
                         else{
                             RMPublicModel *model = [[RMPublicModel alloc] init];
-                            model.downLoadURL = [dict objectForKey:@"m_down_url"];
+                            model.downLoadURL = [dict objectForKey:@"m_down_url"];//@"http://59.108.137.7/youku/69723328DAA318157B4FA43B37/030020010054D41F0CAF0E094C47B6626FB155-D3D3-2371-4606-DC0094CCCA1C.mp4";//[dict objectForKey:@"m_down_url"];
                             model.name = self.dataModel.name;
                             model.downLoadState = @"等待缓存";
                             model.actors = self.dataModel.actor;
@@ -541,6 +541,8 @@ typedef enum{
                             [rmDownLoading.downLoadIDArray addObject:model];
                             [rmDownLoading BeginDownLoad];
                             [self showHUDWithImage:@"videoAddSucess" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
+                            NSData * data = [NSKeyedArchiver archivedDataWithRootObject:rmDownLoading.dataArray];
+                            [[NSUserDefaults standardUserDefaults] setObject:data forKey:DownLoadDataArray_KEY];
                         }
                     }
                 }
@@ -970,41 +972,46 @@ typedef enum{
 }
 
 - (void)playerWithURL:(NSString *)url {
-//    NSString* pathExtention = [url pathExtension];
-//    if([pathExtention isEqualToString:@"mp4"]) {
-        isDeviceRotating = YES;
-        self.currentPlayState = 1;
-        [self showHUD];
-        NSURL * _URL = [NSURL URLWithString:url];
+    //    NSString* pathExtention = [url pathExtension];
+    //    if([pathExtention isEqualToString:@"mp4"]) {
+    isDeviceRotating = YES;
+    self.currentPlayState = 1;
+    [self showHUD];
+    NSURL * _URL = [NSURL URLWithString:url];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.player contentURL:_URL];
-        [self.player play];
-        if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait){
-            [self.playBtn setImage:[UIImage imageNamed:@"rm_playzoom_btn"] forState:UIControlStateNormal];
-        }else{
-            [self.playBtn setImage:[UIImage imageNamed:@"rm_play_btn"] forState:UIControlStateNormal];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.player play];
+        });
+    });
+    
+    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait){
+        [self.playBtn setImage:[UIImage imageNamed:@"rm_playzoom_btn"] forState:UIControlStateNormal];
+    }else{
+        [self.playBtn setImage:[UIImage imageNamed:@"rm_play_btn"] forState:UIControlStateNormal];
+    }
+    
+    CMTime interval = CMTimeMake(33, 1000);
+    __weak __typeof(self) weakself = self;
+    playbackObserver = [self.player.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
+        CMTime endTime = CMTimeConvertScale (weakself.player.moviePlayer.currentItem.asset.duration, weakself.player.moviePlayer.currentTime.timescale, kCMTimeRoundingMethod_RoundHalfAwayFromZero);
+        if (CMTimeCompare(endTime, kCMTimeZero) != 0) {
+            double normalizedTime = (double) weakself.player.moviePlayer.currentTime.value / (double) endTime.value;
+            weakself.progressBar.value = normalizedTime;
         }
-        
-        CMTime interval = CMTimeMake(33, 1000);
-        __weak __typeof(self) weakself = self;
-        playbackObserver = [self.player.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
-            CMTime endTime = CMTimeConvertScale (weakself.player.moviePlayer.currentItem.asset.duration, weakself.player.moviePlayer.currentTime.timescale, kCMTimeRoundingMethod_RoundHalfAwayFromZero);
-            if (CMTimeCompare(endTime, kCMTimeZero) != 0) {
-                double normalizedTime = (double) weakself.player.moviePlayer.currentTime.value / (double) endTime.value;
-                weakself.progressBar.value = normalizedTime;
-            }
-            weakself.goneTime .text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentTime];
-            [weakself.goneTime sizeToFit];
-            weakself.totalTime.text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentItem.asset.duration];
-            [weakself.totalTime sizeToFit];
-            weakself.customHUD.totalTimeString = weakself.totalTime.text;
-            weakself.detailTime.text = [NSString stringWithFormat:@"%@/%@",weakself.goneTime.text,weakself.totalTime.text];
-        }];
-//    }else{
-//        isDeviceRotating = NO;
-//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"地址解析错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alert show];
-//        [self hideHUD];
-//    }
+        weakself.goneTime .text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentTime];
+        [weakself.goneTime sizeToFit];
+        weakself.totalTime.text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentItem.asset.duration];
+        [weakself.totalTime sizeToFit];
+        weakself.customHUD.totalTimeString = weakself.totalTime.text;
+        weakself.detailTime.text = [NSString stringWithFormat:@"%@/%@",weakself.goneTime.text,weakself.totalTime.text];
+    }];
+    //    }else{
+    //        isDeviceRotating = NO;
+    //        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"地址解析错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    //        [alert show];
+    //        [self hideHUD];
+    //    }
 }
 
 /**

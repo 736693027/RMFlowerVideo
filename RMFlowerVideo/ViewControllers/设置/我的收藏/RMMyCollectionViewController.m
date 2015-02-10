@@ -73,10 +73,11 @@
     [showMemoryView removeFromSuperview];
     pageCount = 1;
  
-    self.refreshControl=[[RefreshControl alloc] initWithScrollView:self.mainTableView delegate:self];
-    self.refreshControl.topEnabled=YES;
-    self.refreshControl.bottomEnabled=YES;
-    [self.refreshControl registerClassForTopView:[CustomRefreshView class]];
+    //上拉加载 和 下拉刷新
+//    self.refreshControl=[[RefreshControl alloc] initWithScrollView:self.mainTableView delegate:self];
+//    self.refreshControl.topEnabled=YES;
+//    self.refreshControl.bottomEnabled=YES;
+//    [self.refreshControl registerClassForTopView:[CustomRefreshView class]];
     
     isPullToRefresh = YES;
     isFirstViewAppear = YES;
