@@ -62,7 +62,7 @@ static id _instance;
                 cellEditingImageArray = [[NSMutableArray alloc] init];
                 selectCellArray = [[NSMutableArray alloc] init];
                 if(self.mainTableView==nil){
-                    self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 46, ScreenWidth, self.view.frame.size.height-46) style:UITableViewStylePlain];
+                    self.mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 46, ScreenWidth, ScreenHeight-64-46-43-25) style:UITableViewStylePlain];
                     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
                     self.mainTableView.delegate = self;
                     self.mainTableView.dataSource = self;
@@ -411,14 +411,14 @@ static id _instance;
 }
 #pragma mark 开始编辑
 - (void)beginEditingTableViewCell{
-    self.mainTableView.frame = CGRectMake(0, 46, ScreenWidth, self.view.frame.size.height-46);
+    self.mainTableView.frame = CGRectMake(0, 46, ScreenWidth, ScreenHeight-64-46-43-49);
     [self.mainTableView setEditing:NO animated:YES];
     isStartEditing = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControStartEditing object:nil];
 }
 #pragma mark 结束编辑
 - (void)endEditingTableViewCell{
-    self.mainTableView.frame = CGRectMake(0, 46, ScreenWidth, self.view.frame.size.height-46);
+    self.mainTableView.frame = CGRectMake(0, 46, ScreenWidth, ScreenHeight-64-46-43-25);
     isStartEditing = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDownLoadingControEndEditing object:nil];
     for(int i=0;i<selectCellArray.count;i++){

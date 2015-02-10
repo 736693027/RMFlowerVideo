@@ -940,10 +940,10 @@
         if(UIDeviceOrientationIsLandscape(toInterfaceOrientation)) {
             //横屏
             self.player.frame = CGRectMake(0, 0, [RMUtilityFunc shareInstance].globleAllHeight, [RMUtilityFunc shareInstance].globleWidth);
-            self.topView.frame = CGRectMake(0, 0, [RMUtilityFunc shareInstance].globleAllHeight, 36);
+            self.topView.frame = CGRectMake(0, 0, [RMUtilityFunc shareInstance].globleAllHeight, 44);
             self.belowView.frame = CGRectMake(0, [RMUtilityFunc shareInstance].globleWidth - 40, [RMUtilityFunc shareInstance].globleAllHeight, 40);
             self.cacheProgress.Frame = CGRectMake(182, 21, [RMUtilityFunc shareInstance].globleAllHeight - 324, 30);
-            self.progressBar.frame = CGRectMake(180, 7, [RMUtilityFunc shareInstance].globleAllHeight - 200, 30);
+            self.progressBar.frame = CGRectMake(180, 7, [RMUtilityFunc shareInstance].globleAllHeight - 260, 30);
             self.nextBtn.hidden = NO;
             self.goneTime.hidden = NO;
             self.totalTime.hidden = NO;
@@ -956,7 +956,7 @@
         }else{
             //竖屏
             self.player.frame = CGRectMake(0, 0, [RMUtilityFunc shareInstance].globleWidth, 180);
-            self.topView.frame = CGRectMake(0, 0, [RMUtilityFunc shareInstance].globleWidth, 36);
+            self.topView.frame = CGRectMake(0, 0, [RMUtilityFunc shareInstance].globleWidth, 44);
             self.belowView.frame = CGRectMake(0, 140, [RMUtilityFunc shareInstance].globleWidth, 40);
             self.cacheProgress.frame = CGRectMake(50, 21, [RMUtilityFunc shareInstance].globleWidth - 180, 30);
             self.progressBar.frame = CGRectMake(50, 7, [RMUtilityFunc shareInstance].globleWidth - 180, 30);
