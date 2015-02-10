@@ -13,6 +13,8 @@
 #import "RMLoadingWebViewController.h"
 #import "RMPlayer.h"
 #import "Flurry.h"
+#import "RMLoginViewController.h"
+#import "RMCustomPresentNavViewController.h"
 
 @interface RMMyCollectionViewController ()<RMWatchRecordTableViewCellDelegate>
 {
@@ -21,6 +23,7 @@
     BOOL isFirstViewAppear;
     NSInteger pageCount;
     BOOL isPullToRefresh;
+    BOOL isAlreadyPresentLoginView;
 }
 @property (nonatomic, strong) RefreshControl * refreshControl;
 @end
@@ -50,17 +53,29 @@
         CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
         NSDictionary *userInfo = [storage objectForKey:UserLoginInformation_KEY];
         token = [userInfo objectForKey:@"token"];
-        if(token==nil){
+        if(token==nil&&!isAlreadyPresentLoginView){
             rightBarButton.hidden = YES;
             [self.emptyImageView setImage:LOADIMAGE(@"error")];
             self.errorTitleLable.text = @"请先登录到小花视频";
             self.mainTableView.hidden = YES;
-            return;
+            [self performSelector:@selector(presentLoginViewControll) withObject:nil afterDelay:0.5];
         }
-        [self showLoadingSimpleWithUserInteractionEnabled:YES];
-        [requestManager getFavoriteVideoListWithToken:token Page:[NSString stringWithFormat:@"%ld",(long)pageCount]];
-        isFirstViewAppear = NO;
+        else if (token==nil&&isAlreadyPresentLoginView){
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self showLoadingSimpleWithUserInteractionEnabled:YES];
+            [requestManager getFavoriteVideoListWithToken:token Page:[NSString stringWithFormat:@"%ld",(long)pageCount]];
+            isFirstViewAppear = NO;
+        }
     }
+}
+- (void)presentLoginViewControll{
+    isAlreadyPresentLoginView = YES;
+    RMLoginViewController *loginCtl = [[RMLoginViewController alloc] init];
+    RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+    [self presentViewController:loginNav animated:YES completion:^{
+    }];
 }
 
 - (void)viewDidLoad {
