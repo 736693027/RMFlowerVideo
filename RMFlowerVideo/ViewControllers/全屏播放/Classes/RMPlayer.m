@@ -19,11 +19,6 @@
 @implementation RMPlayer
 
 + (RMCustomVideoplayerViewController *)initVideoPlay:(id)sender {
-    if ([RMUtilityFunc isConnectionAvailable] == 0){
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络连接，请检查网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        return nil;
-    }
     [self getUIScreenBounds];
     RMCustomVideoplayerViewController * customVideoplayerCtl = [[RMCustomVideoplayerViewController alloc] init];
     [sender presentViewController:customVideoplayerCtl animated:YES completion:^{
@@ -39,6 +34,12 @@
     customVideoplayerCtl.videlModel = model;
     customVideoplayerCtl.videoType = type;
     customVideoplayerCtl.isLoactionVideo = location;
+    if(!location){
+        if ([RMUtilityFunc isConnectionAvailable] == 0){
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络连接，请检查网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
 }
 
 + (void)presentVideoPlayerWithPlayArr:(NSMutableArray *)playArr
@@ -50,6 +51,12 @@
     customVideoplayerCtl.playModelArr = playArr;
     customVideoplayerCtl.videoType = type;
     customVideoplayerCtl.isLoactionVideo = location;
+    if(!location){
+        if ([RMUtilityFunc isConnectionAvailable] == 0){
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络连接，请检查网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
 }
 
 + (void)presentVideoPlayerCurrentOrder:(NSInteger)current
@@ -62,6 +69,12 @@
     customVideoplayerCtl.playModelArr = playArr;
     customVideoplayerCtl.videoType = type;
     customVideoplayerCtl.isLoactionVideo = location;
+    if(!location){
+        if ([RMUtilityFunc isConnectionAvailable] == 0){
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前无网络连接，请检查网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
 }
 
 + (void)getUIScreenBounds{

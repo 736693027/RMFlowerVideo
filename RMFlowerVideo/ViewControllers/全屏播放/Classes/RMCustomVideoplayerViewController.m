@@ -109,7 +109,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name: kReachabilityChangedNotification_One object: nil];
         hostReach = [Reachability reachabilityWithHostName:@"www.apple.com"];
     [hostReach startNotifier];
-    [self updateInterfaceWithReachability:hostReach];
+//    [self updateInterfaceWithReachability:hostReach];
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self prefersStatusBarHidden];
@@ -137,8 +137,10 @@
     }else if(status == ReachableViaWiFi) {
         printf("\nwifi\n");
     }else{
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前网络不稳定，请检查网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
+        if(!self.isLoactionVideo){
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前网络不稳定，请检查网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
 }
 
@@ -179,7 +181,6 @@
 }
 
 #pragma mark - UIAlertViewDelegate
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 201){
         switch (buttonIndex) {
@@ -856,9 +857,11 @@
             [self.playBtn setImage:[UIImage imageNamed:@"rm_pause_btn"] forState:UIControlStateNormal];
         }
     }
-    CMTime seekTime = CMTimeMakeWithSeconds(sender.value * (double)self.player.moviePlayer.currentItem.asset.duration.value/(double)self.player.moviePlayer.currentItem.asset.duration.timescale, self.player.moviePlayer.currentTime.timescale);
-    [self.player.moviePlayer seekToTime:seekTime];
-    [self.player play];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CMTime seekTime = CMTimeMakeWithSeconds(sender.value * (double)self.player.moviePlayer.currentItem.asset.duration.value/(double)self.player.moviePlayer.currentItem.asset.duration.timescale, self.player.moviePlayer.currentTime.timescale);
+        [self.player.moviePlayer seekToTime:seekTime];
+        [self.player play];
+    });
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait){
         [self.playBtn setImage:[UIImage imageNamed:@"rm_playzoom_btn"] forState:UIControlStateNormal];
     }else{

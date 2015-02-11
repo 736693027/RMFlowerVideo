@@ -123,10 +123,12 @@ typedef enum{
     [super viewDidAppear:animated];
     if (isFirstViewAppear){
         [self stratRequestWithVideo_id:self.video_id];
+        //???: 创建播放器
         [self loadMediaPlayerView];
+        //???: 创建播放器相关的控件
         [self loadPlayView];
+        //???: 创建播放器手势
         [self loadTouchView];
-        [self loadSelectEpisodeView];
         [self StartTimerWithAutomaticHidenToolView];
         [self loadHUD];
         isFirstViewAppear = NO;
@@ -189,6 +191,7 @@ typedef enum{
         self.currentWatchVideo = order - 1;
         for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
             if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
+                [self replaceAVPlayer];
                 [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
                 break;
             }
@@ -197,11 +200,13 @@ typedef enum{
         self.currentWatchVideo = order - 1;
         for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
             if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
+                [self replaceAVPlayer];
                 [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
                 break;
             }
         }
     }
+    [self hideHUD];
 }
 
 /*
@@ -270,6 +275,7 @@ typedef enum{
             }
         }
     }
+    [self hideHUD];
 }
 
 /*
@@ -284,26 +290,33 @@ typedef enum{
     }else{
         
     }
+    //???:播放电影
     if (self.dataModel.video_type.integerValue == 1){
         if ([self.dataModel.playurl count] == 0){
+            //???:没有地址，跳web
             [self refreshUIWhenPlayerFailed];
         }else{
             [self playerWithURL:[[self.dataModel.playurl objectAtIndex:0] objectForKey:@"m_down_url"]];
         }
     }else{
+        //???:播放电视剧
         if ([self.dataModel.playurls count] == 0){
+            //???:没有地址，跳web
             [self refreshUIWhenPlayerFailed];
         }else{
             if ([[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] count] == 0){
+                //???:没有地址，跳web
                 [self refreshUIWhenPlayerFailed];
             }else{
                 [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:0] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
             }
         }
     }
+    [self hideHUD];
 }
 
 - (void)refreshUIWhenPlayerFailed {
+    
     [self hideHUD];
     NSLog(@"failed");
     self.currentPlayState = 2;
@@ -677,10 +690,10 @@ typedef enum{
 
 - (void)replaceAVPlayer {
     [self.player replaceCurrentItem];
-    if (playbackObserver) {
-        [self.player.moviePlayer removeTimeObserver:playbackObserver];
-        playbackObserver = nil;
-    }
+//    if (playbackObserver) {
+//        [self.player.moviePlayer removeTimeObserver:playbackObserver];
+//        playbackObserver = nil;
+//    }
 }
 
 /**
@@ -739,18 +752,19 @@ typedef enum{
  */
 - (void)switchVideoSourceToCurrentType:(NSInteger)type {
     [self.player replaceCurrentItem];
-    if (playbackObserver) {
-        [self.player.moviePlayer removeTimeObserver:playbackObserver];
-        playbackObserver = nil;
-    }
-    [self.player removeObserver];
-    [self showHUD];
+//    if (playbackObserver) {
+//        [self.player.moviePlayer removeTimeObserver:playbackObserver];
+//        playbackObserver = nil;
+//    }
+//    [self.player removeObserver];
+//    [self showHUD];
     
     self.currentSelectType = [NSString stringWithFormat:@"%ld",(long)type];
     
     if (self.dataModel.video_type.integerValue == 1){
         for (NSInteger i=0; i<[self.dataModel.playurl count]; i++){
             if ([[[self.dataModel.playurl objectAtIndex:i] objectForKey:@"source_type"] integerValue] == type){
+                [self replaceAVPlayer];
                 [self playerWithURL:[[self.dataModel.playurl objectAtIndex:i] objectForKey:@"m_down_url"]];
                 break;
             }
@@ -761,12 +775,14 @@ typedef enum{
                 if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
                     [self showHUDWithImage:@"videoIsNotAddress" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                 }else{
+                    [self replaceAVPlayer];
                     [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
                 }
                 break;
             }
         }
     }
+    [self hideHUD];
 }
 
 #pragma mark - 请求
@@ -782,7 +798,7 @@ typedef enum{
     [request getVideoDetailWithVideo_id:video_id Token:token];
     [self showLoadingSimpleWithUserInteractionEnabled:YES];
 }
-
+//???: 收藏功能操作的网络请求回调
 - (void)requestFinishiDownLoadWithResults:(NSString *)results {
     if (requestType == requestAddFavoriteType){ //添加收藏
         if ([results isEqualToString:@"success"]){
@@ -807,7 +823,7 @@ typedef enum{
     }
     [self hideLoading];
 }
-
+//???: 电影、电视剧、综艺数据下载回调
 - (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
     self.dataModel = model;
     NSString *jumpString = @"",*m_down_url = @"",*videoName = @"";
@@ -929,103 +945,13 @@ typedef enum{
     [self hideLoading];
 }
 
-#pragma mark - 创建 AVPlayer UI
-
-- (void)loadHUD {
-    if (!self.loadingView){
-        self.loadingView = [[RMLoadingView alloc] init];
-    }
-    self.loadingView.frame = CGRectMake(ScreenHeight/2-20, ScreenWidth/2-20, 40, 40);
-    [self.view addSubview:self.loadingView];
-    [self.loadingView startAnimation];
-    
-    if (!self.customHUD){
-        self.customHUD = [[NSBundle mainBundle] loadNibNamed:@"RMCustomSVProgressHUD" owner:self options:nil].lastObject;
-    }
-    self.customHUD.hidden = YES;
-    [self.view addSubview:self.customHUD];
-}
-
-- (void)showHUD {
-    self.loadingView.hidden = NO;
-    [self.loadingView startAnimation];
-}
-
-- (void)hideHUD {
-    self.loadingView.hidden = YES;
-    [self.loadingView stopAnimation];
-}
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self RefreshTimerWithAutomaticHidenToolView];
 }
 
-- (void)loadMediaPlayerView {
-    if (!self.player) {
-        self.player = [[RMCustomVideoPlayerView alloc] init];
-        self.player.RMCustomVideoplayerDeleagte = self;
-        self.player.backgroundColor = [UIColor blackColor];
-        [self.view addSubview:self.player];
-    }
-}
-
-- (void)playerWithURL:(NSString *)url {
-    //    NSString* pathExtention = [url pathExtension];
-    //    if([pathExtention isEqualToString:@"mp4"]) {
-    isDeviceRotating = YES;
-    self.currentPlayState = 1;
-    [self showHUD];
-    NSURL * _URL = [NSURL URLWithString:url];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.player contentURL:_URL];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.player play];
-        });
-    });
-    
-    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait){
-        [self.playBtn setImage:[UIImage imageNamed:@"rm_playzoom_btn"] forState:UIControlStateNormal];
-    }else{
-        [self.playBtn setImage:[UIImage imageNamed:@"rm_play_btn"] forState:UIControlStateNormal];
-    }
-    
-    CMTime interval = CMTimeMake(33, 1000);
-    __weak __typeof(self) weakself = self;
-    playbackObserver = [self.player.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
-        CMTime endTime = CMTimeConvertScale (weakself.player.moviePlayer.currentItem.asset.duration, weakself.player.moviePlayer.currentTime.timescale, kCMTimeRoundingMethod_RoundHalfAwayFromZero);
-        if (CMTimeCompare(endTime, kCMTimeZero) != 0) {
-            double normalizedTime = (double) weakself.player.moviePlayer.currentTime.value / (double) endTime.value;
-            weakself.progressBar.value = normalizedTime;
-        }
-        weakself.goneTime .text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentTime];
-        [weakself.goneTime sizeToFit];
-        weakself.totalTime.text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentItem.asset.duration];
-        [weakself.totalTime sizeToFit];
-        weakself.customHUD.totalTimeString = weakself.totalTime.text;
-        weakself.detailTime.text = [NSString stringWithFormat:@"%@/%@",weakself.goneTime.text,weakself.totalTime.text];
-    }];
-    //    }else{
-    //        isDeviceRotating = NO;
-    //        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil message:@"地址解析错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    //        [alert show];
-    //        [self hideHUD];
-    //    }
-}
-
-/**
- * 视频播放完成
- */
-- (void)playerFinishedPlay {
-    if (playbackObserver) {
-        [self.player.moviePlayer removeTimeObserver:playbackObserver];
-        playbackObserver = nil;
-    }
-    [self.player removeObserver];
-}
-
-#pragma mark -
+/***********************************************播放器的创建和使用****************************************************/
 
 /**
  *  创建播放器UI
@@ -1040,14 +966,6 @@ typedef enum{
     self.topView.userInteractionEnabled = YES;
     self.topView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.topView];
-    
-//    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    backBtn.frame = CGRectMake(4, 0, 35, 35);
-//    [backBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    backBtn.tag = 101;
-//    [backBtn setEnlargeEdgeWithTop:10 right:15 bottom:10 left:10];
-//    [backBtn setImage:[UIImage imageNamed:@"rm_backup"] forState:UIControlStateNormal];
-//    [self.topView addSubview:backBtn];
     
     if (!self.belowView){
         self.belowView = [[UIImageView alloc] init];
@@ -1110,10 +1028,7 @@ typedef enum{
     self.detailTime.backgroundColor = [UIColor clearColor];
     [self.belowView addSubview:self.detailTime];
     self.detailTime.hidden = YES;
-    
-//    self.cacheProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(182, 21, ScreenHeight - 324, 30)];
-//    [self.belowView addSubview:self.cacheProgress];
-    
+        
     if (!self.progressBar){
         self.progressBar = [[UISlider alloc] init];
     }
@@ -1127,22 +1042,6 @@ typedef enum{
     [self.progressBar addTarget:self action:@selector(progressBarChanged:) forControlEvents:UIControlEventValueChanged];
     [self.belowView addSubview:self.progressBar];
     
-    if (!self.selectEpisodeBtn){
-        self.selectEpisodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    }
-    self.selectEpisodeBtn.frame = CGRectMake(ScreenHeight - 40, 22, 67/2, 33/2);
-    [self.selectEpisodeBtn setImage:[UIImage imageNamed:@"rm_choose_btn"] forState:UIControlStateNormal];
-    [self.selectEpisodeBtn setEnlargeEdgeWithTop:10 right:10 bottom:20 left:10];
-    [self.selectEpisodeBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.selectEpisodeBtn.tag = 104;
-    [self.belowView addSubview:self.selectEpisodeBtn];
-    
-//    if (self.dataModel.video_type.integerValue == 1){
-        self.selectEpisodeBtn.hidden = YES;
-//    }else{
-//        self.selectEpisodeBtn.hidden = NO;
-//    }
-
     if (!self.zoomBtn){
         self.zoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     }
@@ -1152,93 +1051,6 @@ typedef enum{
     self.zoomBtn.tag = 105;
     [self.zoomBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.belowView addSubview:self.zoomBtn];
-}
-
-/**
- *  创建选集UI
- */
-- (void)loadSelectEpisodeView {
-//    self.selectEpisodeView = [[UIView alloc] init];
-//    self.selectEpisodeView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-//    self.selectEpisodeView.hidden = YES;
-//    [self.view addSubview:self.selectEpisodeView];
-//    
-//    self.selectEpisodeScr = [[UIScrollView alloc] init];
-//    self.selectEpisodeScr.delegate = self;
-//    self.selectEpisodeScr.backgroundColor = [UIColor clearColor];
-//    [self.selectEpisodeView addSubview:self.selectEpisodeScr];
-//    
-//    int value = (int)self.playModelArr.count;
-//    
-//    int Horizontal = 3;             //横排
-//    int Vertical = value/3;         //竖排
-//    BOOL isRemainder = NO;          //是否有余数
-//    
-//    if (value%3 != 0){
-//        isRemainder = YES;
-//        Vertical ++;
-//    }
-//    
-//    self.selectEpisodeView.frame = CGRectMake(ScreenHeight, 44, 240, ScreenWidth - 104);
-//    self.selectEpisodeScr.frame = CGRectMake(0, 0, 240, ScreenWidth - 104);
-//    //TODO: 滚动
-//    self.selectEpisodeScr.contentSize = CGSizeMake(240, 20 + 50*Vertical);
-//    
-//    int cycleValue=0;
-//    for (int i=0; i<Vertical; i++) {
-//        for (int j=0;j<Horizontal; j++){
-//            if (cycleValue == self.playModelArr.count){
-//                return;
-//            }
-//            RMModel * model = [self.playModelArr objectAtIndex:cycleValue];
-//            RMEpisodeView * spisodeView = [[RMEpisodeView alloc] initWithFrame:CGRectMake(15 + 75*j, 20 + 50*i, 60, 30)];
-//            spisodeView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
-//            spisodeView.tag = cycleValue;
-//            [spisodeView.layer setCornerRadius:15.0];
-//            [spisodeView loadEpisodeViewWithNumber:[NSString stringWithFormat:@"%@",model.EpisodeValue]];
-//            [spisodeView addTarget:self WithSelector:@selector(ChooseSpisode:)];
-//            [self.selectEpisodeScr addSubview:spisodeView];
-//            cycleValue++;
-//        }
-//    }
-}
-
-- (void)ChooseSpisode:(RMEpisodeView *)spisodeView {
-//    RMModel * model = [self.playModelArr objectAtIndex:spisodeView.tag];
-//    [self.player replaceCurrentItem];
-//    if (playbackObserver) {
-//        [self.player.moviePlayer removeTimeObserver:playbackObserver];
-//        playbackObserver = nil;
-//    }
-//    [self.player removeObserver];
-//    [self showHUD];
-//    if (self.videoType == MovieType) {
-//    }else{
-//        self.currentPlayOrder = spisodeView.tag;
-//        [self playerWithURL:model.url];
-//        NSArray *tickerStrings;
-//        CGSize  titleSize;
-//        
-//        tickerStrings = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",model.title], nil];
-//        titleSize = [RMUtilityFunc boundingRectWithSize:CGSizeMake(100000, 100000) font:[UIFont systemFontOfSize:22.0] text:model.title];
-//        
-//        if (titleSize.width > ScreenHeight - 60){
-//            self.videoTitleCycle.frame = CGRectMake(40, 0, titleSize.width, 36);
-//            [self.videoTitleCycle setDirection:JHTickerDirectionLTR];
-//            [self.videoTitleCycle setTickerStrings:tickerStrings];
-//            [self.videoTitleCycle setTickerSpeed:30.0f];
-//            [self.videoTitleCycle start];
-//            self.videoTitle.hidden = YES;
-//            self.videoTitleCycle.hidden = NO;
-//            self.isCycle = YES;
-//        }else{
-//            self.videoTitle.text = model.title;
-//            self.videoTitle.hidden = NO;
-//            self.videoTitleCycle.hidden = YES;
-//            self.isCycle = NO;
-//        }
-//    }
-    [self gestureRecognizerOneTapMetohd];
 }
 
 /**
@@ -1253,14 +1065,101 @@ typedef enum{
     [self.view addSubview:self.touchView];
 }
 
-#pragma mark - 自动隐藏工具条操作
+#pragma mark - 创建 AVPlayer UI
+- (void)loadHUD {
+    if (!self.loadingView){
+        self.loadingView = [[RMLoadingView alloc] init];
+    }
+    self.loadingView.frame = CGRectMake(ScreenHeight/2-20, ScreenWidth/2-20, 40, 40);
+    [self.view addSubview:self.loadingView];
+    [self.loadingView startAnimation];
+    
+    if (!self.customHUD){
+        self.customHUD = [[NSBundle mainBundle] loadNibNamed:@"RMCustomSVProgressHUD" owner:self options:nil].lastObject;
+    }
+    self.customHUD.hidden = YES;
+    [self.view addSubview:self.customHUD];
+}
+- (void)showHUD {
+    self.loadingView.hidden = NO;
+    [self.loadingView startAnimation];
+}
 
+- (void)hideHUD {
+    self.loadingView.hidden = YES;
+    [self.loadingView stopAnimation];
+}
+
+#pragma mark - 自动隐藏工具条操作
 /**
  *  开始记时
  */
 - (void)StartTimerWithAutomaticHidenToolView {
     [self performSelector:@selector(automaticHidenToolView) withObject:nil afterDelay:3.0];
 }
+- (void)loadMediaPlayerView {
+    if (!self.player) {
+        self.player = [[RMCustomVideoPlayerView alloc] init];
+        self.player.RMCustomVideoplayerDeleagte = self;
+        self.player.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:self.player];
+    }
+}
+- (void)playerWithURL:(NSString *)url {
+    [self.player pause];
+    //    NSString* pathExtention = [url pathExtension];
+    //    if([pathExtention isEqualToString:@"mp4"]) {
+    isDeviceRotating = YES;
+    self.currentPlayState = 1;
+    
+    NSURL * _URL = [NSURL URLWithString:@"http://103.41.142.44/youku/697208A06A8497D6272973F1B/03002001005439CC9580451A5769AC4BF48DC8-145C-4B0A-359C-FD5DD83F2B8D.mp4"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.player contentURL:_URL];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showHUD];
+            [self.player play];
+            CMTime interval = CMTimeMake(33, 1000);
+            __weak __typeof(self) weakself = self;
+            //    if (playbackObserver) {
+            //        [self.player.moviePlayer removeTimeObserver:playbackObserver];
+            //        playbackObserver = nil;
+            //    }
+            playbackObserver = [self.player.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
+                CMTime endTime = CMTimeConvertScale (weakself.player.moviePlayer.currentItem.asset.duration, weakself.player.moviePlayer.currentTime.timescale, kCMTimeRoundingMethod_RoundHalfAwayFromZero);
+                if (CMTimeCompare(endTime, kCMTimeZero) != 0) {
+                    double normalizedTime = (double) weakself.player.moviePlayer.currentTime.value / (double) endTime.value;
+                    weakself.progressBar.value = normalizedTime;
+                }
+                weakself.goneTime .text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentTime];
+                [weakself.goneTime sizeToFit];
+                weakself.totalTime.text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentItem.asset.duration];
+                [weakself.totalTime sizeToFit];
+                weakself.customHUD.totalTimeString = weakself.totalTime.text;
+                weakself.detailTime.text = [NSString stringWithFormat:@"%@/%@",weakself.goneTime.text,weakself.totalTime.text];
+            }];
+        });
+    });
+   
+    
+    if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait){
+        [self.playBtn setImage:[UIImage imageNamed:@"rm_playzoom_btn"] forState:UIControlStateNormal];
+    }else{
+        [self.playBtn setImage:[UIImage imageNamed:@"rm_play_btn"] forState:UIControlStateNormal];
+    }
+    
+}
+
+/**
+ * 视频播放完成
+ */
+- (void)playerFinishedPlay {
+    if (playbackObserver) {
+        [self.player.moviePlayer removeTimeObserver:playbackObserver];
+        playbackObserver = nil;
+    }
+    [self.player removeObserver];
+}
+
 
 /**
  *  刷新时间
@@ -1361,7 +1260,9 @@ typedef enum{
 
 - (void)gestureRecognizerStateBegan {
     self.positionIdentifier = @"none";
-    self.fastForwardOrRetreatQuickly = self.progressBar.value * (double)self.player.moviePlayer.currentItem.asset.duration.value/(double)self.player.moviePlayer.currentItem.asset.duration.timescale;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.fastForwardOrRetreatQuickly = self.progressBar.value * (double)self.player.moviePlayer.currentItem.asset.duration.value/(double)self.player.moviePlayer.currentItem.asset.duration.timescale;
+    });
     [self RefreshTimerWithAutomaticHidenToolView];
 }
 
@@ -1446,39 +1347,18 @@ typedef enum{
         }
         case 103:{//下一集
             [self replaceAVPlayer];
-            [self showHUD];
             for (NSInteger i=0; i<[self.dataModel.playurls count]; i++){
                 if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"] isEqualToString:self.currentSelectType]){
                     if (self.currentPlayVideoOrder > [[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count]){
                         [self showHUDWithImage:@"videoIsAllPlayed" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                     }else{
+                        [self replaceAVPlayer];
                         [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:self.currentPlayVideoOrder] objectForKey:@"m_down_url"]];
                     }
                     break;
                 }
             }
             
-//            NSArray *tickerStrings;
-//            CGSize  titleSize;
-//            
-//            tickerStrings = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",self.dataModel.name], nil];
-//            titleSize = [UtilityFunc boundingRectWithSize:CGSizeMake(100000, 100000) font:[UIFont systemFontOfSize:16.0] text:self.dataModel.name];
-//            
-//            if (titleSize.width > ScreenHeight - 10){
-//                self.videoTitleCycle.frame = CGRectMake(40, 0, titleSize.width, 36);
-//                [self.videoTitleCycle setDirection:JHTickerDirectionLTR];
-//                [self.videoTitleCycle setTickerStrings:tickerStrings];
-//                [self.videoTitleCycle setTickerSpeed:30.0f];
-//                [self.videoTitleCycle start];
-//                self.videoTitle.hidden = YES;
-//                self.videoTitleCycle.hidden = NO;
-//                self.isCycle = YES;
-//            }else{
-//                self.videoTitle.text = self.dataModel.name;
-//                self.videoTitle.hidden = NO;
-//                self.videoTitleCycle.hidden = YES;
-//                self.isCycle = NO;
-//            }
             [self hideHUD];
             [self RefreshTimerWithAutomaticHidenToolView];
             break;
@@ -1690,6 +1570,8 @@ typedef enum{
     } completion:^(BOOL finished) {
     }];
 }
+
+/*********************************************以上均为播放器内容**********************************************************/
 
 - (BOOL)isContainsModel:(NSMutableArray *)dataArray modelName:(NSString *)string{
     for(RMPublicModel *tmpModel in dataArray){

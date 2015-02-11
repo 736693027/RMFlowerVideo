@@ -28,8 +28,28 @@
     }if (seconds<=0) {
         seconds = 0;
     }
-    self.beginLable.text = [NSString stringWithFormat:@"%d:%d",minutes,seconds];
-    self.totalLable.text = [NSString stringWithFormat:@"  /  %@",self.totalTimeString];
+    int totla = [self timeStringChangeToInt:self.totalTimeString];
+    if(time<totla){
+        if(minutes>0&&minutes<10){
+            if(seconds>0&&seconds<10){
+                self.beginLable.text = [NSString stringWithFormat:@"0%d:0%d",minutes,seconds];
+            }
+            else{
+                self.beginLable.text = [NSString stringWithFormat:@"0%d:%d",minutes,seconds];
+            }
+        }else{
+            if(seconds>0&&seconds<10){
+                self.beginLable.text = [NSString stringWithFormat:@"%d:0%d",minutes,seconds];
+            }
+            else{
+                self.beginLable.text = [NSString stringWithFormat:@"%d:%d",minutes,seconds];
+            }
+        }
+    }else{
+        self.beginLable.text = [NSString stringWithFormat:@"%@",self.totalTimeString];
+    }
+    
+    self.totalLable.text = [NSString stringWithFormat:@"%@",self.totalTimeString];
     
     [self performSelector:@selector(hideCustomHUD) withObject:nil afterDelay:2.0];
 }
@@ -45,5 +65,11 @@
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideCustomHUD) object:nil];
     }];
 }
-
+- (int)timeStringChangeToInt:(NSString *)timeString{
+    NSString *mm = [timeString substringToIndex:[timeString rangeOfString:@":"].location];
+    int minutes = [mm intValue]*60;
+    NSString *ss = [timeString substringFromIndex:[timeString rangeOfString:@":"].location+1];
+    int seconds = [ss intValue];
+    return minutes+seconds;
+}
 @end

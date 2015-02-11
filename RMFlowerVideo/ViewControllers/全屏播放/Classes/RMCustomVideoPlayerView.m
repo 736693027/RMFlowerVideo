@@ -48,6 +48,7 @@ static void *CustomVideoPlayerViewStatusObservationContext = &CustomVideoPlayerV
 }
 
 - (void)contentURL:(NSURL *)contentURL {
+    
     self.customVideoplayerCtl = self.RMCustomVideoplayerDeleagte;
 
     self.playerItem = [AVPlayerItem playerItemWithURL:contentURL];
@@ -55,9 +56,8 @@ static void *CustomVideoPlayerViewStatusObservationContext = &CustomVideoPlayerV
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayer];
     [self.playerLayer setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [self.moviePlayer seekToTime:kCMTimeZero];
-    [self.layer addSublayer:self.playerLayer];
     self.contentURL = contentURL;
-    
+
     [self.playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];// 监听status属性
     [self.playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];// 监听loadedTimeRanges属性
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerFinishedPlaying) name:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
@@ -88,6 +88,7 @@ static void *CustomVideoPlayerViewStatusObservationContext = &CustomVideoPlayerV
  *  开始播放
  */
 -(void)play {
+    [self.layer addSublayer:self.playerLayer];
     [self.moviePlayer play];
     self.isPlaying = YES;
 }
