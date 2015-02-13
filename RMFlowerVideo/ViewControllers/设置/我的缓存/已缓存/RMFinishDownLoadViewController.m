@@ -72,30 +72,6 @@
     //电视机下载详情页面中，编辑完电视机的时候，该界面要进行更新
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(takeTheDataFromDataBase) name:kTVSeriesDetailDeleteFinish object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downLoadSuccessUpdate) name:@"DownLoadSuccess" object:nil];
-    
-    /***********************************************/
-    
-//    RMPublicModel *model = [[RMPublicModel alloc] init];
-//    model.pic = @"http://vodimg.runmobile.cn/images/48/480fd9e9e78e63f206af98b71572c6b6.jpg";
-//    model.name = @"电视剧_分手_50";
-//    model.actors = @"邓超，杨幂";
-//    model.directors = @"邓超";
-//    model.hits = @"123";
-//    model.totalMemory = @"31M";
-//    model.isTVModel = YES;
-//    [[Database sharedDatabase] insertDownLoadMovieItem:model];
-    
-    
-//    RMPublicModel *model1 = [[RMPublicModel alloc] init];
-//    model1.pic = @"http://vodimg.runmobile.cn/images/48/480fd9e9e78e63f206af98b71572c6b6.jpg";
-//    model1.name = @"一个人的武林";
-//    model1.actors = @"王宝强，甄子丹";
-//    model1.directors = @"刘伟强";
-//    model1.hits = @"123";
-//    model1.totalMemory = @"31M";
-//    model1.isTVModel = NO;
-//    [[Database sharedDatabase] insertDownLoadMovieItem:model1];
-    /***********************************************/
 }
 
 - (void)downLoadSuccessUpdate{

@@ -13,7 +13,6 @@
 		1D1F00D21A55960A00742F1E /* RMRankingTVViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D1F00D01A55960A00742F1E /* RMRankingTVViewController.xib */; };
 		1D1F00D61A55963200742F1E /* RMRankingVarietyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1F00D41A55963200742F1E /* RMRankingVarietyViewController.m */; };
 		1D1F00D71A55963200742F1E /* RMRankingVarietyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D1F00D51A55963200742F1E /* RMRankingVarietyViewController.xib */; };
-		1D25A3921A5545800095974E /* RMLoadingLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D25A3911A5545800095974E /* RMLoadingLaunchView.m */; };
 		1D25A3AB1A5578890095974E /* RMHomeTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D25A3991A5578890095974E /* RMHomeTVViewController.m */; };
 		1D25A3AC1A5578890095974E /* RMHomeTVViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D25A39A1A5578890095974E /* RMHomeTVViewController.xib */; };
 		1D25A3AD1A5578890095974E /* RMHomeMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D25A39D1A5578890095974E /* RMHomeMovieViewController.m */; };
@@ -128,7 +127,6 @@
 		1DADF8B51A615CF4009F8189 /* UITextField+LimitLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DADF8B41A615CF4009F8189 /* UITextField+LimitLength.m */; };
 		1DB35EAE1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAC1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib */; };
 		1DB35EAF1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */; };
-		1DBC3F321A7F2646000FEFF1 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBC3F311A7F2646000FEFF1 /* libFlurry_6.0.0.a */; };
 		1DBC3F351A806195000FEFF1 /* libPushSDK-1.8.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBC3F341A806195000FEFF1 /* libPushSDK-1.8.2.a */; };
 		1DD9F1AD1A89DD15006723A4 /* RMCustomSVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9F1741A89DD15006723A4 /* RMCustomSVProgressHUD.m */; };
 		1DD9F1AE1A89DD15006723A4 /* RMCustomSVProgressHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD9F1751A89DD15006723A4 /* RMCustomSVProgressHUD.xib */; };
@@ -329,6 +327,12 @@
 		919F68F01A5A2FC1003E6C08 /* RMMoreAPPTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919F68EE1A5A2FC1003E6C08 /* RMMoreAPPTableViewCell.xib */; };
 		919F68F51A5A6919003E6C08 /* RMWatchRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 919F68F31A5A6919003E6C08 /* RMWatchRecordTableViewCell.m */; };
 		919F68F61A5A6919003E6C08 /* RMWatchRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919F68F41A5A6919003E6C08 /* RMWatchRecordTableViewCell.xib */; };
+		91A280531A8DE942000C6853 /* RMLoadingLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A2804F1A8DE942000C6853 /* RMLoadingLaunchView.m */; };
+		91A280541A8DE942000C6853 /* RMLoadingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A280511A8DE942000C6853 /* RMLoadingWebViewController.m */; };
+		91A280551A8DE942000C6853 /* RMLoadingWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A280521A8DE942000C6853 /* RMLoadingWebViewController.xib */; };
+		91A280581A8DF3B2000C6853 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A280561A8DF3B2000C6853 /* Crashlytics.framework */; };
+		91A280591A8DF3B2000C6853 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A280571A8DF3B2000C6853 /* Fabric.framework */; };
+		91A2805B1A8DF613000C6853 /* libFlurry_5.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A2805A1A8DF613000C6853 /* libFlurry_5.4.0.a */; };
 		91B4C4C61A52968F00854435 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C4BD1A52968F00854435 /* FMDatabase.m */; };
 		91B4C4C71A52968F00854435 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C4BF1A52968F00854435 /* FMDatabaseAdditions.m */; };
 		91B4C4C81A52968F00854435 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C4C11A52968F00854435 /* FMDatabasePool.m */; };
@@ -359,8 +363,6 @@
 		91B4C57C1A529EE100854435 /* RMBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C5741A529EE100854435 /* RMBaseView.m */; };
 		91B4C57D1A529EE100854435 /* RMImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C5761A529EE100854435 /* RMImageView.m */; };
 		91B4C57E1A529EE100854435 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C5781A529EE100854435 /* UIButton+EnlargeEdge.m */; };
-		91C9204D1A7601B10065E197 /* RMLoadingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C9204B1A7601B10065E197 /* RMLoadingWebViewController.m */; };
-		91C9204E1A7601B10065E197 /* RMLoadingWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C9204C1A7601B10065E197 /* RMLoadingWebViewController.xib */; };
 		91C920551A7610820065E197 /* Default_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C920511A7610820065E197 /* Default_4.png */; };
 		91C920561A7610820065E197 /* Default_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C920521A7610820065E197 /* Default_5.png */; };
 		91C920571A7610820065E197 /* Default_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C920531A7610820065E197 /* Default_6.png */; };
@@ -371,8 +373,6 @@
 		91E4576C1A58E72400934D01 /* RMSearchBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E4576A1A58E72400934D01 /* RMSearchBaseViewController.xib */; };
 		91E91D9C1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */; };
 		91E91D9D1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */; };
-		91E91DC31A83573D0093C5AB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E91DC11A83573D0093C5AB /* Crashlytics.framework */; };
-		91E91DC41A83573D0093C5AB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E91DC21A83573D0093C5AB /* Fabric.framework */; };
 		91F3998B1A5937EE002142CD /* RMRankMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F399891A5937EE002142CD /* RMRankMovieCell.m */; };
 		91F3998C1A5937EE002142CD /* RMRankMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */; };
 		91F3998F1A59404C002142CD /* RMRankTableViewHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3998E1A59404C002142CD /* RMRankTableViewHeadView.m */; };
@@ -401,8 +401,6 @@
 		1D1F00D31A55963200742F1E /* RMRankingVarietyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRankingVarietyViewController.h; sourceTree = "<group>"; };
 		1D1F00D41A55963200742F1E /* RMRankingVarietyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRankingVarietyViewController.m; sourceTree = "<group>"; };
 		1D1F00D51A55963200742F1E /* RMRankingVarietyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankingVarietyViewController.xib; sourceTree = "<group>"; };
-		1D25A3901A5545800095974E /* RMLoadingLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoadingLaunchView.h; sourceTree = "<group>"; };
-		1D25A3911A5545800095974E /* RMLoadingLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoadingLaunchView.m; sourceTree = "<group>"; };
 		1D25A3981A5578890095974E /* RMHomeTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMHomeTVViewController.h; sourceTree = "<group>"; };
 		1D25A3991A5578890095974E /* RMHomeTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMHomeTVViewController.m; sourceTree = "<group>"; };
 		1D25A39A1A5578890095974E /* RMHomeTVViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMHomeTVViewController.xib; sourceTree = "<group>"; };
@@ -562,7 +560,6 @@
 		1DB35EAC1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMVideoOrStarCell_6.xib; sourceTree = "<group>"; };
 		1DB35EAD1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMVideoOrStarCell_6p.xib; sourceTree = "<group>"; };
 		1DBC3F301A7F2646000FEFF1 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		1DBC3F311A7F2646000FEFF1 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		1DBC3F331A806195000FEFF1 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		1DBC3F341A806195000FEFF1 /* libPushSDK-1.8.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.2.a"; sourceTree = "<group>"; };
 		1DD9F1731A89DD15006723A4 /* RMCustomSVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMCustomSVProgressHUD.h; sourceTree = "<group>"; };
@@ -879,6 +876,14 @@
 		919F68F21A5A6919003E6C08 /* RMWatchRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMWatchRecordTableViewCell.h; sourceTree = "<group>"; };
 		919F68F31A5A6919003E6C08 /* RMWatchRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMWatchRecordTableViewCell.m; sourceTree = "<group>"; };
 		919F68F41A5A6919003E6C08 /* RMWatchRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMWatchRecordTableViewCell.xib; sourceTree = "<group>"; };
+		91A2804E1A8DE942000C6853 /* RMLoadingLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoadingLaunchView.h; sourceTree = "<group>"; };
+		91A2804F1A8DE942000C6853 /* RMLoadingLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoadingLaunchView.m; sourceTree = "<group>"; };
+		91A280501A8DE942000C6853 /* RMLoadingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoadingWebViewController.h; sourceTree = "<group>"; };
+		91A280511A8DE942000C6853 /* RMLoadingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoadingWebViewController.m; sourceTree = "<group>"; };
+		91A280521A8DE942000C6853 /* RMLoadingWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoadingWebViewController.xib; sourceTree = "<group>"; };
+		91A280561A8DF3B2000C6853 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
+		91A280571A8DF3B2000C6853 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../Fabric.framework; sourceTree = "<group>"; };
+		91A2805A1A8DF613000C6853 /* libFlurry_5.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_5.4.0.a; sourceTree = "<group>"; };
 		91B4C4BC1A52968F00854435 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		91B4C4BD1A52968F00854435 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		91B4C4BE1A52968F00854435 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -920,9 +925,6 @@
 		91B4C5761A529EE100854435 /* RMImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMImageView.m; sourceTree = "<group>"; };
 		91B4C5771A529EE100854435 /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		91B4C5781A529EE100854435 /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
-		91C9204A1A7601B10065E197 /* RMLoadingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoadingWebViewController.h; sourceTree = "<group>"; };
-		91C9204B1A7601B10065E197 /* RMLoadingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoadingWebViewController.m; sourceTree = "<group>"; };
-		91C9204C1A7601B10065E197 /* RMLoadingWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoadingWebViewController.xib; sourceTree = "<group>"; };
 		91C920511A7610820065E197 /* Default_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_4.png; sourceTree = "<group>"; };
 		91C920521A7610820065E197 /* Default_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_5.png; sourceTree = "<group>"; };
 		91C920531A7610820065E197 /* Default_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_6.png; sourceTree = "<group>"; };
@@ -935,8 +937,6 @@
 		91E4576A1A58E72400934D01 /* RMSearchBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMSearchBaseViewController.xib; sourceTree = "<group>"; };
 		91E91D9A1A8338B90093C5AB /* RMRankTableViewHeadView_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankTableViewHeadView_6.xib; sourceTree = "<group>"; };
 		91E91D9B1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankTableViewHeadView_6p.xib; sourceTree = "<group>"; };
-		91E91DC11A83573D0093C5AB /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
-		91E91DC21A83573D0093C5AB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		91F399881A5937EE002142CD /* RMRankMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRankMovieCell.h; sourceTree = "<group>"; };
 		91F399891A5937EE002142CD /* RMRankMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRankMovieCell.m; sourceTree = "<group>"; };
 		91F3998A1A5937EE002142CD /* RMRankMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRankMovieCell.xib; sourceTree = "<group>"; };
@@ -958,13 +958,13 @@
 				91B4C4F71A529A1700854435 /* StoreKit.framework in Frameworks */,
 				91B4C4F51A529A0500854435 /* QuartzCore.framework in Frameworks */,
 				91B4C4F31A5299FF00854435 /* SystemConfiguration.framework in Frameworks */,
+				91A2805B1A8DF613000C6853 /* libFlurry_5.4.0.a in Frameworks */,
 				91B4C4F11A5299F700854435 /* CFNetwork.framework in Frameworks */,
 				1DBC3F351A806195000FEFF1 /* libPushSDK-1.8.2.a in Frameworks */,
 				91B4C4EF1A5299EF00854435 /* CoreFoundation.framework in Frameworks */,
 				91B4C4ED1A5299E600854435 /* MobileCoreServices.framework in Frameworks */,
-				1DBC3F321A7F2646000FEFF1 /* libFlurry_6.0.0.a in Frameworks */,
 				91B4C4E51A5299A600854435 /* Security.framework in Frameworks */,
-				91E91DC41A83573D0093C5AB /* Fabric.framework in Frameworks */,
+				91A280591A8DF3B2000C6853 /* Fabric.framework in Frameworks */,
 				91B4C4E91A5299BF00854435 /* libz.dylib in Frameworks */,
 				91B4C4E71A5299B700854435 /* libiconv.dylib in Frameworks */,
 				9134567B1A5BF025005CAFB1 /* libSocialQQ.a in Frameworks */,
@@ -979,7 +979,7 @@
 				91B4C4D91A52995F00854435 /* ImageIO.framework in Frameworks */,
 				91B4C4D61A52995300854435 /* MediaPlayer.framework in Frameworks */,
 				91B4C4D71A52995300854435 /* MediaToolbox.framework in Frameworks */,
-				91E91DC31A83573D0093C5AB /* Crashlytics.framework in Frameworks */,
+				91A280581A8DF3B2000C6853 /* Crashlytics.framework in Frameworks */,
 				91B4C4D01A5298FE00854435 /* libsqlite3.dylib in Frameworks */,
 				9134567E1A5BF025005CAFB1 /* libSocialWechat.a in Frameworks */,
 				9157DEDF1A58D42500692114 /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
@@ -1024,18 +1024,6 @@
 				1D1F00D51A55963200742F1E /* RMRankingVarietyViewController.xib */,
 			);
 			path = "综艺";
-			sourceTree = "<group>";
-		};
-		1D25A38F1A5545800095974E /* 广告启动页面 */ = {
-			isa = PBXGroup;
-			children = (
-				1D25A3901A5545800095974E /* RMLoadingLaunchView.h */,
-				1D25A3911A5545800095974E /* RMLoadingLaunchView.m */,
-				91C9204A1A7601B10065E197 /* RMLoadingWebViewController.h */,
-				91C9204B1A7601B10065E197 /* RMLoadingWebViewController.m */,
-				91C9204C1A7601B10065E197 /* RMLoadingWebViewController.xib */,
-			);
-			path = "广告启动页面";
 			sourceTree = "<group>";
 		};
 		1D25A3971A5578890095974E /* 电视剧 */ = {
@@ -1842,8 +1830,8 @@
 		913669811A525267001FD769 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				91A2804D1A8DE942000C6853 /* 启动页面 */,
 				1DD9F1711A89DD15006723A4 /* 全屏播放 */,
-				1D25A38F1A5545800095974E /* 广告启动页面 */,
 				9136699B1A5255FF001FD769 /* 首页 */,
 				9136699A1A5255FF001FD769 /* 排行榜 */,
 				1D3CF4EA1A63BAE7006EA5E6 /* 特辑 */,
@@ -2028,7 +2016,7 @@
 			isa = PBXGroup;
 			children = (
 				1DBC3F301A7F2646000FEFF1 /* Flurry.h */,
-				1DBC3F311A7F2646000FEFF1 /* libFlurry_6.0.0.a */,
+				91A2805A1A8DF613000C6853 /* libFlurry_5.4.0.a */,
 			);
 			path = Flurry;
 			sourceTree = "<group>";
@@ -2276,6 +2264,18 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		91A2804D1A8DE942000C6853 /* 启动页面 */ = {
+			isa = PBXGroup;
+			children = (
+				91A2804E1A8DE942000C6853 /* RMLoadingLaunchView.h */,
+				91A2804F1A8DE942000C6853 /* RMLoadingLaunchView.m */,
+				91A280501A8DE942000C6853 /* RMLoadingWebViewController.h */,
+				91A280511A8DE942000C6853 /* RMLoadingWebViewController.m */,
+				91A280521A8DE942000C6853 /* RMLoadingWebViewController.xib */,
+			);
+			path = "启动页面";
+			sourceTree = "<group>";
+		};
 		91B4C4BB1A52968F00854435 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -2296,8 +2296,8 @@
 		91B4C4D11A52992900854435 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91E91DC11A83573D0093C5AB /* Crashlytics.framework */,
-				91E91DC21A83573D0093C5AB /* Fabric.framework */,
+				91A280561A8DF3B2000C6853 /* Crashlytics.framework */,
+				91A280571A8DF3B2000C6853 /* Fabric.framework */,
 				91695C391A5F6637007617C5 /* CoreGraphics.framework */,
 				91B4C4F61A529A1700854435 /* StoreKit.framework */,
 				91B4C4F41A529A0500854435 /* QuartzCore.framework */,
@@ -2396,7 +2396,7 @@
 				913669541A52522A001FD769 /* Sources */,
 				913669551A52522A001FD769 /* Frameworks */,
 				913669561A52522A001FD769 /* Resources */,
-				91E91D9E1A834D260093C5AB /* ShellScript */,
+				91A280481A8DE8B1000C6853 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2471,6 +2471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DD9F1CE1A89DD15006723A4 /* rm_playzoom_btn@3x.png in Resources */,
+				91A280551A8DE942000C6853 /* RMLoadingWebViewController.xib in Resources */,
 				1D260DD61A5E2CE600D6D565 /* schemeApps.json in Resources */,
 				1DD9F1C91A89DD15006723A4 /* rm_pausezoom_btn@2x.png in Resources */,
 				91F3998C1A5937EE002142CD /* RMRankMovieCell.xib in Resources */,
@@ -2545,7 +2546,6 @@
 				1DD9F1D21A89DD15006723A4 /* rm_sliderdot@3x.png in Resources */,
 				1D3CF5121A63BAE7006EA5E6 /* RMChannelTeleplayViewController.xib in Resources */,
 				913456251A5BD284005CAFB1 /* pull_loading@2x.png in Resources */,
-				91C9204E1A7601B10065E197 /* RMLoadingWebViewController.xib in Resources */,
 				1DAB4FAB1A72231A00F9310A /* source_leshi_big@3x.png in Resources */,
 				910250271A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib in Resources */,
 				91366D861A526D5B001FD769 /* loading.wav in Resources */,
@@ -2671,7 +2671,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		91E91D9E1A834D260093C5AB /* ShellScript */ = {
+		91A280481A8DE8B1000C6853 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2693,7 +2693,6 @@
 			files = (
 				1DD9F1D71A89DD15006723A4 /* RMTouchVIew.m in Sources */,
 				91366B8E1A5269A5001FD769 /* SDImageCache.m in Sources */,
-				91C9204D1A7601B10065E197 /* RMLoadingWebViewController.m in Sources */,
 				1D260DDF1A5E574B00D6D565 /* AFAudioRouter.m in Sources */,
 				1D3CF5131A63BAE7006EA5E6 /* RMChannelVarietyViewController.m in Sources */,
 				1D632E5C1A591E63002674DF /* RMAboutViewController.m in Sources */,
@@ -2717,7 +2716,6 @@
 				91366B481A5269A5001FD769 /* AFURLSessionManager.m in Sources */,
 				1D260DD51A5E2CE600D6D565 /* iHasApp.m in Sources */,
 				91B4C57B1A529EE100854435 /* RMBaseTextView.m in Sources */,
-				1D25A3921A5545800095974E /* RMLoadingLaunchView.m in Sources */,
 				91F3998F1A59404C002142CD /* RMRankTableViewHeadView.m in Sources */,
 				91366B981A5269A5001FD769 /* UIImage+WebP.m in Sources */,
 				1D632E6D1A593C69002674DF /* RMLoginView.m in Sources */,
@@ -2749,6 +2747,7 @@
 				91366BCA1A526C63001FD769 /* Reachability.m in Sources */,
 				91366B901A5269A5001FD769 /* SDWebImageDecoder.m in Sources */,
 				1D632EA61A5A94FB002674DF /* RMPlayCreatorViewController.m in Sources */,
+				91A280541A8DE942000C6853 /* RMLoadingWebViewController.m in Sources */,
 				913456271A5BD284005CAFB1 /* RefreshControl.m in Sources */,
 				913669A01A525622001FD769 /* RMHomeViewController.m in Sources */,
 				1D632E3E1A591DA5002674DF /* RMMyCollectionViewController.m in Sources */,
@@ -2840,6 +2839,7 @@
 				9134560B1A5BD22A005CAFB1 /* RMTagList.m in Sources */,
 				913456241A5BD284005CAFB1 /* CustomRefreshView.m in Sources */,
 				1D25A3AD1A5578890095974E /* RMHomeMovieViewController.m in Sources */,
+				91A280531A8DE942000C6853 /* RMLoadingLaunchView.m in Sources */,
 				91B4C57A1A529EE100854435 /* RMBaseTextField.m in Sources */,
 				1DD9F1B31A89DD15006723A4 /* RMPlayer.m in Sources */,
 				919CC4381A67B4DE003CB686 /* RMPlayTVEpisodeViewController.m in Sources */,
@@ -2904,8 +2904,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2925,7 +2925,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "39d5981f-d436-4eef-87d2-8a65abda8ec6";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2947,8 +2947,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2961,7 +2961,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "39d5981f-d436-4eef-87d2-8a65abda8ec6";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2972,8 +2972,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
@@ -2994,7 +2994,7 @@
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "39d5981f-d436-4eef-87d2-8a65abda8ec6";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
 			name = Debug;
@@ -3004,8 +3004,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
@@ -3026,7 +3026,7 @@
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "39d5981f-d436-4eef-87d2-8a65abda8ec6";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
 			name = Release;
