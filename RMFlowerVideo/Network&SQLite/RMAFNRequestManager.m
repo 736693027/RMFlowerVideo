@@ -919,14 +919,16 @@
     [manager POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 4001){
             RMPublicModel * model = [[RMPublicModel alloc] init];
-            model.loading_version = [[responseObject objectForKey:@"data"] objectForKey:@"loading_version"];
-            model.device = [[responseObject objectForKey:@"data"] objectForKey:@"device"];
-            model.pic = [[responseObject objectForKey:@"data"] objectForKey:@"pic"];
-            model.tpl = [[responseObject objectForKey:@"data"] objectForKey:@"tpl"];
-            model.video_id = [[responseObject objectForKey:@"data"] objectForKey:@"video_id"];
-            model.video_type = [[responseObject objectForKey:@"data"] objectForKey:@"video_type"];
-            model.source_url = [[responseObject objectForKey:@"data"] objectForKey:@"source_url"];
-            model.is_jump = [[responseObject objectForKey:@"data"] objectForKey:@"is_jump"];
+            if([[[responseObject objectForKey:@"data"] objectForKey:@"video_id"] isKindOfClass:[NSString class]]){
+                model.loading_version = [[responseObject objectForKey:@"data"] objectForKey:@"loading_version"];
+                model.device = [[responseObject objectForKey:@"data"] objectForKey:@"device"];
+                model.pic = [[responseObject objectForKey:@"data"] objectForKey:@"pic"];
+                model.tpl = [[responseObject objectForKey:@"data"] objectForKey:@"tpl"];
+                model.video_id = [[responseObject objectForKey:@"data"] objectForKey:@"video_id"];
+                model.video_type = [[responseObject objectForKey:@"data"] objectForKey:@"video_type"];
+                model.source_url = [[responseObject objectForKey:@"data"] objectForKey:@"source_url"];
+                model.is_jump = [[responseObject objectForKey:@"data"] objectForKey:@"is_jump"];
+            }
             if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithModel:)]){
                 [self.delegate requestFinishiDownLoadWithModel:model];
             }

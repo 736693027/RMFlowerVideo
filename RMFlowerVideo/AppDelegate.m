@@ -188,13 +188,17 @@
 
 - (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model {
     downLoadModel = model;
-    [self laodLoadingViewWithImage:model.pic];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        if (!isFadeOut){
-            [Animations fadeOut:loadingView andAnimationDuration:1 andWait:NO];
-        }
-    });
+    if(model.video_id!=nil){
+        [self laodLoadingViewWithImage:model.pic];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            if (!isFadeOut){
+                [Animations fadeOut:loadingView andAnimationDuration:1 andWait:NO];
+            }
+        });
+    }else{
+        [self loadMainViewCrollers];
+    }
 }
 
 - (void)requestError:(NSError *)error {

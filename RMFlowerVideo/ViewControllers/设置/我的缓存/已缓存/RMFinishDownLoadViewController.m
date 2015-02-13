@@ -169,6 +169,7 @@
                 }
             }
             [self.dataArray removeObjectAtIndex:indexPath.row];
+            [self.mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [cellEditingImageArray removeObjectAtIndex:indexPath.row];
         }else{
             NSString *removePath = [NSString stringWithFormat:@"%@/%@.mp4",document,model.name];
@@ -183,8 +184,6 @@
             [self.mainTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
             [cellEditingImageArray removeObjectAtIndex:indexPath.row];
         }
-        [self.dataArray removeObjectAtIndex:indexPath.row];
-        [self.mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         commitEditings(self.dataArray);
         if(self.dataArray.count>0){
             self.mainTableView.hidden = NO;
@@ -310,11 +309,11 @@
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:number.integerValue inSection:0];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
         [self.mainTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-        if (self.dataArray.count==0) {
-            self.mainTableView.hidden = YES;
-        }else{
-            self.mainTableView.hidden = NO;
-        }
+    }
+    if (self.dataArray.count==0) {
+        self.mainTableView.hidden = YES;
+    }else{
+        self.mainTableView.hidden = NO;
     }
     commitEditings(self.dataArray);
     [selectCellArray removeAllObjects];

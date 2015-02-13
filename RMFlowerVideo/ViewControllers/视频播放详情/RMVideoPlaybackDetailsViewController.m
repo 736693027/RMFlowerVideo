@@ -55,7 +55,15 @@ typedef enum{
     RequestType requestType;
     
     RMDownLoadingViewController *rmDownLoading;//下载视图
+    
+    NSTimer *upadtePlayMovieTime;
 }
+@property (nonatomic, copy) NSString *goneTimeString;
+@property (nonatomic, copy) NSString *totalTimeString;
+@property (nonatomic, copy) NSString *HUDTotalTimeString;
+@property (nonatomic, copy) NSString *detailTimeString;
+@property (nonatomic, assign) float progressValue;
+
 @property (nonatomic, strong) UIImageView * topView;                //上工具条
 @property (nonatomic, strong) UIView * selectEpisodeView;           //选集视图
 @property (nonatomic, strong) UIScrollView * selectEpisodeScr;      //选集视图中的ScrView
@@ -132,6 +140,9 @@ typedef enum{
         [self StartTimerWithAutomaticHidenToolView];
         [self loadHUD];
         isFirstViewAppear = NO;
+        upadtePlayMovieTime = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateMovieLoadTime) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]addTimer:upadtePlayMovieTime forMode:NSDefaultRunLoopMode];
+        [upadtePlayMovieTime setFireDate:[NSDate distantFuture]];
     }
     [self kDeviceOrientationDidChangeNotification:0];
     
@@ -184,20 +195,21 @@ typedef enum{
 }
 
 /*
- *  选集 刷新视频
+ *  ???:选集 刷新视频
  */
 - (void)videoEpisodeWithOrder:(NSInteger)order {
+    [upadtePlayMovieTime setFireDate:[NSDate distantFuture]];
     if (self.dataModel.video_type.integerValue == 2){   //电视剧
-        self.currentWatchVideo = order - 1;
+        self.currentWatchVideo = order;
         for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
             if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
                 [self replaceAVPlayer];
-                [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order-1)] objectForKey:@"m_down_url"]];
+                [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:(order)] objectForKey:@"m_down_url"]];
                 break;
             }
         }
     }else{  //综艺
-        self.currentWatchVideo = order - 1;
+        self.currentWatchVideo = order-1;
         for (NSInteger i=0; i<[self.dataModel.playurls count]; i++) {
             if ([self.currentSelectType isEqualToString:[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"source_type"]]){
                 [self replaceAVPlayer];
@@ -213,6 +225,7 @@ typedef enum{
  *  重新加载界面
  */
 - (void)reloadViewDidLoadWithVideo_id:(NSString *)video_id {
+    [upadtePlayMovieTime setFireDate:[NSDate distantFuture]];
     if (self.dataModel.video_type.integerValue == 2){   //电视剧
         self.currentWatchVideo = 0;
     }else if (self.dataModel.video_type.integerValue == 3){  //综艺
@@ -223,7 +236,7 @@ typedef enum{
 }
 
 /*
- *  点击 重新刷新播放当前类型下的视频资源
+ *  ???:点击 重新刷新播放当前类型下的视频资源
  */
 - (void)refreshPlayAddressMethod {
     [self replaceAVPlayer];
@@ -314,11 +327,10 @@ typedef enum{
     }
     [self hideHUD];
 }
-
+//???:播放失败
 - (void)refreshUIWhenPlayerFailed {
-    
+    [self replaceAVPlayer];
     [self hideHUD];
-    NSLog(@"failed");
     self.currentPlayState = 2;
     isDeviceRotating = YES;
     [self loadTopJumpWebUI];
@@ -347,7 +359,7 @@ typedef enum{
     [self showLoadingSimpleWithUserInteractionEnabled:YES];
     [self performSelector:@selector(delayJumpWeb) withObject:nil afterDelay:1.0];
 }
-
+//???:跳转web
 - (void)delayJumpWeb {
     isDeviceRotating = NO;
     NSLog(@"跳web");
@@ -538,7 +550,7 @@ typedef enum{
                         }
                         else{
                             RMPublicModel *model = [[RMPublicModel alloc] init];
-                            model.downLoadURL = [dict objectForKey:@"m_down_url"];//@"http://59.108.137.7/youku/69723328DAA318157B4FA43B37/030020010054D41F0CAF0E094C47B6626FB155-D3D3-2371-4606-DC0094CCCA1C.mp4";//[dict objectForKey:@"m_down_url"];
+                            model.downLoadURL = [dict objectForKey:@"m_down_url"];
                             model.name = self.dataModel.name;
                             model.downLoadState = @"等待缓存";
                             model.actors = self.dataModel.actor;
@@ -697,7 +709,7 @@ typedef enum{
 }
 
 /**
- *  type 1为电影   2为电视剧 或者 综艺
+ *  ???:type 1为电影   2为电视剧 或者 综艺
  */
 - (void)loadSourceTypeUIWithType:(NSInteger)type {
     switch (type) {
@@ -747,24 +759,23 @@ typedef enum{
 }
 
 /**
- *  切换视频播放源  刷新当前播放资源
- *  0:默认 1:优酷 2:迅雷 3:腾讯 4:乐视 5:pptv 6:爱奇艺 7:土豆 8:1905 9:华数 10.搜狐
+ *  ???:切换视频播放源  刷新当前播放资源
+ *  ???:0:默认 1:优酷 2:迅雷 3:腾讯 4:乐视 5:pptv 6:爱奇艺 7:土豆 8:1905 9:华数 10.搜狐
  */
 - (void)switchVideoSourceToCurrentType:(NSInteger)type {
+    [upadtePlayMovieTime setFireDate:[NSDate distantFuture]];
     [self.player replaceCurrentItem];
 //    if (playbackObserver) {
 //        [self.player.moviePlayer removeTimeObserver:playbackObserver];
 //        playbackObserver = nil;
 //    }
-//    [self.player removeObserver];
-//    [self showHUD];
-    
+
     self.currentSelectType = [NSString stringWithFormat:@"%ld",(long)type];
     
     if (self.dataModel.video_type.integerValue == 1){
         for (NSInteger i=0; i<[self.dataModel.playurl count]; i++){
             if ([[[self.dataModel.playurl objectAtIndex:i] objectForKey:@"source_type"] integerValue] == type){
-                [self replaceAVPlayer];
+//                [self replaceAVPlayer];
                 [self playerWithURL:[[self.dataModel.playurl objectAtIndex:i] objectForKey:@"m_down_url"]];
                 break;
             }
@@ -775,7 +786,7 @@ typedef enum{
                 if ([[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] count] == 0){
                     [self showHUDWithImage:@"videoIsNotAddress" imageFrame:CGRectMake(0, 0, 160, 40) duration:1.5 userInteractionEnabled:YES];
                 }else{
-                    [self replaceAVPlayer];
+//                    [self replaceAVPlayer];
                     [self playerWithURL:[[[[self.dataModel.playurls objectAtIndex:i] objectForKey:@"urls"] objectAtIndex:0] objectForKey:@"m_down_url"]];
                 }
                 break;
@@ -1105,37 +1116,39 @@ typedef enum{
         [self.view addSubview:self.player];
     }
 }
+
+//???:使用播放器播放视频
 - (void)playerWithURL:(NSString *)url {
+    [upadtePlayMovieTime setFireDate:[NSDate date]];
     [self.player pause];
     //    NSString* pathExtention = [url pathExtension];
     //    if([pathExtention isEqualToString:@"mp4"]) {
     isDeviceRotating = YES;
     self.currentPlayState = 1;
     
-    NSURL * _URL = [NSURL URLWithString:@"http://103.41.142.44/youku/697208A06A8497D6272973F1B/03002001005439CC9580451A5769AC4BF48DC8-145C-4B0A-359C-FD5DD83F2B8D.mp4"];
+    NSURL * _URL = [NSURL URLWithString:url];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.player contentURL:_URL];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self showHUD];
             [self.player play];
+            [self showHUD];
             CMTime interval = CMTimeMake(33, 1000);
             __weak __typeof(self) weakself = self;
             //    if (playbackObserver) {
             //        [self.player.moviePlayer removeTimeObserver:playbackObserver];
             //        playbackObserver = nil;
             //    }
-            playbackObserver = [self.player.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
+            playbackObserver = [self.player.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_global_queue(0,0) usingBlock: ^(CMTime time) {
+
                 CMTime endTime = CMTimeConvertScale (weakself.player.moviePlayer.currentItem.asset.duration, weakself.player.moviePlayer.currentTime.timescale, kCMTimeRoundingMethod_RoundHalfAwayFromZero);
                 if (CMTimeCompare(endTime, kCMTimeZero) != 0) {
                     double normalizedTime = (double) weakself.player.moviePlayer.currentTime.value / (double) endTime.value;
-                    weakself.progressBar.value = normalizedTime;
+                    weakself.progressValue = normalizedTime;
                 }
-                weakself.goneTime .text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentTime];
-                [weakself.goneTime sizeToFit];
-                weakself.totalTime.text = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentItem.asset.duration];
-                [weakself.totalTime sizeToFit];
-                weakself.customHUD.totalTimeString = weakself.totalTime.text;
-                weakself.detailTime.text = [NSString stringWithFormat:@"%@/%@",weakself.goneTime.text,weakself.totalTime.text];
+                weakself.goneTimeString = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentTime];
+                weakself.totalTimeString = [weakself getStringFromCMTime:weakself.player.moviePlayer.currentItem.asset.duration];
+                weakself.HUDTotalTimeString = weakself.totalTime.text;
+                weakself.detailTimeString = [NSString stringWithFormat:@"%@/%@",weakself.goneTime.text,weakself.totalTime.text];
             }];
         });
     });
@@ -1147,6 +1160,19 @@ typedef enum{
         [self.playBtn setImage:[UIImage imageNamed:@"rm_play_btn"] forState:UIControlStateNormal];
     }
     
+}
+- (void)updateMovieLoadTime{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(self.goneTimeString){
+            self.goneTime .text = self.goneTimeString;
+            [self.goneTime sizeToFit];
+            self.totalTime.text = self.totalTimeString;
+            [self.totalTime sizeToFit];
+            self.customHUD.totalTimeString = self.HUDTotalTimeString;
+            self.detailTime.text = self.detailTimeString;
+            self.progressBar.value = self.progressValue;
+        }
+    });
 }
 
 /**
