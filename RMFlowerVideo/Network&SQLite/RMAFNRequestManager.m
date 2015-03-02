@@ -24,19 +24,28 @@
 #define kPassWord       @"yu32uzy4"                 //接口密匙
 @interface RMAFNRequestManager (){
     UIImageView * HUDImage;
+    AFHTTPRequestOperationManager *manager;
 }
 
 @end
 
 @implementation RMAFNRequestManager
 
-- (AFHTTPRequestOperationManager *)creatAFNNetworkRequestManager{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//- (AFHTTPRequestOperationManager *)creatAFNNetworkRequestManager{
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.requestSerializer.timeoutInterval = 15;//超时
+//    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
+//    return manager;
+//}
+
+- (void)creatAFNNetworkRequestManager{
+    manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 15;//超时
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
-    return manager;
 }
+
 
 - (NSString *)urlPathadress:(NSInteger)tag{
     NSString *strUrl;
@@ -186,7 +195,7 @@
 
 - (void)getSlideListWithVideo_type:(NSString *)video_type {
     __weak RMAFNRequestManager *weekSelf = self;
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     self.downLoadType = Http_getSlideList;
     NSString *url = [self urlPathadress:Http_getSlideList];
     url = [NSString stringWithFormat:@"%@video_type=%@",url,video_type];
@@ -225,7 +234,7 @@
 
 - (void)getIndexVideoListWithVideoTpye:(NSString *)videoType searchPageNumber:(NSString *)page andLimit:(NSString *)limit {
     __weak RMAFNRequestManager *weekSelf = self;
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
      self.downLoadType = Http_getIndexVideoList;
     NSString *url = [self urlPathadress:Http_getIndexVideoList];
     url = [NSString stringWithFormat:@"%@video_type=%@&page=%@&limit=%@",url,videoType,page,limit];
@@ -267,7 +276,7 @@
 
 - (void)getStarListWithPage:(NSString *)page andLimit:(NSString *)limit {
     __weak RMAFNRequestManager *weekSelf = self;
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getStarList];
     url = [NSString stringWithFormat:@"%@page=%@&limit=%@",url,page,limit];
     url = [self encryptUrl:url];
@@ -300,7 +309,7 @@
 #pragma mark - 排行榜
 
 - (void)getTopListWithVideo_type:(NSString *)video_type {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getTopList];
     url = [NSString stringWithFormat:@"%@video_type=%@",url,video_type];
     url = [self encryptUrl:url];
@@ -346,7 +355,7 @@
 #pragma mark - 搜索
 
 - (void)searchWithKeyword:(NSString *)keyword Page:(NSString *)page {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_search];
     url = [NSString stringWithFormat:@"%@keyword=%@&page=%@",url,keyword,page];
     url = [self encryptUrl:url];
@@ -376,7 +385,7 @@
 #pragma mark - 搜索提示
 
 - (void)getSearchTipsWithWork:(NSString *)word {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getSearchTips];
     url = [NSString stringWithFormat:@"%@word=%@",url,word];
     url = [self encryptUrl:url];
@@ -406,7 +415,7 @@
 #pragma mark - 搜索推荐
 
 - (void)getSearchRecommend {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getSearchRecommend];
     url = [self encryptUrl:url];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -436,7 +445,7 @@
 #pragma mark - 明星详情
 
 - (void)getStarDetailWithTag_id:(NSString *)tag_id {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getStarDetail];
     url = [NSString stringWithFormat:@"%@tag_id=%@",url,tag_id];
     url = [self encryptUrl:url];
@@ -464,7 +473,7 @@
 #pragma mark - 视频详情
 
 - (void)getVideoDetailWithVideo_id:(NSString *)video_id Token:(NSString *)token {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getVideoDetailById];
     url = [NSString stringWithFormat:@"%@video_id=%@&token=%@",url,video_id,token];
     url = [self encryptUrl:url];
@@ -504,7 +513,7 @@
 #pragma mark - 添加收藏
 
 - (void)addFavoriteWithVideo_id:(NSString *)video_id andToken:(NSString *)token {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_addFavorite];
     url = [NSString stringWithFormat:@"%@token=%@&video_id=%@",url,token,video_id];
     url = [self encryptUrl:url];
@@ -528,7 +537,7 @@
 #pragma mark - 分集下载
 
 - (void)getDownloadUrlWithVideo_id:(NSString *)video_id {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getDownloadUrlById];
     url = [NSString stringWithFormat:@"%@video_id=%@",url,video_id];
     url = [self encryptUrl:url];
@@ -559,7 +568,7 @@
 #pragma mark - 特辑
 
 - (void)getSpecialTagWithPage:(NSString *)page {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getSpecialTag];
     url = [NSString stringWithFormat:@"%@page=%@",url,page];
     url = [self encryptUrl:url];
@@ -590,7 +599,7 @@
 #pragma mark - 特辑详情
 
 - (void)getSpecialTagDetailWithTag_id:(NSString *)tag_id andPage:(NSString *)page {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getSpecialTagDetail];
     url = [NSString stringWithFormat:@"%@tag_id=%@&page=%@",url,tag_id,page];
     url = [self encryptUrl:url];
@@ -628,7 +637,7 @@
 #pragma mark - 明星视频列表
 
 - (void)getVideoListWithTagId:(NSString *)tag_id Video_type:(NSString *)video_type Page:(NSString *)page {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getVideoListByTagId];
     url = [NSString stringWithFormat:@"%@tag_id=%@&video_type=%@&page=%@",url,tag_id,video_type,page];
     url = [self encryptUrl:url];
@@ -640,6 +649,7 @@
                 model.gold = [[[responseObject objectForKey:@"data"] objectAtIndex:i] objectForKey:@"gold"];
                 model.name = [[[responseObject objectForKey:@"data"] objectAtIndex:i] objectForKey:@"name"];
                 model.pic = [[[responseObject objectForKey:@"data"] objectAtIndex:i] objectForKey:@"pic"];
+                model.status = [[[responseObject objectForKey:@"data"] objectAtIndex:i] objectForKey:@"status"];
                 if ([video_type isEqualToString:@"1"]){
                     model.urls = [[[responseObject objectForKey:@"data"] objectAtIndex:i] objectForKey:@"urls"];
                 }else{
@@ -666,7 +676,7 @@
 #pragma mark - 标签视频数量
 
 - (void)getVideoNumWithTag_id:(NSString *)tag_id {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getVideoNumByTagId];
     url = [NSString stringWithFormat:@"%@tag_id=%@",url,tag_id];
     url = [self encryptUrl:url];
@@ -692,7 +702,7 @@
 #pragma mark - 登录
 
 - (void)loginWithSource_type:(NSString *)source_type Source_id:(NSString *)source_id Username:(NSString *)username Face:(NSString *)face {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_login];
     NSDictionary * parameter = @{
                                  @"source_id": [NSString stringWithFormat:@"%@",source_id],
@@ -720,7 +730,7 @@
 #pragma mark - 设置基本信息
 
 - (void)setInfoWithToken:(NSString *)token Gender:(NSString *)gender Age:(NSString *)age Preferences:(NSString *)preferences Constellation:(NSString *)constellation {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_setInfo];
     url = [NSString stringWithFormat:@"%@token=%@&gender=%@&age=%@&preferences=%@&constellation=%@",url,token,gender,age,preferences,constellation];
     url = [self encryptUrl:url];
@@ -745,7 +755,7 @@
 #pragma mark - 我的收藏
 
 - (void)getFavoriteVideoListWithToken:(NSString *)token Page:(NSString *)page {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     self.downLoadType = Http_getFavoriteVideoList;
     NSString *url = [self urlPathadress:Http_getFavoriteVideoList];
     url = [NSString stringWithFormat:@"%@token=%@&page=%@",url,token,page];
@@ -792,7 +802,7 @@
 #pragma mark - 删除收藏
 
 - (void)deleteFavoriteWithVideo_id:(NSString *)video_id andToken:(NSString *)token {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     self.downLoadType = Http_deleteFavoriteVideo;
     NSString *url = [self urlPathadress:Http_deleteFavoriteVideo];
     url = [NSString stringWithFormat:@"%@token=%@&video_ids=%@",url,token,video_id];
@@ -819,7 +829,7 @@
 #pragma mark - 统计点击次数
 
 - (void)getDeviceHitsWithVideo_id:(NSString *)video_id Device:(NSString *)device {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getDeviceHits];
     url = [NSString stringWithFormat:@"%@video_id=%@&device=%@",url,video_id,device];
     url = [self encryptUrl:url];
@@ -831,7 +841,7 @@
 #pragma mark - 更多应用
 
 - (void)getMoreApp {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_getMoreApp];
     url = [self encryptUrl:url];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
@@ -861,7 +871,7 @@
 #pragma mark - 关于
 
 - (void)aboutWithVersionNumber:(NSString *)versionNumber Os:(NSString *)os {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_about];
     url = [NSString stringWithFormat:@"%@versionNumber=%@&os=%@",url,versionNumber,os];
     url = [self encryptUrl:url];
@@ -885,7 +895,7 @@
 #pragma mark - 用户反馈
 
 - (void)userFeedbackWithToken:(NSString *)token Text:(NSString *)text {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_userFeedback];
     url = [NSString stringWithFormat:@"%@token=%@&text=%@",url,token,text];
     url = [self encryptUrl:url];
@@ -912,7 +922,7 @@
 #pragma mark - loading页
 
 - (void)getLoadingWithDevice:(NSString *)device {
-    AFHTTPRequestOperationManager *manager = [self creatAFNNetworkRequestManager];
+    [self creatAFNNetworkRequestManager];
     NSString *url = [self urlPathadress:Http_loading];
     url = [NSString stringWithFormat:@"%@device=%@",url,device];
     url = [self encryptUrl:url];
@@ -1011,6 +1021,12 @@
             HUDImage = nil;
         }];
     });
+}
+
+- (void)cancelRequest{
+    if (manager){
+        [manager.operationQueue cancelAllOperations];
+    }
 }
 
 @end

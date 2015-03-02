@@ -97,7 +97,11 @@ typedef enum{
         [self startRequestSearchRecommend];
     }
 }
-
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+    [self.manager cancelRequest];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideCustomNavigationBar:YES withHideCustomStatusBar:YES];

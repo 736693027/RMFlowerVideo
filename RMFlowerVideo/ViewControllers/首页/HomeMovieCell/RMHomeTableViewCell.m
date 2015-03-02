@@ -47,9 +47,9 @@
         self.fristScore.frame = CGRectMake(self.fristHeadImage.frame.origin.x, self.fristScore.frame.origin.y, self.fristHeadImage.frame.size.width, self.fristScore.frame.size.height);
     }
     if([title isEqualToString:@"暂无评分"]){
-        self.fristLable.font = [UIFont systemFontOfSize:11];
+        self.fristScore.font = [UIFont systemFontOfSize:11];
     }else{
-         self.fristLable.font = [UIFont systemFontOfSize:12];
+         self.fristScore.font = [UIFont systemFontOfSize:12];
     }
     self.fristScore.text = title;
 }

@@ -43,6 +43,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self hideLoading];
+    [manager cancelRequest];
 }
 
 - (void)viewDidLoad {
@@ -125,7 +126,7 @@
     
     model_left = [dataArr objectAtIndex:indexPath.row*3];
     cell.firstName.text = model_left.name;
-    cell.firstScore.text = model_left.gold;
+    [cell setFristScoreWithTitle:model_left.status];
     [cell.firstImage sd_setImageWithURL:[NSURL URLWithString:model_left.pic] placeholderImage:LOADIMAGE(@"92_138")];
     cell.firstImage.identifierString = model_left.video_id;
     [cell.firstBtn setBackgroundImage:LOADIMAGE(@"home_movie_palyBtn") forState:UIControlStateNormal];
@@ -135,7 +136,7 @@
     }else{
         model_center = [dataArr objectAtIndex:indexPath.row*3 + 1];
         cell.secondName.text = model_center.name;
-        cell.secondScore.text = model_center.gold;
+        [cell setSecondScoreWithTitle:model_center.status];
         [cell.secondImage sd_setImageWithURL:[NSURL URLWithString:model_center.pic] placeholderImage:LOADIMAGE(@"92_138")];
         cell.secondImage.identifierString = model_center.video_id;
         [cell.secondBtn setBackgroundImage:LOADIMAGE(@"home_movie_palyBtn") forState:UIControlStateNormal];
@@ -146,7 +147,7 @@
     }else{
         model_right = [dataArr objectAtIndex:indexPath.row*3 + 2];
         cell.thirdName.text = model_right.name;
-        cell.thirdScore.text = model_right.gold;
+        [cell setThirdScoreWithTitle:model_right.status];
         [cell.thirdImage sd_setImageWithURL:[NSURL URLWithString:model_right.pic] placeholderImage:LOADIMAGE(@"92_138")];
         cell.thirdImage.identifierString = model_right.video_id;
         [cell.thirdBtn setBackgroundImage:LOADIMAGE(@"home_movie_palyBtn") forState:UIControlStateNormal];

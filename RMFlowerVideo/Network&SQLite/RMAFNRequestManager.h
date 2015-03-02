@@ -224,4 +224,6 @@ typedef enum{
  */
 - (void)getLoadingWithDevice:(NSString *)device;
 
+- (void)cancelRequest;
+
 @end

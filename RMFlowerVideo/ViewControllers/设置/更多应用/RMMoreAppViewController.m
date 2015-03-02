@@ -44,6 +44,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self hideLoading];
+    [requestManager cancelRequest];
 }
 
 - (void)navgationBarButtonClick:(UIBarButtonItem *)sender {

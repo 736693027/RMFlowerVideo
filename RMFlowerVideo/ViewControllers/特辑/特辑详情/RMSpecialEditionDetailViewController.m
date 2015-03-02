@@ -51,6 +51,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self hideLoading];
+    [manager cancelRequest];
 }
 
 - (void)viewDidLoad {

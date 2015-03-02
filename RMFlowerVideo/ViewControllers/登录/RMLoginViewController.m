@@ -35,7 +35,11 @@
     [super viewWillDisappear:animated];
     [Flurry endTimedEvent:@"VIEW_UserLogin" withParameters:nil];
 }
-
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+    [requestManager cancelRequest];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

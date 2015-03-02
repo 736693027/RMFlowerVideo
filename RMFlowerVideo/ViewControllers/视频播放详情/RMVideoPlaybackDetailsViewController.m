@@ -147,9 +147,9 @@ typedef enum{
     [self kDeviceOrientationDidChangeNotification:0];
     
     //统计视频播放次数
-    RMAFNRequestManager * statisticalRequest = [[RMAFNRequestManager alloc] init];
-    [statisticalRequest getDeviceHitsWithVideo_id:self.video_id Device:@"iPhone"];
-    statisticalRequest.delegate = self;
+    RMAFNRequestManager * requestManager = [[RMAFNRequestManager alloc] init];
+    [requestManager getDeviceHitsWithVideo_id:self.video_id Device:@"iPhone"];
+    requestManager.delegate = self;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

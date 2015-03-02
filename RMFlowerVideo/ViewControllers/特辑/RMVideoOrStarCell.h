@@ -38,7 +38,7 @@
 
 - (IBAction)myChannelCellBtnClick:(UIButton *)sender;
 
-
-
-
+- (void) setFristScoreWithTitle:(NSString *)title;
+- (void) setSecondScoreWithTitle:(NSString *)title;
+- (void)setThirdScoreWithTitle:(NSString *)title;
 @end

@@ -57,6 +57,11 @@ typedef enum{
     [Flurry endTimedEvent:@"VIEW_StarDetail" withParameters:nil];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self hideLoading];
+    [manager cancelRequest];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

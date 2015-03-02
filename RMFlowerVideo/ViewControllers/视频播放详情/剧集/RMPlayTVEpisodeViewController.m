@@ -109,7 +109,7 @@
         }
     }else{  //综艺
         videoType = 2;
-        for (NSInteger i=[model.playurls count]; i>0; i--){
+        for (NSInteger i=[model.playurls count]-1; i>=0; i--){
             selectEpisodeNum = [model.playurls count];
             if (type == nil){
                 NSMutableArray * dataArr = [NSMutableArray arrayWithArray:[[model.playurls objectAtIndex:selectEpisodeNum-1] objectForKey:@"urls"]];
