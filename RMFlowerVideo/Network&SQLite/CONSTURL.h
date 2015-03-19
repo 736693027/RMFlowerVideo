@@ -31,6 +31,10 @@
 #define Http_about                              321     //关于
 #define Http_userFeedback                       322     //用户反馈
 #define Http_loading                            323     //loading页
+#define Http_register                           324     //注册
+#define Http_loginByEmail                       325     //邮箱登录
+#define Http_changePassword                     326     //修改密码
+#define Http_resetPassword                      327     //找回密码
 
 //#define Http_getCheckStarProperty               324     //判断明星标签下的属性
 //#define Http_getSearchRecommend                 325     //搜索 标签推荐

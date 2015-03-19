@@ -20,6 +20,7 @@
 
 
 #define baseUrl         @"http://vodapi.runmobile.cn/version2_00/api.php/vod/"
+#define loginBaseUrl         @"http://vodapi.runmobile.cn/version2_00/api.php/user/"
 
 #define kPassWord       @"yu32uzy4"                 //接口密匙
 @interface RMAFNRequestManager (){
@@ -144,6 +145,22 @@
             strUrl = [NSString stringWithFormat:@"%@loading?",baseUrl];
             break;
         }
+        case Http_register:{
+            strUrl = [NSString stringWithFormat:@"%@register",loginBaseUrl];
+            break;
+        }
+        case Http_loginByEmail:{
+            strUrl = [NSString stringWithFormat:@"%@loginByEmail",loginBaseUrl];
+            break;
+        }
+        case Http_changePassword:{
+            strUrl = [NSString stringWithFormat:@"%@changePassword",loginBaseUrl];
+            break;
+        }
+        case Http_resetPassword:{
+            strUrl = [NSString stringWithFormat:@"%@resetPassword",loginBaseUrl];
+            break;
+        }
         default:{
             strUrl = nil;
         }
@@ -161,7 +178,13 @@
 - (NSString *)encryptUrl:(NSString *)url {
 #if 1
     NSRange range = [url rangeOfString:@"php/vod/"];
-    NSString * newUrl = [url substringFromIndex:range.location + 8];
+    NSString * newUrl;
+    if(range.location==NSNotFound){
+        range = [url rangeOfString:@"php/user/"];
+        newUrl = [url substringFromIndex:range.location + 9];
+    }else{
+        newUrl = [url substringFromIndex:range.location + 8];
+    }
     newUrl = [AESCrypt encrypt:newUrl password:kPassWord];
     /*
      转义
@@ -954,6 +977,109 @@
     }];
 }
 
+- (void)userRegisteredWithEmail:(NSString *)email userName:(NSString *)name passWord:(NSString *)password{
+    if(!manager){
+        [self creatAFNNetworkRequestManager];
+    }
+    NSString *url = [self urlPathadress:Http_register];
+    NSDictionary * parameter = @{
+                                 @"email": email,
+                                 @"name": name,
+                                 @"password": password
+                                 };
+    [manager POST:url parameters:parameter success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 4001){
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:@"success"];
+            }
+        }else{
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:[responseObject objectForKey:@"message"]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if([self.delegate respondsToSelector:@selector(requestError:)]){
+            [self.delegate requestError:error];
+        }
+    }];
+}
+
+- (void)loginWithEmail:(NSString *)email andUserPassWord:(NSString *)password{
+    if(!manager){
+        [self creatAFNNetworkRequestManager];
+    }
+    NSString *url = [self urlPathadress:Http_loginByEmail];
+    NSDictionary * parameter = @{
+                                 @"email": email,
+                                 @"password": password
+                                 };
+    [manager POST:url parameters:parameter success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 4001){
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithUserInfo:)]){
+                NSDictionary *dict = [responseObject objectForKey:@"data"];
+                [self.delegate requestFinishiDownLoadWithUserInfo:dict];
+            }
+        }else{
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:[responseObject objectForKey:@"message"]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if([self.delegate respondsToSelector:@selector(requestError:)]){
+            [self.delegate requestError:error];
+        }
+    }];
+}
+
+- (void)changePasswordWithToken:(NSString *)token oldPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword{
+    if(!manager){
+        [self creatAFNNetworkRequestManager];
+    }
+    NSString *url = [self urlPathadress:Http_changePassword];
+    NSDictionary * parameter = @{
+                                 @"token": token,
+                                 @"oldPassword": oldPassword,
+                                 @"newPassword": newPassword
+                                 };
+    [manager POST:url parameters:parameter success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 4001){
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:@"success"];
+            }
+        }else{
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:[responseObject objectForKey:@"message"]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if([self.delegate respondsToSelector:@selector(requestError:)]){
+            [self.delegate requestError:error];
+        }
+    }];
+}
+
+- (void)resetPasswordWithEmail:(NSString *)email{
+    if(!manager){
+        [self creatAFNNetworkRequestManager];
+    }
+    NSString *url = [self urlPathadress:Http_resetPassword];
+    NSDictionary * parameter = @{@"email": email};
+    [manager POST:url parameters:parameter success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 4001){
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:@"success"];
+            }
+        }else{
+            if([self.delegate respondsToSelector:@selector(requestFinishiDownLoadWithResults:)]){
+                [self.delegate requestFinishiDownLoadWithResults:[responseObject objectForKey:@"message"]];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if([self.delegate respondsToSelector:@selector(requestError:)]){
+            [self.delegate requestError:error];
+        }
+    }];
+}
 - (void)showMessage:(NSString *)message duration:(NSTimeInterval)interval position:(NSInteger)position withUserInteractionEnabled:(BOOL)enabled {
     UIWindow * window = [UIApplication sharedApplication].keyWindow;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];

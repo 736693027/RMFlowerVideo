@@ -124,6 +124,7 @@
 }
 
 - (void)reloadDataWithModel:(RMPublicModel *)model {
+    [dataArr removeAllObjects];
     for (NSInteger i=0; i<[model.creator count]; i++){
         [dataArr addObject:[model.creator objectAtIndex:i]];
     }

@@ -59,7 +59,6 @@
 		1D632E631A591EDC002674DF /* RMMoreAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D632E611A591EDC002674DF /* RMMoreAppViewController.xib */; };
 		1D632E691A592E41002674DF /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D632E661A592E41002674DF /* CycleScrollView.m */; };
 		1D632E6A1A592E41002674DF /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D632E681A592E41002674DF /* NSTimer+Addition.m */; };
-		1D632E6D1A593C69002674DF /* RMLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D632E6C1A593C69002674DF /* RMLoginView.m */; };
 		1D632E7A1A595F3D002674DF /* RMSegmentedMultiSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D632E791A595F3D002674DF /* RMSegmentedMultiSelectController.m */; };
 		1D632E911A5A399F002674DF /* RMVideoPlaybackDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D632E8F1A5A399F002674DF /* RMVideoPlaybackDetailsViewController.m */; };
 		1D632E921A5A399F002674DF /* RMVideoPlaybackDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D632E901A5A399F002674DF /* RMVideoPlaybackDetailsViewController.xib */; };
@@ -81,8 +80,6 @@
 		1DA73C421A5C118600A5A365 /* RMStarDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA73C401A5C118600A5A365 /* RMStarDetailsViewController.xib */; };
 		1DA73C461A5C130D00A5A365 /* RMStarIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA73C441A5C130D00A5A365 /* RMStarIntroViewController.m */; };
 		1DA73C471A5C130D00A5A365 /* RMStarIntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA73C451A5C130D00A5A365 /* RMStarIntroViewController.xib */; };
-		1DA823381A5639D500345DCE /* RMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA823361A5639D500345DCE /* RMLoginViewController.m */; };
-		1DA823391A5639D500345DCE /* RMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DA823371A5639D500345DCE /* RMLoginViewController.xib */; };
 		1DAB4F9C1A71F34300F9310A /* RMSourceTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB4F9B1A71F34300F9310A /* RMSourceTypeView.m */; };
 		1DAB4FA81A72231A00F9310A /* source_1905_big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DAB4F9E1A72231A00F9310A /* source_1905_big@3x.png */; };
 		1DAB4FA91A72231A00F9310A /* source_huashu_big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DAB4F9F1A72231A00F9310A /* source_huashu_big@3x.png */; };
@@ -218,10 +215,6 @@
 		913456461A5BD2D4005CAFB1 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 913456451A5BD2D4005CAFB1 /* RatingView.m */; };
 		9134564C1A5BD3A6005CAFB1 /* red_line_and_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 913456491A5BD3A6005CAFB1 /* red_line_and_shadow@2x.png */; };
 		9134564D1A5BD3A6005CAFB1 /* SUNSlideSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9134564B1A5BD3A6005CAFB1 /* SUNSlideSwitchView.m */; };
-		913456551A5BEA26005CAFB1 /* RMConstellationTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913456501A5BEA26005CAFB1 /* RMConstellationTabViewController.m */; };
-		913456561A5BEA26005CAFB1 /* RMConstellationTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913456511A5BEA26005CAFB1 /* RMConstellationTabViewController.xib */; };
-		913456571A5BEA26005CAFB1 /* RMGenderTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913456531A5BEA26005CAFB1 /* RMGenderTabViewController.m */; };
-		913456581A5BEA26005CAFB1 /* RMGenderTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913456541A5BEA26005CAFB1 /* RMGenderTabViewController.xib */; };
 		913456631A5BEB04005CAFB1 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 9134565D1A5BEB03005CAFB1 /* Database.m */; };
 		913456641A5BEB04005CAFB1 /* RMAFNRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9134565F1A5BEB03005CAFB1 /* RMAFNRequestManager.m */; };
 		913456651A5BEB04005CAFB1 /* RMPublicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 913456611A5BEB03005CAFB1 /* RMPublicModel.m */; };
@@ -363,6 +356,27 @@
 		91B4C57C1A529EE100854435 /* RMBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C5741A529EE100854435 /* RMBaseView.m */; };
 		91B4C57D1A529EE100854435 /* RMImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C5761A529EE100854435 /* RMImageView.m */; };
 		91B4C57E1A529EE100854435 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4C5781A529EE100854435 /* UIButton+EnlargeEdge.m */; };
+		91C7A84C1AA84F0B0034D9DB /* RMLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A8351AA84F0B0034D9DB /* RMLoginView.m */; };
+		91C7A84D1AA84F0B0034D9DB /* RMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A8371AA84F0B0034D9DB /* RMLoginViewController.m */; };
+		91C7A84E1AA84F0B0034D9DB /* RMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8381AA84F0B0034D9DB /* RMLoginViewController.xib */; };
+		91C7A84F1AA84F0B0034D9DB /* RMLoginViewController_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8391AA84F0B0034D9DB /* RMLoginViewController_6.xib */; };
+		91C7A8501AA84F0B0034D9DB /* RMLoginViewController_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A83A1AA84F0B0034D9DB /* RMLoginViewController_6p.xib */; };
+		91C7A8511AA84F0B0034D9DB /* RMRegisteredAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A83C1AA84F0B0034D9DB /* RMRegisteredAccountViewController.m */; };
+		91C7A8521AA84F0B0034D9DB /* RMRegisteredAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A83D1AA84F0B0034D9DB /* RMRegisteredAccountViewController.xib */; };
+		91C7A8531AA84F0B0034D9DB /* RMRegisteredAccountViewController_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A83E1AA84F0B0034D9DB /* RMRegisteredAccountViewController_6.xib */; };
+		91C7A8541AA84F0B0034D9DB /* RMRegisteredAccountViewController_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A83F1AA84F0B0034D9DB /* RMRegisteredAccountViewController_6p.xib */; };
+		91C7A8551AA84F0B0034D9DB /* RMRetrievePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A8411AA84F0B0034D9DB /* RMRetrievePasswordViewController.m */; };
+		91C7A8561AA84F0B0034D9DB /* RMRetrievePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8421AA84F0B0034D9DB /* RMRetrievePasswordViewController.xib */; };
+		91C7A8571AA84F0B0034D9DB /* RMRetrievePasswordViewController_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8431AA84F0B0034D9DB /* RMRetrievePasswordViewController_6.xib */; };
+		91C7A8581AA84F0B0034D9DB /* RMRetrievePasswordViewController_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8441AA84F0B0034D9DB /* RMRetrievePasswordViewController_6p.xib */; };
+		91C7A8591AA84F0B0034D9DB /* RMConstellationTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A8471AA84F0B0034D9DB /* RMConstellationTabViewController.m */; };
+		91C7A85A1AA84F0B0034D9DB /* RMConstellationTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8481AA84F0B0034D9DB /* RMConstellationTabViewController.xib */; };
+		91C7A85B1AA84F0B0034D9DB /* RMGenderTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A84A1AA84F0B0034D9DB /* RMGenderTabViewController.m */; };
+		91C7A85C1AA84F0B0034D9DB /* RMGenderTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A84B1AA84F0B0034D9DB /* RMGenderTabViewController.xib */; };
+		91C7A8601AA851D50034D9DB /* RMChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C7A85E1AA851D50034D9DB /* RMChangePasswordViewController.m */; };
+		91C7A8611AA851D50034D9DB /* RMChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A85F1AA851D50034D9DB /* RMChangePasswordViewController.xib */; };
+		91C7A8641AA852660034D9DB /* RMChangePasswordViewController_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8621AA852660034D9DB /* RMChangePasswordViewController_6.xib */; };
+		91C7A8651AA852660034D9DB /* RMChangePasswordViewController_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C7A8631AA852660034D9DB /* RMChangePasswordViewController_6p.xib */; };
 		91C920551A7610820065E197 /* Default_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C920511A7610820065E197 /* Default_4.png */; };
 		91C920561A7610820065E197 /* Default_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C920521A7610820065E197 /* Default_5.png */; };
 		91C920571A7610820065E197 /* Default_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C920531A7610820065E197 /* Default_6.png */; };
@@ -474,8 +488,6 @@
 		1D632E661A592E41002674DF /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		1D632E671A592E41002674DF /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		1D632E681A592E41002674DF /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
-		1D632E6B1A593C69002674DF /* RMLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoginView.h; sourceTree = "<group>"; };
-		1D632E6C1A593C69002674DF /* RMLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoginView.m; sourceTree = "<group>"; };
 		1D632E781A595F3D002674DF /* RMSegmentedMultiSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSegmentedMultiSelectController.h; sourceTree = "<group>"; };
 		1D632E791A595F3D002674DF /* RMSegmentedMultiSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSegmentedMultiSelectController.m; sourceTree = "<group>"; };
 		1D632E8E1A5A399F002674DF /* RMVideoPlaybackDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMVideoPlaybackDetailsViewController.h; sourceTree = "<group>"; };
@@ -510,9 +522,6 @@
 		1DA73C431A5C130D00A5A365 /* RMStarIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStarIntroViewController.h; sourceTree = "<group>"; };
 		1DA73C441A5C130D00A5A365 /* RMStarIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStarIntroViewController.m; sourceTree = "<group>"; };
 		1DA73C451A5C130D00A5A365 /* RMStarIntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMStarIntroViewController.xib; sourceTree = "<group>"; };
-		1DA823351A5639D500345DCE /* RMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoginViewController.h; sourceTree = "<group>"; };
-		1DA823361A5639D500345DCE /* RMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoginViewController.m; sourceTree = "<group>"; };
-		1DA823371A5639D500345DCE /* RMLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoginViewController.xib; sourceTree = "<group>"; };
 		1DAB4F9A1A71F34300F9310A /* RMSourceTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSourceTypeView.h; sourceTree = "<group>"; };
 		1DAB4F9B1A71F34300F9310A /* RMSourceTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSourceTypeView.m; sourceTree = "<group>"; };
 		1DAB4F9E1A72231A00F9310A /* source_1905_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "source_1905_big@3x.png"; sourceTree = "<group>"; };
@@ -692,12 +701,6 @@
 		913456491A5BD3A6005CAFB1 /* red_line_and_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_line_and_shadow@2x.png"; sourceTree = "<group>"; };
 		9134564A1A5BD3A6005CAFB1 /* SUNSlideSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUNSlideSwitchView.h; sourceTree = "<group>"; };
 		9134564B1A5BD3A6005CAFB1 /* SUNSlideSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUNSlideSwitchView.m; sourceTree = "<group>"; };
-		9134564F1A5BEA26005CAFB1 /* RMConstellationTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMConstellationTabViewController.h; sourceTree = "<group>"; };
-		913456501A5BEA26005CAFB1 /* RMConstellationTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMConstellationTabViewController.m; sourceTree = "<group>"; };
-		913456511A5BEA26005CAFB1 /* RMConstellationTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMConstellationTabViewController.xib; sourceTree = "<group>"; };
-		913456521A5BEA26005CAFB1 /* RMGenderTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGenderTabViewController.h; sourceTree = "<group>"; };
-		913456531A5BEA26005CAFB1 /* RMGenderTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGenderTabViewController.m; sourceTree = "<group>"; };
-		913456541A5BEA26005CAFB1 /* RMGenderTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMGenderTabViewController.xib; sourceTree = "<group>"; };
 		9134565C1A5BEB03005CAFB1 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		9134565D1A5BEB03005CAFB1 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		9134565E1A5BEB03005CAFB1 /* RMAFNRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAFNRequestManager.h; sourceTree = "<group>"; };
@@ -925,6 +928,34 @@
 		91B4C5761A529EE100854435 /* RMImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMImageView.m; sourceTree = "<group>"; };
 		91B4C5771A529EE100854435 /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		91B4C5781A529EE100854435 /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
+		91C7A8341AA84F0B0034D9DB /* RMLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoginView.h; sourceTree = "<group>"; };
+		91C7A8351AA84F0B0034D9DB /* RMLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoginView.m; sourceTree = "<group>"; };
+		91C7A8361AA84F0B0034D9DB /* RMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMLoginViewController.h; sourceTree = "<group>"; };
+		91C7A8371AA84F0B0034D9DB /* RMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMLoginViewController.m; sourceTree = "<group>"; };
+		91C7A8381AA84F0B0034D9DB /* RMLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoginViewController.xib; sourceTree = "<group>"; };
+		91C7A8391AA84F0B0034D9DB /* RMLoginViewController_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoginViewController_6.xib; sourceTree = "<group>"; };
+		91C7A83A1AA84F0B0034D9DB /* RMLoginViewController_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoginViewController_6p.xib; sourceTree = "<group>"; };
+		91C7A83B1AA84F0B0034D9DB /* RMRegisteredAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRegisteredAccountViewController.h; sourceTree = "<group>"; };
+		91C7A83C1AA84F0B0034D9DB /* RMRegisteredAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRegisteredAccountViewController.m; sourceTree = "<group>"; };
+		91C7A83D1AA84F0B0034D9DB /* RMRegisteredAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRegisteredAccountViewController.xib; sourceTree = "<group>"; };
+		91C7A83E1AA84F0B0034D9DB /* RMRegisteredAccountViewController_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRegisteredAccountViewController_6.xib; sourceTree = "<group>"; };
+		91C7A83F1AA84F0B0034D9DB /* RMRegisteredAccountViewController_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRegisteredAccountViewController_6p.xib; sourceTree = "<group>"; };
+		91C7A8401AA84F0B0034D9DB /* RMRetrievePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMRetrievePasswordViewController.h; sourceTree = "<group>"; };
+		91C7A8411AA84F0B0034D9DB /* RMRetrievePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMRetrievePasswordViewController.m; sourceTree = "<group>"; };
+		91C7A8421AA84F0B0034D9DB /* RMRetrievePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRetrievePasswordViewController.xib; sourceTree = "<group>"; };
+		91C7A8431AA84F0B0034D9DB /* RMRetrievePasswordViewController_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRetrievePasswordViewController_6.xib; sourceTree = "<group>"; };
+		91C7A8441AA84F0B0034D9DB /* RMRetrievePasswordViewController_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMRetrievePasswordViewController_6p.xib; sourceTree = "<group>"; };
+		91C7A8461AA84F0B0034D9DB /* RMConstellationTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMConstellationTabViewController.h; sourceTree = "<group>"; };
+		91C7A8471AA84F0B0034D9DB /* RMConstellationTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMConstellationTabViewController.m; sourceTree = "<group>"; };
+		91C7A8481AA84F0B0034D9DB /* RMConstellationTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMConstellationTabViewController.xib; sourceTree = "<group>"; };
+		91C7A8491AA84F0B0034D9DB /* RMGenderTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMGenderTabViewController.h; sourceTree = "<group>"; };
+		91C7A84A1AA84F0B0034D9DB /* RMGenderTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMGenderTabViewController.m; sourceTree = "<group>"; };
+		91C7A84B1AA84F0B0034D9DB /* RMGenderTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMGenderTabViewController.xib; sourceTree = "<group>"; };
+		91C7A85D1AA851D50034D9DB /* RMChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMChangePasswordViewController.h; sourceTree = "<group>"; };
+		91C7A85E1AA851D50034D9DB /* RMChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMChangePasswordViewController.m; sourceTree = "<group>"; };
+		91C7A85F1AA851D50034D9DB /* RMChangePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMChangePasswordViewController.xib; sourceTree = "<group>"; };
+		91C7A8621AA852660034D9DB /* RMChangePasswordViewController_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMChangePasswordViewController_6.xib; sourceTree = "<group>"; };
+		91C7A8631AA852660034D9DB /* RMChangePasswordViewController_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMChangePasswordViewController_6p.xib; sourceTree = "<group>"; };
 		91C920511A7610820065E197 /* Default_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_4.png; sourceTree = "<group>"; };
 		91C920521A7610820065E197 /* Default_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_5.png; sourceTree = "<group>"; };
 		91C920531A7610820065E197 /* Default_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_6.png; sourceTree = "<group>"; };
@@ -1337,19 +1368,6 @@
 			path = "明星详情";
 			sourceTree = "<group>";
 		};
-		1DA823341A5630C000345DCE /* 登录 */ = {
-			isa = PBXGroup;
-			children = (
-				9134564E1A5BEA26005CAFB1 /* 用户调查 */,
-				1DA823351A5639D500345DCE /* RMLoginViewController.h */,
-				1DA823361A5639D500345DCE /* RMLoginViewController.m */,
-				1DA823371A5639D500345DCE /* RMLoginViewController.xib */,
-				1D632E6B1A593C69002674DF /* RMLoginView.h */,
-				1D632E6C1A593C69002674DF /* RMLoginView.m */,
-			);
-			path = "登录";
-			sourceTree = "<group>";
-		};
 		1DAB4F9D1A7220F800F9310A /* VideoSourceType */ = {
 			isa = PBXGroup;
 			children = (
@@ -1687,19 +1705,6 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		9134564E1A5BEA26005CAFB1 /* 用户调查 */ = {
-			isa = PBXGroup;
-			children = (
-				9134564F1A5BEA26005CAFB1 /* RMConstellationTabViewController.h */,
-				913456501A5BEA26005CAFB1 /* RMConstellationTabViewController.m */,
-				913456511A5BEA26005CAFB1 /* RMConstellationTabViewController.xib */,
-				913456521A5BEA26005CAFB1 /* RMGenderTabViewController.h */,
-				913456531A5BEA26005CAFB1 /* RMGenderTabViewController.m */,
-				913456541A5BEA26005CAFB1 /* RMGenderTabViewController.xib */,
-			);
-			path = "用户调查";
-			sourceTree = "<group>";
-		};
 		913456591A5BEADC005CAFB1 /* Network&SQLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -1830,6 +1835,7 @@
 		913669811A525267001FD769 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				91C7A8331AA84F0B0034D9DB /* 登录 */,
 				91A2804D1A8DE942000C6853 /* 启动页面 */,
 				1DD9F1711A89DD15006723A4 /* 全屏播放 */,
 				9136699B1A5255FF001FD769 /* 首页 */,
@@ -1838,7 +1844,6 @@
 				1D25A3B51A5578D00095974E /* 设置 */,
 				1D632E8D1A5A3970002674DF /* 视频播放详情 */,
 				1DA73C3D1A5C114700A5A365 /* 明星详情 */,
-				1DA823341A5630C000345DCE /* 登录 */,
 				913455F11A5BD22A005CAFB1 /* 搜索 */,
 				9136698E1A525493001FD769 /* CustomNavgationController */,
 				9136698F1A525493001FD769 /* CustomTarbarViewController */,
@@ -2345,6 +2350,49 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		91C7A8331AA84F0B0034D9DB /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				91C7A8341AA84F0B0034D9DB /* RMLoginView.h */,
+				91C7A8351AA84F0B0034D9DB /* RMLoginView.m */,
+				91C7A8361AA84F0B0034D9DB /* RMLoginViewController.h */,
+				91C7A8371AA84F0B0034D9DB /* RMLoginViewController.m */,
+				91C7A8381AA84F0B0034D9DB /* RMLoginViewController.xib */,
+				91C7A8391AA84F0B0034D9DB /* RMLoginViewController_6.xib */,
+				91C7A83A1AA84F0B0034D9DB /* RMLoginViewController_6p.xib */,
+				91C7A83B1AA84F0B0034D9DB /* RMRegisteredAccountViewController.h */,
+				91C7A83C1AA84F0B0034D9DB /* RMRegisteredAccountViewController.m */,
+				91C7A83D1AA84F0B0034D9DB /* RMRegisteredAccountViewController.xib */,
+				91C7A83E1AA84F0B0034D9DB /* RMRegisteredAccountViewController_6.xib */,
+				91C7A83F1AA84F0B0034D9DB /* RMRegisteredAccountViewController_6p.xib */,
+				91C7A8401AA84F0B0034D9DB /* RMRetrievePasswordViewController.h */,
+				91C7A8411AA84F0B0034D9DB /* RMRetrievePasswordViewController.m */,
+				91C7A8421AA84F0B0034D9DB /* RMRetrievePasswordViewController.xib */,
+				91C7A8431AA84F0B0034D9DB /* RMRetrievePasswordViewController_6.xib */,
+				91C7A8441AA84F0B0034D9DB /* RMRetrievePasswordViewController_6p.xib */,
+				91C7A85D1AA851D50034D9DB /* RMChangePasswordViewController.h */,
+				91C7A85E1AA851D50034D9DB /* RMChangePasswordViewController.m */,
+				91C7A85F1AA851D50034D9DB /* RMChangePasswordViewController.xib */,
+				91C7A8621AA852660034D9DB /* RMChangePasswordViewController_6.xib */,
+				91C7A8631AA852660034D9DB /* RMChangePasswordViewController_6p.xib */,
+				91C7A8451AA84F0B0034D9DB /* 用户调查 */,
+			);
+			path = "登录";
+			sourceTree = "<group>";
+		};
+		91C7A8451AA84F0B0034D9DB /* 用户调查 */ = {
+			isa = PBXGroup;
+			children = (
+				91C7A8461AA84F0B0034D9DB /* RMConstellationTabViewController.h */,
+				91C7A8471AA84F0B0034D9DB /* RMConstellationTabViewController.m */,
+				91C7A8481AA84F0B0034D9DB /* RMConstellationTabViewController.xib */,
+				91C7A8491AA84F0B0034D9DB /* RMGenderTabViewController.h */,
+				91C7A84A1AA84F0B0034D9DB /* RMGenderTabViewController.m */,
+				91C7A84B1AA84F0B0034D9DB /* RMGenderTabViewController.xib */,
+			);
+			path = "用户调查";
+			sourceTree = "<group>";
+		};
 		91E457621A58E14E00934D01 /* HomeMovieCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2475,12 +2523,14 @@
 				1D260DD61A5E2CE600D6D565 /* schemeApps.json in Resources */,
 				1DD9F1C91A89DD15006723A4 /* rm_pausezoom_btn@2x.png in Resources */,
 				91F3998C1A5937EE002142CD /* RMRankMovieCell.xib in Resources */,
+				91C7A8521AA84F0B0034D9DB /* RMRegisteredAccountViewController.xib in Resources */,
 				91C920581A7610820065E197 /* Default_6p.png in Resources */,
 				1DAB4FBE1A72232300F9310A /* source_iqiyi_big@2x.png in Resources */,
 				913455CE1A5B9E51005CAFB1 /* RMDownLoadingViewController.xib in Resources */,
 				916DE9B21A6DEFAB00988DA5 /* no-select_cellImage.png in Resources */,
 				1DD9F1D41A89DD15006723A4 /* rm_speed@3x.png in Resources */,
 				1DD9F1CC1A89DD15006723A4 /* rm_play_btn@3x.png in Resources */,
+				91C7A8561AA84F0B0034D9DB /* RMRetrievePasswordViewController.xib in Resources */,
 				9157DEE51A58D42500692114 /* UMSLoginViewController.xib in Resources */,
 				1D1F00D21A55960A00742F1E /* RMRankingTVViewController.xib in Resources */,
 				913456291A5BD284005CAFB1 /* pull_refresh@3x.png in Resources */,
@@ -2490,6 +2540,7 @@
 				91366B701A5269A5001FD769 /* PushConfig.plist in Resources */,
 				91E4576C1A58E72400934D01 /* RMSearchBaseViewController.xib in Resources */,
 				1D632E531A591E31002674DF /* RMMyCacheViewController.xib in Resources */,
+				91C7A8651AA852660034D9DB /* RMChangePasswordViewController_6p.xib in Resources */,
 				1D1F00CD1A5595B300742F1E /* RMRankingMovieViewController.xib in Resources */,
 				1D3CF50B1A63BAE7006EA5E6 /* RMVideoOrStarCell.xib in Resources */,
 				1D25A3AC1A5578890095974E /* RMHomeTVViewController.xib in Resources */,
@@ -2548,6 +2599,7 @@
 				913456251A5BD284005CAFB1 /* pull_loading@2x.png in Resources */,
 				1DAB4FAB1A72231A00F9310A /* source_leshi_big@3x.png in Resources */,
 				910250271A7CD51900805223 /* RMWatchRecordTableViewVarietyCell.xib in Resources */,
+				91C7A85C1AA84F0B0034D9DB /* RMGenderTabViewController.xib in Resources */,
 				91366D861A526D5B001FD769 /* loading.wav in Resources */,
 				1D632E631A591EDC002674DF /* RMMoreAppViewController.xib in Resources */,
 				1D7B84F61A6CE49600BDFFFA /* RMRemoveAllObjectsCell.xib in Resources */,
@@ -2556,6 +2608,7 @@
 				1DAB4FBD1A72232300F9310A /* source_huashu_big@2x.png in Resources */,
 				916DE9A01A6DEF5000988DA5 /* bg.png in Resources */,
 				1DAB4FBF1A72232300F9310A /* source_leshi_big@2x.png in Resources */,
+				91C7A84F1AA84F0B0034D9DB /* RMLoginViewController_6.xib in Resources */,
 				916DE9A21A6DEF5000988DA5 /* bg_@3x.png in Resources */,
 				919F68F61A5A6919003E6C08 /* RMWatchRecordTableViewCell.xib in Resources */,
 				1DAB4FC41A72232300F9310A /* source_xunlei_big@2x.png in Resources */,
@@ -2568,6 +2621,9 @@
 				1DAB4FD81A72232B00F9310A /* source_xunlei_small@3x.png in Resources */,
 				9157DEDE1A58D42500692114 /* UMSocialLocalizable.strings in Resources */,
 				1D25A3B41A5578890095974E /* RMHomeVarietyViewController.xib in Resources */,
+				91C7A8571AA84F0B0034D9DB /* RMRetrievePasswordViewController_6.xib in Resources */,
+				91C7A85A1AA84F0B0034D9DB /* RMConstellationTabViewController.xib in Resources */,
+				91C7A8581AA84F0B0034D9DB /* RMRetrievePasswordViewController_6p.xib in Resources */,
 				1DA73C421A5C118600A5A365 /* RMStarDetailsViewController.xib in Resources */,
 				9166D22E1A676F670065F2A0 /* RMTVDownLoadViewController.xib in Resources */,
 				916DE9B51A6DEFAB00988DA5 /* select_cellImage.png in Resources */,
@@ -2582,7 +2638,6 @@
 				1DD9F1D01A89DD15006723A4 /* rm_rightTrack@3x.png in Resources */,
 				1DD9F1AE1A89DD15006723A4 /* RMCustomSVProgressHUD.xib in Resources */,
 				916DE9A11A6DEF5000988DA5 /* bg_@2x.png in Resources */,
-				1DA823391A5639D500345DCE /* RMLoginViewController.xib in Resources */,
 				91C920551A7610820065E197 /* Default_4.png in Resources */,
 				1D632EA21A5A94E0002674DF /* RMPlayDetailsViewController.xib in Resources */,
 				1DD9F1BB1A89DD15006723A4 /* rm_backup@2x.png in Resources */,
@@ -2592,7 +2647,6 @@
 				1DAB4FEC1A72233400F9310A /* source_xunlei_small@2x.png in Resources */,
 				1DA73C471A5C130D00A5A365 /* RMStarIntroViewController.xib in Resources */,
 				1DAB4FC51A72232300F9310A /* source_youku_big@2x.png in Resources */,
-				913456581A5BEA26005CAFB1 /* RMGenderTabViewController.xib in Resources */,
 				1DD9F1C11A89DD15006723A4 /* rm_hudbg@2x.png in Resources */,
 				1DD9F1C71A89DD15006723A4 /* rm_pause_btn@2x.png in Resources */,
 				1DB35EAF1A6E61FB003FDE87 /* RMVideoOrStarCell_6p.xib in Resources */,
@@ -2604,8 +2658,10 @@
 				1DB35EAE1A6E61FB003FDE87 /* RMVideoOrStarCell_6.xib in Resources */,
 				916DE9A31A6DEF5000988DA5 /* red.png in Resources */,
 				1DAB4FE71A72233400F9310A /* source_leshi_small@2x.png in Resources */,
+				91C7A8641AA852660034D9DB /* RMChangePasswordViewController_6.xib in Resources */,
 				1DAB4FE61A72233400F9310A /* source_iqiyi_small@2x.png in Resources */,
 				1D632EA71A5A94FB002674DF /* RMPlayCreatorViewController.xib in Resources */,
+				91C7A8531AA84F0B0034D9DB /* RMRegisteredAccountViewController_6.xib in Resources */,
 				1DAB4FAF1A72231A00F9310A /* source_tudou_big@3x.png in Resources */,
 				1DD9F1D31A89DD15006723A4 /* rm_speed@2x.png in Resources */,
 				1D632E9D1A5A949B002674DF /* RMPlayRelatedViewController.xib in Resources */,
@@ -2619,24 +2675,27 @@
 				9157DEE31A58D42500692114 /* UMShareEditViewController.xib in Resources */,
 				91C920571A7610820065E197 /* Default_6.png in Resources */,
 				916DE9A61A6DEF5000988DA5 /* redbg.png in Resources */,
+				91C7A84E1AA84F0B0034D9DB /* RMLoginViewController.xib in Resources */,
 				916DE9AA1A6DEF5000988DA5 /* title_bg@2x.png in Resources */,
 				1D25A3B21A5578890095974E /* RMHomeStartViewController.xib in Resources */,
 				1DAB4FA81A72231A00F9310A /* source_1905_big@3x.png in Resources */,
 				1DAB4FD31A72232B00F9310A /* source_leshi_small@3x.png in Resources */,
 				1D632E271A590F66002674DF /* RMSetUpCell.xib in Resources */,
 				1DAB4FB11A72231A00F9310A /* source_youku_big@3x.png in Resources */,
+				91C7A8541AA84F0B0034D9DB /* RMRegisteredAccountViewController_6p.xib in Resources */,
 				916DE9B61A6DEFAB00988DA5 /* select_cellImage@2x.png in Resources */,
 				91F399971A596350002142CD /* RMHomeStartCell.xib in Resources */,
 				916DE9BB1A6E4B2700988DA5 /* RMHomeTableViewCell_6p.xib in Resources */,
 				1DAB4FD41A72232B00F9310A /* source_pptv_small@3x.png in Resources */,
 				916DE9BA1A6E4B2700988DA5 /* RMHomeTableViewCell_6.xib in Resources */,
-				913456561A5BEA26005CAFB1 /* RMConstellationTabViewController.xib in Resources */,
 				1DAB4FD11A72232B00F9310A /* source_huashu_small@3x.png in Resources */,
 				1D25A3AE1A5578890095974E /* RMHomeMovieViewController.xib in Resources */,
 				1DD9F1D11A89DD15006723A4 /* rm_sliderdot@2x.png in Resources */,
 				916DE9A81A6DEF5000988DA5 /* redbg_@3x.png in Resources */,
 				91E91D9D1A8338B90093C5AB /* RMRankTableViewHeadView_6p.xib in Resources */,
+				91C7A8501AA84F0B0034D9DB /* RMLoginViewController_6p.xib in Resources */,
 				1DD9F1B41A89DD15006723A4 /* amplification@2x.png in Resources */,
+				91C7A8611AA851D50034D9DB /* RMChangePasswordViewController.xib in Resources */,
 				913456261A5BD284005CAFB1 /* pull_loading@3x.png in Resources */,
 				1DA73C3C1A5C09FA00A5A365 /* RMPlayRelatedCell.xib in Resources */,
 				916DE9BF1A6E54E500988DA5 /* RMHomeStartCell_6p.xib in Resources */,
@@ -2699,6 +2758,7 @@
 				1DAB4F9C1A71F34300F9310A /* RMSourceTypeView.m in Sources */,
 				91366B691A5269A5001FD769 /* Harpy.m in Sources */,
 				1DD9F1B11A89DD15006723A4 /* RMEpisodeView.m in Sources */,
+				91C7A8601AA851D50034D9DB /* RMChangePasswordViewController.m in Sources */,
 				91366B4A1A5269A5001FD769 /* AFSecurityPolicy.m in Sources */,
 				913455E81A5BB757005CAFB1 /* RMFinishDownLoadTableViewCell.m in Sources */,
 				913455DD1A5BB721005CAFB1 /* RMDownLoadingTableViewCell.m in Sources */,
@@ -2709,7 +2769,6 @@
 				1D1F00D11A55960A00742F1E /* RMRankingTVViewController.m in Sources */,
 				1DD9F1D81A89DD15006723A4 /* RMUtilityFunc.m in Sources */,
 				1DE1C2981A53D7720096A89F /* Animations.m in Sources */,
-				1DA823381A5639D500345DCE /* RMLoginViewController.m in Sources */,
 				913456401A5BD2B5005CAFB1 /* NSData+Base64.m in Sources */,
 				91366B991A5269A5001FD769 /* UIImageView+HighlightedWebCache.m in Sources */,
 				913456631A5BEB04005CAFB1 /* Database.m in Sources */,
@@ -2718,7 +2777,6 @@
 				91B4C57B1A529EE100854435 /* RMBaseTextView.m in Sources */,
 				91F3998F1A59404C002142CD /* RMRankTableViewHeadView.m in Sources */,
 				91366B981A5269A5001FD769 /* UIImage+WebP.m in Sources */,
-				1D632E6D1A593C69002674DF /* RMLoginView.m in Sources */,
 				1D25A3AB1A5578890095974E /* RMHomeTVViewController.m in Sources */,
 				1D632E431A591DC6002674DF /* RMWatchRecordViewController.m in Sources */,
 				91B4C4C61A52968F00854435 /* FMDatabase.m in Sources */,
@@ -2734,10 +2792,10 @@
 				1D632E9C1A5A949B002674DF /* RMPlayRelatedViewController.m in Sources */,
 				91366B461A5269A5001FD769 /* AFURLConnectionOperation.m in Sources */,
 				91366B471A5269A5001FD769 /* AFHTTPSessionManager.m in Sources */,
+				91C7A85B1AA84F0B0034D9DB /* RMGenderTabViewController.m in Sources */,
 				1D25A3B91A5578D00095974E /* RMSetViewController.m in Sources */,
 				91B4C57E1A529EE100854435 /* UIButton+EnlargeEdge.m in Sources */,
 				91366B971A5269A5001FD769 /* UIImage+MultiFormat.m in Sources */,
-				913456571A5BEA26005CAFB1 /* RMGenderTabViewController.m in Sources */,
 				91B4C4C81A52968F00854435 /* FMDatabasePool.m in Sources */,
 				91B4C4C91A52968F00854435 /* FMDatabaseQueue.m in Sources */,
 				1D632E521A591E31002674DF /* RMMyCacheViewController.m in Sources */,
@@ -2749,6 +2807,7 @@
 				1D632EA61A5A94FB002674DF /* RMPlayCreatorViewController.m in Sources */,
 				91A280541A8DE942000C6853 /* RMLoadingWebViewController.m in Sources */,
 				913456271A5BD284005CAFB1 /* RefreshControl.m in Sources */,
+				91C7A8511AA84F0B0034D9DB /* RMRegisteredAccountViewController.m in Sources */,
 				913669A01A525622001FD769 /* RMHomeViewController.m in Sources */,
 				1D632E3E1A591DA5002674DF /* RMMyCollectionViewController.m in Sources */,
 				1D1F00CC1A5595B300742F1E /* RMRankingMovieViewController.m in Sources */,
@@ -2764,6 +2823,7 @@
 				91366B941A5269A5001FD769 /* SDWebImagePrefetcher.m in Sources */,
 				1D3CF5061A63BAE7006EA5E6 /* RMSpecialEditionCell.m in Sources */,
 				91B4C57C1A529EE100854435 /* RMBaseView.m in Sources */,
+				91C7A84D1AA84F0B0034D9DB /* RMLoginViewController.m in Sources */,
 				916D6A771A6FA4B8005EEE72 /* RMRankRecommendedViewController.m in Sources */,
 				91366B961A5269A5001FD769 /* UIImage+GIF.m in Sources */,
 				1D8369DF1A777578005865B3 /* RMSearchStarView.m in Sources */,
@@ -2783,17 +2843,18 @@
 				1D3CF5081A63BAE7006EA5E6 /* RMSpecialEditionViewController.m in Sources */,
 				913669861A5252D8001FD769 /* RMBaseViewController.m in Sources */,
 				913669611A52522A001FD769 /* AppDelegate.m in Sources */,
+				91C7A8591AA84F0B0034D9DB /* RMConstellationTabViewController.m in Sources */,
 				91366B931A5269A5001FD769 /* SDWebImageManager.m in Sources */,
 				913456341A5BD297005CAFB1 /* JDStatusBarStyle.m in Sources */,
 				1D632E951A5A8A1B002674DF /* RMDetailsBottomView.m in Sources */,
 				91366B8F1A5269A5001FD769 /* SDWebImageCompat.m in Sources */,
+				91C7A84C1AA84F0B0034D9DB /* RMLoginView.m in Sources */,
 				91E4576B1A58E72400934D01 /* RMSearchBaseViewController.m in Sources */,
 				913455D21A5B9E69005CAFB1 /* RMFinishDownLoadViewController.m in Sources */,
 				1D3CF50F1A63BAE7006EA5E6 /* RMChannelMoviesViewController.m in Sources */,
 				913669921A5254B2001FD769 /* RMCustomTabBarController.m in Sources */,
 				9134562B1A5BD284005CAFB1 /* RefreshTopView.m in Sources */,
 				9166D2271A676BF80065F2A0 /* RMSpecialEditionDetailViewController.m in Sources */,
-				913456551A5BEA26005CAFB1 /* RMConstellationTabViewController.m in Sources */,
 				913456331A5BD297005CAFB1 /* JDStatusBarNotification.m in Sources */,
 				9136695E1A52522A001FD769 /* main.m in Sources */,
 				91E457661A58E18100934D01 /* RMHomeTableViewCell.m in Sources */,
@@ -2832,6 +2893,7 @@
 				919F68E91A5A2D91003E6C08 /* RMDownLoadBaseViewController.m in Sources */,
 				1D25A3B31A5578890095974E /* RMHomeVarietyViewController.m in Sources */,
 				91366B951A5269A5001FD769 /* UIButton+WebCache.m in Sources */,
+				91C7A8551AA84F0B0034D9DB /* RMRetrievePasswordViewController.m in Sources */,
 				9134562A1A5BD284005CAFB1 /* RefreshBottomView.m in Sources */,
 				91366B491A5269A5001FD769 /* AFNetworkReachabilityManager.m in Sources */,
 				913456461A5BD2D4005CAFB1 /* RatingView.m in Sources */,
@@ -2904,8 +2966,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2925,7 +2987,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2947,8 +3009,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2961,7 +3023,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2972,8 +3034,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
@@ -2982,7 +3044,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RMFlowerVideo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2994,7 +3056,7 @@
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
 			name = Debug;
@@ -3004,8 +3066,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
@@ -3014,7 +3076,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RMFlowerVideo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3026,7 +3088,7 @@
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
+				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
 			name = Release;

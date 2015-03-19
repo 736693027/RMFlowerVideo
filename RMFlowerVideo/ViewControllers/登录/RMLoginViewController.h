@@ -10,4 +10,7 @@
 
 @interface RMLoginViewController : RMBaseViewController
 
+@property (weak, nonatomic) IBOutlet UIView *passwordContentView;
+@property (weak, nonatomic) IBOutlet UIView *accountContentView;
+
 @end

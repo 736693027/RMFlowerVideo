@@ -28,7 +28,8 @@ typedef enum{
 - (void)requestFinishiDownLoadWith:(NSMutableArray *)data;
 - (void)requestFinishiDownLoadWithModel:(RMPublicModel *)model;
 - (void)requestFinishiDownLoadWithToken:(NSString *)token;
-- (void) requestFinishiDownLoadWithResults:(NSString *)results;
+- (void)requestFinishiDownLoadWithResults:(NSString *)results;
+- (void)requestFinishiDownLoadWithUserInfo:(NSDictionary *)userInfo;
 
 - (void)requestError:(NSError *)error;
 
@@ -224,6 +225,38 @@ typedef enum{
  */
 - (void)getLoadingWithDevice:(NSString *)device;
 
+/**
+ *  用户注册
+ *
+ *  @param email    注册邮箱
+ *  @param name     注册的用户名称
+ *  @param password 注册的用户密码
+ */
+- (void)userRegisteredWithEmail:(NSString *)email userName:(NSString *)name passWord:(NSString *)password;
+
+/**
+ *  小花视频登录
+ *
+ *  @param email    用户注册的邮箱
+ *  @param password 密码
+ */
+- (void)loginWithEmail:(NSString *)email andUserPassWord:(NSString *)password;
+
+/**
+ *  修改密码
+ *
+ *  @param token       token
+ *  @param oldPassword 之前的密码
+ *  @param newPassword 新的密码
+ */
+- (void)changePasswordWithToken:(NSString *)token oldPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword;
+
+/**
+ *  找回密码
+ *
+ *  @param email 注册的邮箱地址
+ */
+- (void)resetPasswordWithEmail:(NSString *)email;
 - (void)cancelRequest;
 
 @end

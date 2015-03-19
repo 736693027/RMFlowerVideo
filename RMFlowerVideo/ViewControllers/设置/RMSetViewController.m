@@ -13,6 +13,7 @@
 #import "UMSocial.h"
 #import "RMLoginViewController.h"
 #import "RMCustomPresentNavViewController.h"
+#import "RMChangePasswordViewController.h"
 #import "Flurry.h"
 
 typedef enum{
@@ -23,6 +24,7 @@ typedef enum{
     kRMFeedBack = 5,
     kRMAbout = 6,
     kRMMoreApp = 7,
+    kRMChangerPassword = 8,
 }GotoViewControllerName;
 
 @interface RMSetViewController ()<UITableViewDataSource,UITableViewDelegate>{
@@ -58,11 +60,13 @@ typedef enum{
         [userHeader sd_setImageWithURL:[NSURL URLWithString:[userIofn objectForKey:@"userIconUrl"]] placeholderImage:LOADIMAGE(@"setup_head")];
         userName.textColor = [UIColor blackColor];
         [exitBtn setTitle:@"退出" forState:UIControlStateNormal];
+        [mTableView reloadData];
     }else{
         userName.text = @"小花视频";
         userName.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         [exitBtn setTitle:@"登录" forState:UIControlStateNormal];
         userHeader.image = LOADIMAGE(@"setup_head");
+        [mTableView reloadData];
     }
 }
 
@@ -73,8 +77,8 @@ typedef enum{
     leftBarButton.hidden = YES;
     rightBarButton.hidden = YES;
     
-    imageArr = [[NSArray alloc] initWithObjects:@"setup_cache", @"setup_collection", @"setup_record", @"setup_clearCache", @"setup_score", @"setup_feedback", @"setup_about", @"setup_moreApp", nil];
-    nameArr = [[NSArray alloc] initWithObjects:@"我的缓存", @"我的收藏", @"观看记录", @"清理缓存", @"给小花视频评分", @"用户反馈", @"关于", @"更多应用", nil];
+    imageArr = [[NSArray alloc] initWithObjects:@"setup_cache", @"setup_collection", @"setup_record", @"setup_clearCache", @"setup_score", @"setup_feedback", @"setup_about", @"setup_moreApp",@"changePassword", nil];
+    nameArr = [[NSArray alloc] initWithObjects:@"我的缓存", @"我的收藏", @"观看记录", @"清理缓存", @"给小花视频评分", @"用户反馈", @"关于", @"更多应用",@"修改密码", nil];
     
     mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight -64-49) style:UITableViewStylePlain];
     mTableView.delegate = self;
@@ -151,9 +155,17 @@ typedef enum{
         [dict setValue:nil forKey:@"token"];
         CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
         [storage setObject:dict forKey:UserLoginInformation_KEY];
+        [mTableView reloadData];
         
     }else{
-        RMLoginViewController *loginCtl = [[RMLoginViewController alloc] init];
+        RMLoginViewController *loginCtl;
+        if(IS_IPHONE_6_SCREEN){
+            loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_6" bundle:nil];
+        }else if(IS_IPHONE_6p_SCREEN){
+            loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_6p" bundle:nil];
+        }else{
+            loginCtl = [[RMLoginViewController alloc] init];
+        }
         RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self presentViewController:loginNav animated:YES completion:^{
@@ -162,7 +174,14 @@ typedef enum{
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [nameArr count];
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    NSString * loginStatus = [AESCrypt decrypt:[storage objectForKey:LoginStatus_KEY] password:PASSWORD];
+    if([loginStatus isEqualToString:@"islogin"]){
+        return [nameArr count];
+    }
+    else{
+        return [nameArr count]-1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -203,7 +222,18 @@ typedef enum{
     }else if (indexPath.row == 4){
         NSString *evaluateString = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/r-evolve/id%@?mt=8",kAppleId];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:evaluateString]];
-    }else {
+    }else if (indexPath.row == 8){
+        RMChangePasswordViewController *changePassWord;
+        if(IS_IPHONE_6_SCREEN){
+            changePassWord = [[RMChangePasswordViewController alloc] initWithNibName:@"RMChangePasswordViewController_6" bundle:nil];
+        }else if (IS_IPHONE_6p_SCREEN){
+            changePassWord = [[RMChangePasswordViewController alloc] initWithNibName:@"RMChangePasswordViewController_6p" bundle:nil];
+        }else{
+            changePassWord = [[RMChangePasswordViewController alloc] init];
+        }
+        [self.navigationController pushViewController:changePassWord animated:YES];
+    }
+    else {
         id controller = nil;
         NSString* className = [self getModuleClassNameWithIndexRow:indexPath.row];
         if (className && className.length > 0) {
@@ -247,7 +277,9 @@ typedef enum{
         case kRMMoreApp:
             viewControllerName = @"RMMoreAppViewController";
             break;
-
+        case kRMChangerPassword:
+            viewControllerName = @"RMChangePasswordViewController";
+            break;
         default:
             break;
     }

@@ -118,8 +118,8 @@ return ret;
 }
 
 #if SQLITE_VERSION_NUMBER >= 3007017
+
 - (uint32_t)applicationID {
-    
     uint32_t r = 0;
     
     FMResultSet *rs = [self executeQuery:@"pragma application_id"];
@@ -129,10 +129,18 @@ return ret;
     }
     
     [rs close];
-    
     return r;
 }
 
+- (void)setApplicationID:(uint32_t)appID {
+    NSString *query = [NSString stringWithFormat:@"pragma application_id=%d", appID];
+    FMResultSet *rs = [self executeQuery:query];
+    [rs next];
+    [rs close];
+}
+
+
+#if TARGET_OS_MAC && !TARGET_OS_IPHONE
 - (NSString*)applicationIDString {
     NSString *s = NSFileTypeForHFSTypeCode([self applicationID]);
     
@@ -140,28 +148,67 @@ return ret;
     
     s = [s substringWithRange:NSMakeRange(1, 4)];
     
-    
     return s;
     
 }
 
-- (void)setApplicationID:(uint32_t)appID {
-    NSString *query = [NSString stringWithFormat:@"PRAGMA application_id=%d", appID];
-    FMResultSet *rs = [self executeQuery:query];
-    [rs next];
-    [rs close];
-}
-
-- (void)setApplicationIDString:(NSString*)s {
-    
-    if ([s length] != 4) {
-        NSLog(@"setApplicationIDString: string passed is not exactly 4 chars long. (was %ld)", [s length]);
+- (void)setApplicationIDString:(NSString*)string {
+    if ([string length] != 4) {
+        NSLog(@"setApplicationIDString: string passed is not exactly 4 chars long. (was %ld)", [string length]);
     }
     
-    [self setApplicationID:NSHFSTypeCodeFromFileType([NSString stringWithFormat:@"'%@'", s])];
+    [self setApplicationID:NSHFSTypeCodeFromFileType([NSString stringWithFormat:@"'%@'", string])];
 }
 
 #endif
+
+#endif
+
+//#if SQLITE_VERSION_NUMBER >= 3007017
+//- (uint32_t)applicationID {
+//
+//    uint32_t r = 0;
+//
+//    FMResultSet *rs = [self executeQuery:@"pragma application_id"];
+//
+//    if ([rs next]) {
+//        r = (uint32_t)[rs longLongIntForColumnIndex:0];
+//    }
+//    
+//    [rs close];
+//    
+//    return r;
+//}
+//
+//- (NSString*)applicationIDString {
+//    NSString *s = NSFileTypeForHFSTypeCode([self applicationID]);
+//    
+//    assert([s length] == 6);
+//    
+//    s = [s substringWithRange:NSMakeRange(1, 4)];
+//    
+//    
+//    return s;
+//    
+//}
+//
+//- (void)setApplicationID:(uint32_t)appID {
+//    NSString *query = [NSString stringWithFormat:@"PRAGMA application_id=%d", appID];
+//    FMResultSet *rs = [self executeQuery:query];
+//    [rs next];
+//    [rs close];
+//}
+//
+//- (void)setApplicationIDString:(NSString*)s {
+//    
+//    if ([s length] != 4) {
+//        NSLog(@"setApplicationIDString: string passed is not exactly 4 chars long. (was %ld)", [s length]);
+//    }
+//    
+//    [self setApplicationID:NSHFSTypeCodeFromFileType([NSString stringWithFormat:@"'%@'", s])];
+//}
+//
+//#endif
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"

@@ -44,6 +44,8 @@
 }
 
 - (void)refreshViewWithContent:(NSString *)content {
+    if(content==nil)
+        content = @"暂无简介";
     // 设置字体间每行的间距
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     //    paragraphStyle.lineHeightMultiple = 15.0f;
@@ -64,6 +66,7 @@
 }
 
 - (void)reloadDataWithModel:(RMPublicModel *)model {
+    
     [self refreshViewWithContent:model.content];
     
     UILabel * videoName = [[UILabel alloc] init];

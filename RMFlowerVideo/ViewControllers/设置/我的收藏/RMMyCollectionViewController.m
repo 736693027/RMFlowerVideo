@@ -72,7 +72,14 @@
 }
 - (void)presentLoginViewControll{
     isAlreadyPresentLoginView = YES;
-    RMLoginViewController *loginCtl = [[RMLoginViewController alloc] init];
+    RMLoginViewController *loginCtl;
+    if(IS_IPHONE_6_SCREEN){
+        loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_6" bundle:nil];
+    }else if(IS_IPHONE_6p_SCREEN){
+        loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_6p" bundle:nil];
+    }else{
+        loginCtl = [[RMLoginViewController alloc] init];
+    }
     RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self presentViewController:loginNav animated:YES completion:^{

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RMLoginViewController">
             <connections>
-                <outlet property="QQLoginBtn" destination="YoJ-lu-lir" id="aJP-R0-lvk"/>
-                <outlet property="sinaLoginBtn" destination="OTg-PD-0Ko" id="aiK-Iw-jYH"/>
+                <outlet property="QQLoginBtn" destination="ntr-xF-VEi" id="qTj-Bb-qAn"/>
+                <outlet property="accountContentView" destination="fbI-Vh-owh" id="ENp-e0-XFd"/>
+                <outlet property="accountTextField" destination="5Xk-pG-1vy" id="vdg-XZ-xRk"/>
+                <outlet property="contentView" destination="hXi-Y8-gpF" id="6q0-qC-c54"/>
+                <outlet property="passwordContentView" destination="xhF-b6-tmw" id="C89-dQ-pIy"/>
+                <outlet property="passwordTextField" destination="9sX-3h-cbo" id="f79-kF-QAd"/>
+                <outlet property="sinaLoginBtn" destination="0Rh-MX-NrM" id="Gf1-pe-1uR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,54 +22,145 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTg-PD-0Ko">
-                    <rect key="frame" x="48" y="177" width="225" height="55"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXi-Y8-gpF">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xhF-b6-tmw">
+                            <rect key="frame" x="25" y="380" width="270" height="51"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码需六位以上" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9sX-3h-cbo">
+                                    <rect key="frame" x="60" y="0.0" width="210" height="51"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                </textField>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="v8q-Nu-27M">
+                                    <rect key="frame" x="16" y="17" width="18" height="18"/>
+                                </imageView>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJx-Rr-BJg">
+                                    <rect key="frame" x="51" y="0.0" width="1" height="51"/>
+                                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbI-Vh-owh">
+                            <rect key="frame" x="25" y="315" width="270" height="51"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的小花视频账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Xk-pG-1vy">
+                                    <rect key="frame" x="60" y="0.0" width="210" height="51"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ij1-Of-Xjg">
+                                    <rect key="frame" x="51" y="0.0" width="1" height="51"/>
+                                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="lES-OD-lhb">
+                                    <rect key="frame" x="16" y="17" width="18" height="18"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登录您的小花视频账号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6DN-lB-axJ">
+                            <rect key="frame" x="25" y="281" width="201" height="18"/>
+                            <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rh-MX-NrM">
+                            <rect key="frame" x="25" y="135" width="270" height="51"/>
+                            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="weibo_login">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="sinaLoginBtnClick:" destination="-1" eventType="touchUpInside" id="guM-FH-IVe"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntr-xF-VEi">
+                            <rect key="frame" x="25" y="200" width="270" height="51"/>
+                            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="QQ_Login">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="QQLoginBtnClick:" destination="-1" eventType="touchUpInside" id="i6i-tT-78W"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zog-KM-V9Z">
+                            <rect key="frame" x="25" y="459" width="270" height="45"/>
+                            <color key="backgroundColor" red="0.76470588235294112" green="0.074509803921568626" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="登录">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="xiaohuaLogin:" destination="-1" eventType="touchUpInside" id="dfX-rl-W72"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="使用社交账号登陆小花视频" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSH-GT-2hp">
+                            <rect key="frame" x="25" y="101" width="270" height="18"/>
+                            <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acN-Gn-WDi">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5z-UU-G1m">
+                            <rect key="frame" x="161" y="0.0" width="159" height="49"/>
+                            <color key="backgroundColor" red="0.83137254901960789" green="0.062745098039215685" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="找回密码">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="retrievePasswordClick:" destination="-1" eventType="touchUpInside" id="3Xv-Rw-61T"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5P-o8-hMj">
+                            <rect key="frame" x="0.0" y="0.0" width="159" height="49"/>
+                            <color key="backgroundColor" red="0.81176470588235294" green="0.074509803921568626" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="账号注册">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="registeredAccountClick:" destination="-1" eventType="touchUpInside" id="kls-h1-Otn"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.75294117647058822" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="225" id="Jc8-dQ-bFX"/>
-                        <constraint firstAttribute="height" constant="55" id="vba-T4-wXh"/>
+                        <constraint firstAttribute="height" constant="49" id="eKD-l3-QOv"/>
                     </constraints>
-                    <state key="normal" image="weibo_login">
-                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="sinaLoginBtnClick:" destination="-1" eventType="touchUpInside" id="wxD-2V-mY9"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoJ-lu-lir">
-                    <rect key="frame" x="48" y="252" width="225" height="55"/>
-                    <state key="normal" image="QQ_Login">
-                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="QQLoginBtnClick:" destination="-1" eventType="touchUpInside" id="5hY-ZD-HRD"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用社交账号登陆小花视频" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fg-oK-lCd">
-                    <rect key="frame" x="0.0" y="124" width="320" height="18"/>
-                    <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="18"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OTg-PD-0Ko" firstAttribute="top" secondItem="8Fg-oK-lCd" secondAttribute="bottom" constant="35" id="L47-aG-skm"/>
-                <constraint firstAttribute="centerX" secondItem="8Fg-oK-lCd" secondAttribute="centerX" id="OWR-RA-5RE"/>
-                <constraint firstItem="YoJ-lu-lir" firstAttribute="top" secondItem="OTg-PD-0Ko" secondAttribute="bottom" constant="20" id="Xdz-fV-YYf"/>
-                <constraint firstAttribute="centerX" secondItem="OTg-PD-0Ko" secondAttribute="centerX" id="acc-gH-ZTS"/>
-                <constraint firstAttribute="trailing" secondItem="8Fg-oK-lCd" secondAttribute="trailing" id="dFu-cG-prz"/>
-                <constraint firstItem="8Fg-oK-lCd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="124" id="lVY-1V-bRa"/>
-                <constraint firstAttribute="centerX" secondItem="YoJ-lu-lir" secondAttribute="centerX" id="uBc-3E-OgB"/>
-                <constraint firstItem="8Fg-oK-lCd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ury-at-9Ju"/>
+                <constraint firstItem="hXi-Y8-gpF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4c9-T2-nSu"/>
+                <constraint firstAttribute="trailing" secondItem="hXi-Y8-gpF" secondAttribute="trailing" id="Evd-q0-2TH"/>
+                <constraint firstItem="acN-Gn-WDi" firstAttribute="top" secondItem="hXi-Y8-gpF" secondAttribute="bottom" id="LbL-2Q-KDB"/>
+                <constraint firstItem="acN-Gn-WDi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ucb-rA-PWf"/>
+                <constraint firstItem="hXi-Y8-gpF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mip-9T-kVx"/>
+                <constraint firstAttribute="bottom" secondItem="acN-Gn-WDi" secondAttribute="bottom" id="neg-yO-HME"/>
+                <constraint firstAttribute="trailing" secondItem="acN-Gn-WDi" secondAttribute="trailing" id="oVO-SD-uj0"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-171" y="137"/>
+            <point key="canvasLocation" x="117" y="95"/>
         </view>
     </objects>
     <resources>
-        <image name="QQ_Login" width="225" height="55"/>
-        <image name="weibo_login" width="225" height="55"/>
+        <image name="QQ_Login" width="270" height="51"/>
+        <image name="account" width="18" height="18"/>
+        <image name="password" width="18" height="18"/>
+        <image name="weibo_login" width="270" height="51"/>
     </resources>
 </document>
