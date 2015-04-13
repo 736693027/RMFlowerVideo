@@ -56,6 +56,8 @@
             break;
         }
         case 2:{
+            if(self.textView.text == nil || [self.textView.text isEqualToString:@""]) return;
+            
             CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
             NSDictionary *userIofn = [storage objectForKey:UserLoginInformation_KEY];
             RMAFNRequestManager *requestManager = [[RMAFNRequestManager alloc] init];

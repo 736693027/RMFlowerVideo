@@ -599,8 +599,10 @@ typedef enum{
                     loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_6" bundle:nil];
                 }else if(IS_IPHONE_6p_SCREEN){
                     loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_6p" bundle:nil];
-                }else{
+                }else if(IS_IPHONE_5_SCREEN){
                     loginCtl = [[RMLoginViewController alloc] init];
+                }else{
+                    loginCtl = [[RMLoginViewController alloc] initWithNibName:@"RMLoginViewController_4" bundle:nil];
                 }
                 RMCustomPresentNavViewController *loginNav = [[RMCustomPresentNavViewController alloc] initWithRootViewController:loginCtl];
                 [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
@@ -1187,7 +1189,7 @@ typedef enum{
  */
 - (void)playerFinishedPlay {
     if (playbackObserver) {
-        [self.player.moviePlayer removeTimeObserver:playbackObserver];
+//        [self.player.moviePlayer removeTimeObserver:playbackObserver];
         playbackObserver = nil;
     }
     [self.player removeObserver];

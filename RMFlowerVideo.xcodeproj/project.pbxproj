@@ -312,6 +312,7 @@
 		916DE9BB1A6E4B2700988DA5 /* RMHomeTableViewCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916DE9B91A6E4B2700988DA5 /* RMHomeTableViewCell_6p.xib */; };
 		916DE9BE1A6E54E500988DA5 /* RMHomeStartCell_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916DE9BC1A6E54E500988DA5 /* RMHomeStartCell_6.xib */; };
 		916DE9BF1A6E54E500988DA5 /* RMHomeStartCell_6p.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916DE9BD1A6E54E500988DA5 /* RMHomeStartCell_6p.xib */; };
+		9193EF501AC8DD490057B10B /* RMLoginViewController_4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9193EF4F1AC8DD490057B10B /* RMLoginViewController_4.xib */; };
 		919CC4381A67B4DE003CB686 /* RMPlayTVEpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 919CC4361A67B4DE003CB686 /* RMPlayTVEpisodeViewController.m */; };
 		919CC4391A67B4DE003CB686 /* RMPlayTVEpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919CC4371A67B4DE003CB686 /* RMPlayTVEpisodeViewController.xib */; };
 		919F68E91A5A2D91003E6C08 /* RMDownLoadBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 919F68E71A5A2D91003E6C08 /* RMDownLoadBaseViewController.m */; };
@@ -867,6 +868,7 @@
 		916DE9B91A6E4B2700988DA5 /* RMHomeTableViewCell_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMHomeTableViewCell_6p.xib; sourceTree = "<group>"; };
 		916DE9BC1A6E54E500988DA5 /* RMHomeStartCell_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMHomeStartCell_6.xib; sourceTree = "<group>"; };
 		916DE9BD1A6E54E500988DA5 /* RMHomeStartCell_6p.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMHomeStartCell_6p.xib; sourceTree = "<group>"; };
+		9193EF4F1AC8DD490057B10B /* RMLoginViewController_4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMLoginViewController_4.xib; sourceTree = "<group>"; };
 		919CC4351A67B4DE003CB686 /* RMPlayTVEpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPlayTVEpisodeViewController.h; sourceTree = "<group>"; };
 		919CC4361A67B4DE003CB686 /* RMPlayTVEpisodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPlayTVEpisodeViewController.m; sourceTree = "<group>"; };
 		919CC4371A67B4DE003CB686 /* RMPlayTVEpisodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RMPlayTVEpisodeViewController.xib; sourceTree = "<group>"; };
@@ -2357,6 +2359,7 @@
 				91C7A8351AA84F0B0034D9DB /* RMLoginView.m */,
 				91C7A8361AA84F0B0034D9DB /* RMLoginViewController.h */,
 				91C7A8371AA84F0B0034D9DB /* RMLoginViewController.m */,
+				9193EF4F1AC8DD490057B10B /* RMLoginViewController_4.xib */,
 				91C7A8381AA84F0B0034D9DB /* RMLoginViewController.xib */,
 				91C7A8391AA84F0B0034D9DB /* RMLoginViewController_6.xib */,
 				91C7A83A1AA84F0B0034D9DB /* RMLoginViewController_6p.xib */,
@@ -2668,6 +2671,7 @@
 				916DE9A41A6DEF5000988DA5 /* red_@2x.png in Resources */,
 				919CC4391A67B4DE003CB686 /* RMPlayTVEpisodeViewController.xib in Resources */,
 				1DAB4FED1A72233400F9310A /* source_youku_small@2x.png in Resources */,
+				9193EF501AC8DD490057B10B /* RMLoginViewController_4.xib in Resources */,
 				912C0C161A7C863700B85FC1 /* RMSpecialEditionCell_6p.xib in Resources */,
 				1D632E3F1A591DA5002674DF /* RMMyCollectionViewController.xib in Resources */,
 				91E457671A58E18100934D01 /* RMHomeTableViewCell.xib in Resources */,
@@ -2966,8 +2970,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2987,7 +2991,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
+				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3009,8 +3013,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3023,7 +3027,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
+				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3034,8 +3038,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
@@ -3056,7 +3060,7 @@
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
+				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
 			name = Debug;
@@ -3066,8 +3070,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Run Mobile (BeiJing) Internet Technology Co.Ltd (PTY98AP2WF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: TianFu Hong (RLHUHV5M7K)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RMFlowerVideo",
@@ -3088,7 +3092,7 @@
 					"$(PROJECT_DIR)/RMFlowerVideo/Vendors/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "78a74faa-2fb1-4aaf-b0e5-660373f8a929";
+				PROVISIONING_PROFILE = "d2b4293b-d05d-43dd-a851-6745a0118b6a";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 			};
 			name = Release;

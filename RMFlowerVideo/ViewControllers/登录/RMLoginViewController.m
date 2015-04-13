@@ -197,11 +197,7 @@
     NSLog(@"duration:%@",duration);
     [UIView animateWithDuration:0.3 animations:^{
         //            [self replacePickerContainerViewTopConstraintWithConstant:-(250-49)];
-        if(IS_IPHONE_4_SCREEN){
-            contentView.bounds = CGRectMake(0, 252+55, contentView.bounds.size.width, contentView.bounds.size.height);
-        }else{
-            contentView.bounds = CGRectMake(0, 252-49, contentView.bounds.size.width, contentView.bounds.size.height);
-        }
+        contentView.bounds = CGRectMake(0, 252-49, contentView.bounds.size.width, contentView.bounds.size.height);
     }];
 }
 - (void)keyBoardWillHide:(NSNotification *)notification{
